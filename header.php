@@ -1,0 +1,75 @@
+<div class="menu-burger row content">
+    <div class="menu-burger--left col-xs-24 col-sm-12">
+        <div class="menu-burger--content">
+            <div class="close"><?php echo file_get_contents(get_template_directory() . '/src/images/cross.svg'); ?></div>
+            <ul class="col-xs-16 col-xs-offset-4">
+                <?php 
+                $args = array(
+                'depth'       => 0,
+                'sort_column' => 'menu_order',
+                'theme_location' => 'burger-menu',
+                'menu_class'  => 'menu',
+                'include'     => '',
+                'exclude'     => '',
+                'echo'        => true,
+                'show_home'   => false,
+                'link_before' => '',
+                'link_after'  => ''
+                );
+                wp_nav_menu( $args ); ?>
+            </ul>
+            
+        </div>
+    </div>
+    <div class="menu-burger--right col-xs-24 col-sm-12  close"></div>
+   
+</div>
+<div class="menu-burger--overlay close"></div>
+
+    <header id="header" class="row header--white">
+        <div id="logo">
+            <a href="<?php echo get_bloginfo( 'wpurl' );?>">
+                <?php echo file_get_contents(get_template_directory() . '/src/images/logo.svg'); ?>
+            </a>
+        </div>
+        <ul class="menu-links menu-links--left">
+            <li class="burger"><span></span><span></span><span></span></li>
+            
+                <?php 
+                $args = array(
+                'depth'       => 0,
+                'sort_column' => 'menu_order',
+                'theme_location' => 'top-left-links',
+                'menu_class'  => 'menu t-text',
+                'include'     => '',
+                'exclude'     => '',
+                'echo'        => true,
+                'show_home'   => false,
+                'link_before' => '',
+                'link_after'  => '',
+                );
+                wp_nav_menu( $args ); ?>
+        </ul>
+
+        <ul class="menu-links menu-links--right">
+            <?php /*
+            $args = array(
+            'depth'       => 0,
+            'sort_column' => 'menu_order',
+            'theme_location' => 'top-right-links',
+            'menu_class'  => 'menu',
+            'include'     => '',
+            'exclude'     => '',
+            'echo'        => true,
+            'show_home'   => false,
+            'link_before' => '',
+            'link_after'  => '',
+            );
+            wp_nav_menu( $args ); */?>
+            <li id="link--instagram">
+                <a href="https://www.instagram.com/93.degres/" target="_blank" rel="noopener">Suivez-nous <?php echo file_get_contents(get_template_directory() . '/src/images/logo--instagram.svg'); ?>
+                </a>
+            </li>
+        </ul>
+    </header>
+ 

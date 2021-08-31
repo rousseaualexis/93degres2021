@@ -1,0 +1,325 @@
+#homepage--cover
+	+media-sm-and-less
+		margin-top: $col-margin*3
+		margin-bottom: $col-margin*3
+	a
+		display: inline-block
+
+	.categories__container
+		float: right
+		margin-top: $col-margin/2
+		+media-sm-and-less
+			position: absolute
+			top: 0
+			float: none
+			width: 100%
+			text-align: center
+			left: 50%
+			transform: translate(-50%, -200%)
+
+		img
+			+media-sm-and-less
+				float: none
+
+	.cta--circle
+		float: left
+		clear: both
+		position: relative
+		padding-left: 5px
+
+
+	&--title
+		color: $color-93degres
+		position: absolute
+		z-index: 1
+		text-align: center
+		pointer-events: none
+
+		+media-sm-and-less
+			position: relative
+			font-size: 0
+
+		a .h1
+			display: inline-block
+			position: relative
+			width: 100%
+			cursor: pointer
+			margin: 0
+			pointer-events: visible
+
+			strong
+				float: left
+
+				+media-sm-and-less
+					float: none
+					display: block
+
+			& > *
+				clear: both
+
+				+media-sm-and-less
+					clear: none
+					display: inline-block
+					margin: 0 $col-margin*0.5
+
+				&:nth-child(1)
+					float: left
+					+media-sm-and-less
+						float: none
+				&:nth-child(2)
+					float: right
+					+media-sm-and-less
+						float: none
+				&:nth-child(3)
+					width: 100%
+					+media-sm-and-less
+						width: auto
+
+	&--image
+
+		margin-top: $col-margin*1.5
+		transform-origin: bottom
+		height: auto
+		overflow: hidden
+
+		+media-sm-and-less
+			margin-top: -$col-margin*1.5
+
+	.t--caption
+
+		margin-left: 15px
+		bottom: -35px
+		float: left
+		text-align: left
+		margin-top: 10px	
+		width: 100%
+		+media-sm-and-less
+			text-align: center
+			margin-left: 0
+
+				
+#homepage--other-articles
+
+
+	.push-article
+		overflow: hidden
+		margin-bottom: $col-margin*2
+
+		+media-sm-and-less
+			margin-bottom: $col-margin*3
+	
+
+		.item__img-wrap
+
+			margin-bottom: $col-margin*2
+			+media-sm-and-less
+				margin-bottom: $col-margin*1.5
+
+		a
+
+			display: block
+
+		h3
+			strong	
+				transition: $transition-quick
+
+		.categories
+			margin-bottom: $col-margin/4
+
+			+media-sm-and-less
+				margin-bottom: $col-margin / 2
+
+		&:nth-child(3)
+			margin-bottom: 0
+			.item__img-wrap
+				padding-bottom: 56.25%
+
+				+media-sm-and-less
+					padding-bottom: 66.66%
+
+		&:nth-child(2)
+			float: right
+			margin-left: 0
+			@include make-sm-column-pull(2)
+
+			+media-sm-and-less
+				float: left
+				@include make-xs-column-offset(1)
+
+
+
+			.item__img-wrap
+				padding-bottom: 100%
+				
+				+media-sm-and-less
+					padding-bottom: 66.66%
+
+#homepage--more-articles
+
+	text-align: center
+
+	.cta--rounded-square 
+		margin-top: $col-margin	
+
+
+#homepage--destinations
+	position: relative
+	padding-bottom: $col-margin *2.5
+	padding-top: $col-margin * 2.5
+	text-align: center
+	overflow: hidden
+	background: $color-93degres
+
+
+	.h4
+		text-align: center
+		color: $color-black
+
+	ul	
+		z-index: 2
+		margin-top: $col-margin/2
+		margin-bottom: $col-margin*1
+		transform: rotate(5deg)
+
+		+media-sm-and-less
+			margin-top: $col-margin*2
+
+		li
+		
+			clear: both
+
+			&:hover
+				.homepage--destinations--image
+			        transform: none
+			        transform-origin: top
+
+			&:nth-child(1n+1)
+				.homepage--destinations--image__container
+					left: -100%
+					right: 100%
+
+				.homepage--destinations--image
+					right: 50px
+					left: auto
+				float: right
+				right: -10px
+				+media-sm-and-less
+					float: left
+					width: 100%
+					right: 0
+					left: 0
+					text-align: center
+				
+			&:nth-child(2n)
+				.homepage--destinations--image__container
+					right: -100%
+					left: 100%
+
+				.homepage--destinations--image
+					left: 50px
+					right: auto
+				left: -10px
+				float: left
+				+media-sm-and-less
+					float: left
+					width: 100%
+					right: 0
+					left: 0
+					text-align: center
+
+
+			+media-sm-and-less
+
+				.homepage--destinations--image
+			        opacity: 1
+			        transform: none
+			        transform-origin: left
+			        transition: transform $transition-quick, opacity $transition-quick
+
+
+	.homepage--destinations
+		&--names
+
+			margin-top: $col-margin/2
+			position: initial
+			z-index: 100
+			transition: $transition-smooth2
+			overflow: hidden
+
+			.li
+				padding-top: 1vw
+			a
+				color: $color-black
+				display: block
+
+		&--image
+
+			position: absolute
+			height: 100%
+			background-size: contain
+			background-repeat: no-repeat
+			background-position: center
+			opacity: 1
+
+			+media-sm-and-less
+				opacity: 1
+				float: left
+				display: block
+				height: 40px
+
+
+			&__container
+				left: -100%
+				right: -100%
+				position: absolute
+				height: 100%
+				z-index: -1
+				overflow: hidden
+
+				+media-sm-and-less
+					position: relative
+					overflow: initial
+					float: left
+					display: block
+					margin-bottom: $col-margin
+
+
+	#svg__world
+		width: 110%
+		height: 100%
+		left: -5%
+		top: 0
+		position: absolute
+		opacity: 0.2
+		stroke-width: 1px
+		stroke: #000000
+		fill: none
+
+		> *
+	 		vector-effect: non-scaling-stroke
+
+
+
+
+#about
+	margin-top: $col-margin*3
+	margin-bottom: $col-margin*2
+	text-align: center
+		
+	a
+		margin-top: $col-margin
+
+	.h2
+		margin-top: $col-margin/2
+
+	.h4
+		color: $color-white
+
+	.cta--rounded-square
+		&:before
+			background: $color-white
+
+			
+						
+	
+	

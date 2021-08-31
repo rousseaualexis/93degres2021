@@ -1,0 +1,32 @@
+#content-grid
+	font-size: 0
+.grid__articles
+	margin-bottom: $col-margin
+
+	.small--categories
+		margin-top: $col-margin*3
+		padding-bottom: $col-margin
+
+	.h3
+		strong
+			transition: $transition-quick
+	&:last-child
+		margin-bottom: 0
+
+
+.grid__articles--medium
+
+	margin-bottom: $col-margin*2
+	@include make-md-column(9.5)
+	float: none !important
+	display: inline-block
+	vertical-align: top
+
+	&:nth-child(2n)
+		@include make-md-column-pull(2)
+
+	.categories
+		margin-top: $col-margin*2
+		padding-bottom: $col-margin
+
+

@@ -1,0 +1,150 @@
+{
+    "key": "group_5d62a47e2bcca",
+    "title": "Block: Paragraph",
+    "fields": [
+        {
+            "key": "field_5d62a492f7755",
+            "label": "Paragraph",
+            "name": "paragraph",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "very_simple",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_5d62a73658f43",
+            "label": "Small Description",
+            "name": "small_description",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d62a492f7755",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_5fad4bab2b513",
+                        "operator": "==empty"
+                    },
+                    {
+                        "field": "field_5fad4e4b74044",
+                        "operator": "==empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "very_simple",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_5fad4bab2b513",
+            "label": "Title",
+            "name": "title",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d62a492f7755",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_5d62a73658f43",
+                        "operator": "==empty"
+                    },
+                    {
+                        "field": "field_5fad4e4b74044",
+                        "operator": "==empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "chapter",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_5fad4e4b74044",
+            "label": "relation",
+            "name": "relation",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5d62a492f7755",
+                        "operator": "!=empty"
+                    },
+                    {
+                        "field": "field_5fad4bab2b513",
+                        "operator": "==empty"
+                    },
+                    {
+                        "field": "field_5d62a73658f43",
+                        "operator": "==empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": "",
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "post_type"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "object"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/paragraph"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1605196232
+}

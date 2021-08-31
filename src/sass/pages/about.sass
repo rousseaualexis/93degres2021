@@ -1,0 +1,72 @@
+.page--about
+
+	.container
+		padding-top: 0
+		padding-bottom: $col-margin
+
+	.mask3
+		opacity: 0.15
+
+	#about--introduction
+		background: $color-93degres
+		padding-top: $col-margin*3
+		padding-bottom: $col-margin*2
+		+media-sm-and-less
+			padding-top: $col-margin*6
+			margin-bottom: $col-margin*4
+
+		strong
+			color: $color-black
+		img
+			height: 7.1vw
+			width: auto
+		h1
+			& > *
+				clear: both
+
+				+media-sm-and-less
+					clear: none
+					display: inline-block
+
+				&:nth-child(2n)
+					text-align: right
+
+	#about--content
+		.row
+			margin-bottom: $col-margin
+			+media-sm-and-less
+				margin-bottom: $col-margin*2
+
+		.acf
+			&--image-full
+				.caption
+					margin-left: 20px
+			&--separator
+				width: 100%
+				display: inline-block
+
+			&--title
+				margin-bottom: 0
+				.h3
+					margin-bottom: $col-margin
+					strong
+						color: $color-93degres
+			&--paragraph
+				position: relative
+				.t--caption
+					margin-top: 5px
+				p
+					margin-bottom: $col-margin
+
+					&:last-child
+						margin-bottom: 0
+				&__small-description
+					+media-sm-and-more
+						position: absolute
+						top: 5px
+						left: 0
+			&--image-two
+				+media-sm-and-less
+					div:first-child
+						margin-bottom: $col-margin*2
+

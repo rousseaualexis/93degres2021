@@ -1,0 +1,591 @@
+.noscroll
+	overflow: hidden
+
+.mask, .mask2, .mask3
+	position: fixed
+	z-index: 1001
+	top: 0
+	bottom: 0
+	left: 0
+	right: 0
+.mask
+	background: #f19aa6
+.mask2
+	background: $color-black
+	z-index: 1002
+.mask3
+	background: #f19aa6
+	opacity: 0
+	z-index: 1001
+
+.mouse-cursor 
+	display: block
+	z-index: 103
+	width: 0
+	height: 0
+	position: fixed
+	pointer-events: none
+	opacity: 1
+	left: 50%
+	top: 50%
+	visibility: hidden
+	transition: $transition-smooth2
+
+	+media-sm-and-less
+		display: none
+
+
+	.base--circle
+
+		position: absolute
+		z-index: -1
+		transition: $transition-smooth2
+
+		&:before
+			content: ''
+			width: 12px
+			height: 12px
+			//transform: translate3d(-50%, -50%, 0) scale3d(0.5, 0.5, 1)
+			position: absolute
+			z-index: -1
+			border-radius: 50%
+			top: calc(50% - 6px)
+			left: calc(50% - 6px)
+			transition: $transition-quick
+		&--white
+			&:before
+				box-shadow: 0 0 0 2px $color-white
+		&--dark
+			&:before
+				box-shadow: 0 0 0 2px $color-black
+		
+	.mousecontainer
+		//transform: translate3d(-50%, -50%, 0) scale3d(0.5, 0.5, 1)
+		position: absolute
+		z-index: -1
+		border-radius: 50%
+		transform: scale(1)
+		top: 0px
+		right: 0px
+
+		span	
+			transition: $transition-quick
+			opacity: 0
+
+		div
+			position: absolute
+	#mousecontainer-discover, #mousecontainer-read, #mousecontainer-link-internal
+		display: table-cell
+		
+		.background--circle
+			position: relative
+			font-family: $paragraph
+			-webkit-font-smoothing: initial
+			font-weight: 400
+			font-size: 12px
+			display: inline-block
+			transform: scale(0)
+			transition: $transition-quick
+			padding: 40px
+			text-transform: uppercase
+			letter-spacing: 0.05em
+			
+			span
+				display: block
+				z-index: 1
+				color: $color-black
+				position: relative
+				height: 0
+				padding: 50% 0
+				top: -6px /* Half of font-size, in our case it is (14px / 2) */
+				transition: $transition-quick
+
+			.circle
+				position: absolute
+				overflow: hidden
+				display: block
+				width: 100%
+				height: 100%
+				top: 0
+				left: 0
+				border-radius: 100%
+				background: $color-dark
+				transition: $transition-quick
+
+
+	#mousecontainer-link-internal
+		.svg__arrow
+			fill: $color-white
+			width: 14px
+		.background--circle
+			padding: 30px
+			span
+				color: $color-93degres
+			.circle
+				background: $color-dark
+
+.inload
+	visibility: visible
+
+.mouse-cursor.hovert.mouse--discover
+	.base--circle
+		visibility: hidden
+	#mousecontainer-discover
+
+		.background--circle
+			transform: scale(1)
+		cursor: pointer
+		span
+			opacity: 1
+
+.mouse-cursor.hovert.mouse--read
+	.base--circle
+		visibility: hidden
+	#mousecontainer-read
+		cursor: pointer
+		.background--circle
+			transform: scale(1)
+
+		span
+			opacity: 1
+
+.mouse-cursor.hovert.mouse--link-internal
+	.base--circle
+		visibility: hidden
+	#mousecontainer-link-internal
+		cursor: pointer
+		.background--circle
+			transform: scale(1)
+		span
+			opacity: 1
+
+.overflow--container
+	overflow: hidden
+	padding-top: 1%
+	margin-top: -1%
+	padding-bottom: 1%
+	margin-bottom: -1%
+	
+
+div
+	&[data-scroll]
+		top: 0
+
+
+*
+	&::selection
+    	background-color: rgba(0,0,0,0.05)
+
+body
+	background-color: $color-dark
+	overflow-x: hidden
+	overflow-y: scroll
+
+.hidden
+	overflow: hidden
+
+.h1 
+	font-family: $title
+	font-size: 100px
+
+	font-size: 32.230769230769vh
+	//line-height: 23.346153846154vmin
+	//font-size: calc(16.1153846154vh + 8.729vw)
+	line-height: 0.724
+	text-transform: uppercase
+	font-weight: 800
+	letter-spacing: 3%
+
+	+media-sm-and-less
+		//font-size: 10vw
+		//line-height: 10vw
+
+
+.h2
+	font-family: $paragraph
+	font-size: 56px
+	font-size: 6.4102564102564vmin
+
+	font-size: calc(3.2vh + 1.736vw)
+	line-height: 80px
+	line-height: 7.8205128205128vmin
+	line-height: 1.22
+	letter-spacing: -0.02em
+
+	+media-sm-and-less
+		font-size: 6vw
+		line-height: 8vw
+
+	strong
+		font-family: $title
+		line-height: 4.8717948717949vh
+		font-weight: 400
+		letter-spacing: 0
+		text-transform: uppercase
+
+.h3
+
+	font-family: $paragraph
+	font-size: calc(1.603vh + 0.868vw)
+	line-height: 1.28
+
+	+media-sm-and-less
+		font-size: 32px
+		line-height: 38px
+	strong
+		font-family: $paragraph
+		-webkit-font-smoothing: antialiased
+		font-weight: 400
+		letter-spacing: -0.02em
+
+
+.h4, .categories
+	font-family: $title
+	-webkit-font-smoothing: antialiased
+	font-size: 1.9230769230769vh
+	line-height: 1.5vh
+	text-transform: uppercase
+
+	+media-lg-and-less
+		font-size: 20px
+		line-height: 28px
+
+.t--caption
+	font-family: $paragraph
+	font-size: 0.972vw
+	line-height: 1.667vw
+	font-weight: 400
+	color: $color-white
+	opacity: 0.7
+
+	+media-lg-and-less
+		font-size: 14px
+		line-height: 24px
+
+	+media-sm-and-less
+		font-size: 12px
+
+	a
+		font-size: inherit
+.t--text, a
+	font-family: $paragraph
+	-webkit-font-smoothing: antialiased
+	font-weight: 400
+	font-size: calc(0.96vh + 0.52vw)
+	line-height: 1.66
+	text-decoration: none
+
+p 
+	
+	a 
+	/*
+		font-family: inherit
+		text-decoration: none
+		font-weight: inherit
+		font-size: inherit
+		font-weight: bolder
+		letter-spacing: initial
+		color: inherit
+		background-size: 100% 2px
+		background-repeat: no-repeat
+		background-image: linear-gradient(45deg, $color-93degres, $color-93degres )
+		background-position: center bottom
+		cursor: pointer
+		transition: all .45s cubic-bezier(.4,0,0,1)
+		&:hover 
+			color: $color-93degres
+		*/
+		
+
+	
+
+
+
+	
+.small--categories
+	color: $color-white
+	text-transform: uppercase
+	font-size: 16px
+	font-family: $paragraph
+	font-weight: 400
+	letter-spacing:
+
+	+media-sm-and-less
+		font-size: 16px
+
+	img 
+		float: left
+		width: 20px
+		position: relative
+		margin-right: 10px
+		margin-top: 1px
+
+		+media-sm-and-less
+
+
+	
+
+blockquote 
+	
+	quotes: none
+	&:before 
+		content: ''
+		content: none
+	
+	&:after 
+		content: ''
+		content: none
+ul
+
+li
+	display: inline-block
+
+.container
+
+
+	.row
+		margin-bottom: $col-margin*2.5
+
+		+media-sm-and-less
+			margin-bottom: $col-margin*6
+
+
+.table 
+	display: table
+	width: 100%
+	height: 100%
+
+.cta--rounded-square
+		font-size: 0.833vw
+		padding: 30px 54px 30px 40px
+		z-index: 2
+		display: inline-block
+		position: relative
+
+
+		+media-lg-and-less
+			font-size: 12px
+
+		&:before
+			content: ''
+			background: $color-dark
+			position: absolute
+			width: 100%
+			height: 100%
+			top: 0
+			left: 0
+			z-index: -1
+			transition: $transition-smooth2
+			border-radius: 100000px
+
+		span
+			text-transform: uppercase
+			color: $color-white
+			margin-right: 20px
+			transform: translateX(15px)
+			display: inline-block
+			transition: $transition-smooth2
+
+		&__after, &__before
+			position: absolute
+			display: inline-block
+			transition: $transition-smooth2
+
+		&__before
+			opacity: 0
+			transform: translateX(-400%)
+			transition-delay: 0
+
+		&__after
+			opacity: 1
+			transform: translateX(0%)
+			
+
+		&:hover
+
+			span
+				transform: translateX(35px)
+				transition-delay: 0s
+
+			.cta--rounded-square
+				&__before
+					opacity: 1
+					transform: translateX(0)
+					transition-delay: 0s
+				&__after
+					opacity: 0
+					transform: translateX(200%)
+					transition-delay: 0
+			&:before
+				transform: scale(1.2)
+
+
+		.svg__arrow
+			fill: $color-93degres
+			width: 14px
+
+.cta--rounded-square-white
+	&:before
+		background: $color-white
+	span
+		color: $color-black
+.cta--rounded-square-dark
+	&:before
+		background: $color-dark
+	span
+		color: $color-white
+
+.table-cell 
+	display: table-cell
+	vertical-align: middle
+
+.texte--center 
+	text-align: center
+
+.overflow 
+	overflow: hidden
+
+.caption
+	margin-top: 5px
+	float: left
+
+.bgd__image 
+	background-size: cover
+	background-position: center
+
+
+.follower
+	
+	&:after
+		content: 'Voir'
+		font-size: 15px
+		line-height: 145px
+		position: absolute
+		text-align: center
+		width: 100%
+		height: 100%
+		color: $color-white
+
+.zoom_img
+	width: 100%
+	height: 100%
+	position: absolute
+	transform: scale(1.1)
+	transition: $transition-smooth
+
+
+.item__img-wrap
+	overflow: hidden
+	max-width: 100%
+	padding-bottom: 100%
+	will-change: transform
+
+	&:hover
+		.zoom_img
+			transform: scale(1)
+			transition: $transition-smooth
+		.follower
+			opacity: 1
+			transform: scale(1) rotate(90deg)
+
+	.item__img-mask
+		position: absolute
+		width: 110%
+		height: 110%
+		left: -5%
+		top: -5%
+		background: $color-dark
+		transform-origin: top
+
+	.item__img
+
+		height: 120%
+		width: 100%
+		position: absolute
+		background-size: cover
+		background-position: 50% 0%
+		will-change: transform
+
+		&-intro
+			position: absolute
+			width: 100%
+			height: 100%
+
+
+.item:first-child .item__img-wrap
+	--aspect-ratio: 8/10
+
+
+
+
+.image--1-1 
+	padding-bottom: 100%
+
+.image--4-5 
+	padding-bottom: 80%
+
+.image--3-2 
+	padding-bottom: 66.66%
+
+.image--16-9 
+	padding-bottom: 56.25%
+
+.image--21-9 
+	padding-bottom: 42.85%
+
+.image--1-2 
+	padding-bottom: 50%
+
+.scroll-reveal--hidden
+	visibility: hidden
+
+.scroll-reveal--revealed
+	visibility: visible
+
+.sous-cat
+	overflow: hidden
+	display: table
+	padding-bottom: 50px
+	padding-top: 50px
+	+media-sm-and-less
+		padding-top: 0
+		padding-bottom: 0
+.list-sous-cat
+	display: table-cell
+	vertical-align: middle
+	float: none
+	text-align: center
+	top: $col-margin
+	
+	a 
+		position: relative
+		display: inline-block
+		color: $color-93degres
+		text-transform: uppercase
+		letter-spacing: 0.2em
+		font-size: 20px
+
+		transition: all $transition-quick
+		margin: 10px 30px 10px 30px
+		
+		&:hover
+			transform: scale(1.2)
+
+		&:active
+			transform: scale(1.05)
+
+	span 
+		font-family: $paragraph
+		text-transform: uppercase
+		letter-spacing: 0.4em
+		font-size: 12px
+		padding: 12px 0
+		display: inline
+		letter-spacing: 0.1em
+		position: absolute
+		bottom: 0px
+		margin-left: 4px
+
+	.list-sous-cat-element
+		display: inline-block
+		margin: 12px 20px
