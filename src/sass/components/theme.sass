@@ -190,11 +190,19 @@ body
 
 	font-size: 32.230769230769vh
 	//line-height: 23.346153846154vmin
-	//font-size: calc(16.1153846154vh + 8.729vw)
+	font-size: calc(16.1153846154vh + 8.729vw)
+	font-size: 20vw
 	line-height: 0.724
 	text-transform: uppercase
 	font-weight: 800
 	letter-spacing: 3%
+
+	@media (min-aspect-ratio: 4/3)
+		font-size: 17.458vw
+		font-size: 32.230769230769vh
+		font-size: calc(16.1153846154vh + 8.729vw)
+		font-size: calc(21.486vh + 5.819vw)
+		font-size: 32.230769230769vh
 
 	+media-sm-and-less
 		//font-size: 10vw
@@ -211,6 +219,8 @@ body
 	line-height: 7.8205128205128vmin
 	line-height: 1.22
 	letter-spacing: -0.02em
+	@media (min-aspect-ratio: 4/3)
+		font-size: 6.4102564102564vh
 
 	+media-sm-and-less
 		font-size: 6vw
@@ -229,6 +239,9 @@ body
 	font-size: calc(1.603vh + 0.868vw)
 	line-height: 1.28
 
+	@media (min-aspect-ratio: 4/3)
+		font-size: 3.206vh
+
 	+media-sm-and-less
 		font-size: 32px
 		line-height: 38px
@@ -245,6 +258,7 @@ body
 	font-size: 1.9230769230769vh
 	line-height: 1.5vh
 	text-transform: uppercase
+	
 
 	+media-lg-and-less
 		font-size: 20px

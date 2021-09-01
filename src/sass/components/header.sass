@@ -31,6 +31,8 @@
 	font-size: 0
 	pointer-events: none
 	top: $col-margin
+	@media (min-aspect-ratio: 4/3)
+		top: $col-margin-43
 
 	//mix-blend-mode: exclusion
 
@@ -48,6 +50,9 @@
 		vertical-align: middle
 		width: $col-margin*6
 		left: $col-margin*2
+		@media (min-aspect-ratio: 4/3)
+			width: $col-margin-43*6
+			left: $col-margin-43*2
 		position: absolute
 		top: -7px
 
@@ -58,6 +63,8 @@
 
 		#logo__93degres
 			width: $col-margin*1.5
+			@media (min-aspect-ratio: 4/3)
+				width: $col-margin-43*1.5
 			min-width: 90px
 
 			+media-sm-and-less

@@ -12,6 +12,9 @@
 			justify-content: flex-start
 			align-items: flex-start
 			padding-right: $col-margin*2
+
+			@media (min-aspect-ratio: 4/3)
+				padding-right: $col-margin-43*2
 			&>*
 				//margin: 0 $col-margin*2
 				width: auto
@@ -20,20 +23,34 @@
 			float: left
 			width: $col-margin*6
 			margin-left: $col-margin*2
+			@media (min-aspect-ratio: 4/3)
+				width: $col-margin-43*6
+				margin-left: $col-margin-43*2
 			height: 100vh
 			z-index: 1
 
 			.h1
 				width: $col-margin*19
 				margin-top: $col-margin*3
+				@media (min-aspect-ratio: 4/3)
+					width: $col-margin-43*19
+					margin-top: $col-margin-43*3
 
 			.small-description
 				width: $col-margin*5
+				@media (min-aspect-ratio: 4/3)
+					width: $col-margin-43*5
+
 				position: absolute
 				bottom: 0
 				margin-bottom: $col-margin
+				@media (min-aspect-ratio: 4/3)
+					margin-bottom: $col-margin-43
+
 				.h3
 					margin-top: $col-margin/4
+					@media (min-aspect-ratio: 4/3)
+						margin-top: $col-margin-43/4
 
 		#single--introduction__image
 			float: left
