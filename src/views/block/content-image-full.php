@@ -9,7 +9,7 @@
 $image = get_field('image');
 $caption = get_field('caption')
 ?>
-<div class="acf--image-full" style="padding-left: calc(<?php echo $image['sizes']['large-height']; ?> / <?php echo $image['sizes']['large-width']; ?> * 100%)">
+<div class="acf--image-full" style="padding-left: calc(<?php echo $image['sizes']['large-width']; ?> / <?php echo $image['sizes']['large-height']; ?> * 100vh)">
 		<img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" style="position: absolute;"/>
 
 		<!--

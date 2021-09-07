@@ -55,7 +55,7 @@
 
 
           <div id="single--introduction__title" class="" >
-      <h1 class="h1" data-lining><?php
+      <h1 class="h1" data-line><?php
           $title = get_the_title();
           $title = strip_tags( $title, '<strong>' );
           echo $title; ?></h1>
@@ -69,7 +69,7 @@
               </div>     
             </div>
       <div id="single--introduction__text" class="item col-xs-22 col-xs-offset-1 scroll-reveal">
-        <p class="h2" data-lining><strong><?php echo strip_tags(get_field('intro'), '<br><em><strong>'); ?></strong></p>
+        <p class="h2" data-line><strong><?php echo strip_tags(get_field('intro'), '<br><em><strong>'); ?></strong></p>
       </div>
 
 

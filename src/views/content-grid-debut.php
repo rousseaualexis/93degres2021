@@ -1,4 +1,4 @@
-<div class="grid__articles grid__articles--medium col-xs-16 col-xs-offset-1 col-sm-9 col-sm-offset-2 col-sm-pull-1 scroll-reveal" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>">
+<div class="grid__articles grid__articles--medium col-xs-16 col-xs-offset-1 col-sm-9 col-sm-offset-2 col-sm-pull-1 scroll-reveal" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>" >
         <?php
             $thumbnail = get_field('thumbnail');
             $thumbnail_url = $thumbnail['sizes']['medium'];
@@ -25,7 +25,7 @@
                         
 
 
-            <div class="categories"><img src="<?php echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/><span><?php echo $term_name . " — " . $yearBegin;
+            <div class="categories"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/>!--><span><?php echo $term_name . " — " . $yearBegin;
                         if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></div>
 
             <span class="h3"><?php 

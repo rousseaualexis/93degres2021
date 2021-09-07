@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.1/dist/locomotive-scroll.css"/>
 <meta name="theme-color" content="#ffffff" />
 </head>
+
 <div class="mask"></div>
 <div class="mask3"></div>
 <div class="mask2"></div>

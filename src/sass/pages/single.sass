@@ -1,4 +1,5 @@
 .page--single
+	background: white
 	.mask3
 		opacity: 1
 	#section--pin
@@ -6,7 +7,7 @@
 		overflow: hidden
 		display: flex
 		left: 0
-		.pin--wrap
+		.pin--wrap, .single--introduction
 			height: 100vh
 			display: flex
 			justify-content: flex-start
@@ -15,37 +16,46 @@
 
 			@media (min-aspect-ratio: 4/3)
 				padding-right: $col-margin-43*2
-			&>*
-				//margin: 0 $col-margin*2
-				width: auto
-				object-fit: cover
+
+		.single--introduction
+			margin-right: $col-margin*2
+
+
 		#single--introduction__title
-			float: left
 			width: $col-margin*6
 			margin-left: $col-margin*2
-			@media (min-aspect-ratio: 4/3)
-				width: $col-margin-43*6
-				margin-left: $col-margin-43*2
 			height: 100vh
 			z-index: 1
+			position: relative
 
 			.h1
 				width: $col-margin*19
-				margin-top: $col-margin*3
+				padding-top: $col-margin*3
 				@media (min-aspect-ratio: 4/3)
 					width: $col-margin-43*19
-					margin-top: $col-margin-43*3
+					padding-top: $col-margin-43*3
+				.word
+					overflow: hidden
+					margin-bottom: -$col-margin-43*0.35
+				.overflow--container
+					top: $col-margin-43*0.4
+					position: relative
+			span.word, span.char
+				display: inline-block
 
 			.small-description
-				width: $col-margin*5
+				width: 100%
+
+				width: $col-margin-43*5
 				@media (min-aspect-ratio: 4/3)
-					width: $col-margin-43*5
+					width: $col-margin*5
 
 				position: absolute
 				bottom: 0
-				margin-bottom: $col-margin
+				padding-bottom: $col-margin
 				@media (min-aspect-ratio: 4/3)
-					margin-bottom: $col-margin-43
+					padding-bottom: $col-margin-43
+					margin-bottom: -$col-margin-43/10
 
 				.h3
 					margin-top: $col-margin/4
@@ -53,7 +63,7 @@
 						margin-top: $col-margin-43/4
 
 		#single--introduction__image
-			float: left
+			position: relative
 			padding-left: 100vw
 			min-height: 100vh
 			background-size: cover
@@ -62,9 +72,10 @@
 			margin-right: $col-margin*2
 
 			.bgd__image
-				width: 120%
+				width: 100%
 				height: 100%
 				left: 0
+				position: absolute
 
 		#single--introduction__text
 			position: relative
@@ -72,24 +83,35 @@
 			align-items: top
 
 			.h2
-				margin-top: $col-margin*3
-				margin-right: $col-margin*2
+
 				width: $col-margin*20
+				padding-top: $col-margin*3
+				margin-right: $col-margin*2
+				@media (min-aspect-ratio: 4/3)
+					padding-top: $col-margin-43*3
+					margin-top: -$col-margin-43*0.2
 
 		.acf--paragraph, .acf--big-title
 			position: relative
-			height: 100vh
 			align-items: top
-
-			.t--text, .h2
-				margin-top: $col-margin*3
-				margin-right: $col-margin*2
-				width: $col-margin*8
-				display: block
+			margin-right: $col-margin*1
+			max-width: $col-margin*20
+			width: 100%
+			min-width: $col-margin*9
+			padding-top: $col-margin*3
+			display: block
+			@media (min-aspect-ratio: 4/3)
+				padding-top: $col-margin-43*3
+				margin-top: -$col-margin-43*0.2
+			.t--text
+				@media (min-aspect-ratio: 4/3)
+					margin-top: $col-margin-43*0.1
 		.acf--image-full
 			position: relative
 			height: 100vh
 			align-items: top
+
+			margin-right: $col-margin*2
 			.lazyload-wrapper
 				height: 100%
 
@@ -104,9 +126,13 @@
 			align-items: top
 
 			img
-				height: 74.97vh
+				height: $col-margin-43*9
 				width: auto
-				margin-top: $col-margin*3
+				padding-top: $col-margin*3
+				margin-right: $col-margin*1
+
+				@media (min-aspect-ratio: 4/3)
+					padding-top: $col-margin-43*3
 
 
 

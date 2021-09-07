@@ -212,6 +212,56 @@ var rootconfig = {
   rootMargin: '0% 0px'
 };
 var observerElements = document.querySelectorAll('.scroll-reveal');
+var Observer = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    var animEl = entry.target.querySelectorAll('.animate-in');
+    gsap.set(animEl, {
+      y: 250,
+      alpha: 0
+    });
+    var transEl = entry.target.querySelectorAll('.translate-in');
+    gsap.set(transEl, {
+      y: '200%'
+    });
+    var scaleEl = entry.target.querySelectorAll('.scale-in');
+    var maskEl = entry.target.querySelectorAll('.mask-in');
+
+    if (entry.intersectionRatio > 0) {
+      gsap.to(animEl, {
+        duration: 1.25,
+        alpha: 1,
+        y: 0,
+        delay: 0,
+        ease: Quart.easeOut
+      });
+      gsap.to(transEl, {
+        duration: 1.25,
+        y: '0%',
+        stagger: 0.1,
+        delay: 0.2,
+        ease: Expo.easeOut
+      });
+      gsap.to(scaleEl, {
+        duration: 1,
+        rotation: '-360deg',
+        autoAlpha: 1,
+        y: 0,
+        stagger: .2
+      });
+      gsap.to(maskEl, {
+        duration: 2,
+        y: '-110%',
+        stagger: 0.2,
+        delay: 0.1,
+        ease: Quart.Out
+      });
+      Observer.unobserve(entry.target);
+    }
+  });
+}, rootconfig);
+observerElements.forEach(function (el) {
+  Observer.observe(el);
+});
 
 var site = function () {
   var init = function init() {
@@ -227,6 +277,16 @@ var site = function () {
   };
 
   var loader = function loader() {
+    var $background = $('body').data('background');
+    var $text = $('body').data('text');
+    $(".mask").css("background-color", $text);
+
+    if ($background) {
+      $(".mask2").css("background-color", $background);
+    }
+
+    $(".mask3").css("background-color", $text);
+
     if (sessionStorage.viewWebsite >= 1) {
       sessionStorage.viewWebsite = Number(sessionStorage.viewWebsite) + 1;
       var tl = new TimelineLite();
@@ -328,6 +388,17 @@ var site = function () {
         var $mask = $(".mask");
         var $mask2 = $(".mask2");
         var $mask3 = $(".mask3");
+        var $text = $(this).data('text');
+        var $background = $(this).data('background');
+        $mask.css("background-color", $text);
+
+        if ($background) {
+          $mask2.css("background-color", $background);
+        } else {
+          $mask2.css("background-color", '#ffffff');
+        }
+
+        $mask3.css("background-color", $text);
         var tl = new TimelineLite();
         tl.fromTo($mask, 1.1, {
           y: "100%"
@@ -565,11 +636,13 @@ var footer = function () {
 
 var single = function () {
   var init = function init() {
-    $("#single--introduction__text text-line").wrap('<div class="overflow--container"></div>');
-    $("#single--introduction__text text-line").addClass('translate-in');
+    Splitting();
+    $("#single--introduction__title .word").wrapInner('<div class="overflow--container"></div>');
+    $("#single--introduction__text .char").addClass('translate-in');
     $('#single--introduction .categories').wrap('<div class="overflow--container"></div>');
     $("#single--introduction__thumbnail .item__img").attr('data-v', '0.1');
     $('#single--introduction .h1 > *').wrap('<div class="overflow--container" data-v=""></div>');
+    introduction();
     var pageContainer = document.querySelector(".body--page");
     gsap.registerPlugin(ScrollTrigger);
     var scroller = new LocomotiveScroll({
@@ -614,47 +687,50 @@ var single = function () {
   };
 
   var introduction = function introduction() {
-    var $el = $('#single--introduction'),
+    var $el = $('#single--introduction__title'),
         $text = $("#single--introduction .h1"),
         $line = $("#single--introduction .h1 .line"),
-        $rule1 = $("#single--introduction .h1 .overflow--container:nth-child(1) > *"),
-        $rule2 = $("#single--introduction .h1 .overflow--container:nth-child(2) > *"),
-        $rule3 = $("#single--introduction .h1 .overflow--container:nth-child(3) > *");
-    var tl = new TimelineLite();
+        $rule1 = $("#single--introduction__title .h1 .word .overflow--container > *");
 
     if (sessionStorage.viewWebsite > 1) {
-      tl.from($rule1, 1.5, {
+      gsap.from($rule1, {
+        duration: 1.75,
+        yPercent: 200,
         scaleY: 2,
-        y: '200%',
-        ease: Expo.easeOut
-      }, 0.75);
+        force3D: true,
+        ease: Expo.easeOut,
+        stagger: 0.03,
+        delay: 0.85
+      });
     } else {
-      tl.from($rule1, 1.5, {
+      gsap.from($rule1, {
+        duration: 1.75,
+        yPercent: 165,
         scaleY: 2,
-        y: '200%',
-        ease: Expo.easeOut
-      }, 2.1);
+        force3D: true,
+        ease: Quint.easeOut,
+        stagger: 0.035,
+        delay: 2.1
+      });
     }
 
-    tl.from($rule2, 1.5, {
+    gsap.from($el.find('.small-description span'), {
+      duration: 1.75,
+      yPercent: 200,
       scaleY: 2,
-      y: '200%',
-      ease: Expo.easeOut
-    }, '-=1.3');
-    tl.from($rule3, 1.5, {
-      scaleY: 2,
-      y: '200%',
-      ease: Expo.easeOut
-    }, '-=1.3');
-    tl.from($el.find('#single--introduction__thumbnail .item__img'), 4, {
-      scaleY: 1.75,
-      y: '50%',
-      ease: Expo.easeInOut
-    }, '-=3.8');
-    tl.from($el.find('.categories'), 1.5, {
-      y: '200%',
-      ease: Expo.easeOut
-    }, '-=1.5');
+      force3D: true,
+      ease: Expo.easeOut,
+      stagger: 0.03,
+      delay: 0.85
+    });
+    gsap.from($el.find('.small-description .h3'), {
+      duration: 1.75,
+      alpha: 0,
+      force3D: true,
+      ease: Expo.easeOut,
+      stagger: 0.03,
+      delay: 1
+    });
   };
 
   return {
@@ -920,106 +996,6 @@ var markeeFooter = function markeeFooter() {
   update();
 };
 
-var markeeFooter2 = function markeeFooter2() {
-  var tickerSpeed = 1.25;
-  var flickity = null;
-  var isPaused = false;
-  var slideshowEl = document.querySelector('.footer-carousel-2');
-
-  var update = function update() {
-    if (isPaused) return;
-
-    if (flickity.slides) {
-      flickity.x = (flickity.x - tickerSpeed) % flickity.slideableWidth;
-      flickity.selectedIndex = flickity.dragEndRestingSelect();
-      flickity.updateSelectedSlide();
-      flickity.settle(flickity.x);
-    }
-
-    window.requestAnimationFrame(update);
-  };
-
-  var pause = function pause() {
-    isPaused = false;
-  };
-
-  var play = function play() {
-    if (isPaused) {
-      isPaused = false;
-      window.requestAnimationFrame(update);
-    }
-  };
-
-  flickity = new Flickity(slideshowEl, {
-    autoPlay: false,
-    prevNextButtons: false,
-    pageDots: false,
-    draggable: true,
-    wrapAround: true,
-    selectedAttraction: 0.015,
-    friction: 0.25
-  });
-  flickity.x = 0;
-  slideshowEl.addEventListener('mouseenter', pause, false);
-  slideshowEl.addEventListener('focusin', pause, false);
-  slideshowEl.addEventListener('mouseleave', play, false);
-  slideshowEl.addEventListener('focusout', play, false);
-  flickity.on('dragStart', function () {
-    isPaused = false;
-  });
-  update();
-};
-
-var markeeFooter3 = function markeeFooter3() {
-  var tickerSpeed = 1.25;
-  var flickity = null;
-  var isPaused = false;
-  var slideshowEl = document.querySelector('.footer-carousel-3');
-
-  var update = function update() {
-    if (isPaused) return;
-
-    if (flickity.slides) {
-      flickity.x = (flickity.x - tickerSpeed) % flickity.slideableWidth;
-      flickity.selectedIndex = flickity.dragEndRestingSelect();
-      flickity.updateSelectedSlide();
-      flickity.settle(flickity.x);
-    }
-
-    window.requestAnimationFrame(update);
-  };
-
-  var pause = function pause() {
-    isPaused = false;
-  };
-
-  var play = function play() {
-    if (isPaused) {
-      isPaused = false;
-      window.requestAnimationFrame(update);
-    }
-  };
-
-  flickity = new Flickity(slideshowEl, {
-    autoPlay: false,
-    prevNextButtons: false,
-    pageDots: false,
-    draggable: true,
-    wrapAround: true,
-    selectedAttraction: 0.015,
-    friction: 0.25
-  });
-  flickity.x = 0;
-  slideshowEl.addEventListener('mouseenter', pause, false);
-  slideshowEl.addEventListener('focusin', pause, false);
-  slideshowEl.addEventListener('mouseleave', play, false);
-  slideshowEl.addEventListener('focusout', play, false);
-  flickity.on('dragStart', function () {
-    isPaused = false;
-  });
-  update();
-};
-
 window.onload = function () {
   window.addEventListener("pageshow", function () {
     site.loader();
@@ -1032,8 +1008,6 @@ window.onload = function () {
 
   if (!$('body').hasClass('page--map')) {
     markeeFooter();
-    markeeFooter2();
-    markeeFooter3();
   }
 
   ;

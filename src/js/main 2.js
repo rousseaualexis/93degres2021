@@ -55,6 +55,9 @@ const rootconfig = {
 const observerElements = document.querySelectorAll('.scroll-reveal');
 
 
+
+/*
+
 const Observer = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
@@ -82,12 +85,13 @@ observerElements.forEach(el => {
   Observer.observe(el);
 });
 
+*/
 
 var site = (function() { 
     var init = function() {
 
          onClick();
-
+    
         
         window.onload = function () {
             window.scrollTo(0, 0);
@@ -128,27 +132,33 @@ var site = (function() {
 
 */
 
+
+
+
+
+
+
+
+
+
     // PRELOADER
   
     var loader = function() {
         // ANIMATION ONLY ONCE PER SESSION
         // Other Session
 
-          var $background = $('body').data('background');
+            var $background = $('body').data('background');
             var $text = $('body').data('text');
-            $(".mask").css("background-color",$text);
-            if($background){
-            $(".mask2").css("background-color",$background);
-            }
-            $(".mask3").css("background-color",$text);
-
+                document.getElementById('mask').style.background = $text;
+                document.getElementById('mask2').style.background = $background;
+                document.getElementById('mask3').style.background = $text;
 
         if (sessionStorage.viewWebsite >= 1) {
             sessionStorage.viewWebsite = Number(sessionStorage.viewWebsite) + 1;
             var tl = new TimelineLite();
-            tl.to($(".mask"), 1.75, {y:"-100%", ease:Expo.easeInOut}, 0);
-            tl.to($(".mask3"), 1.75, {y:"-100%", ease:Expo.easeInOut}, 0);
-            tl.to($(".mask2"), 1.5, {y:"-100%", ease:Expo.easeInOut}, '-=1.7');
+            tl.to($("#mask"), 1.75, {y:"-100%", ease:Expo.easeInOut}, 0);
+            tl.to($("#mask3"), 1.75, {y:"-100%", ease:Expo.easeInOut}, 0);
+            tl.to($("#mask2"), 1.5, {y:"-100%", ease:Expo.easeInOut}, '-=1.7');
                    
         }
         // First Session
@@ -164,9 +174,9 @@ var site = (function() {
             tl.from($header, 1.5, {top:'-12.5%', ease:Quint.easeInOut}, '-=0.5');
             tl.fromTo($header.find('#logo'), 1.5, {y:'50vh', scale:'1.5'},{y: 0, scale:'1.0001', force3D: false, ease:Quint.easeInOut}, '-=1.5');     
             tl.from($header.find('#logo #logo__93degres'), 1.5, {fill:"#ffffff", ease:Expo.easeInOut}, '-=2');
-            tl.to($(".mask"), 1.75, {y:"-100%", ease:Expo.easeInOut}, '-=1.5');
-            tl.to($(".mask3"), 1.75, {y:"-100%", ease:Expo.easeInOut}, '-=1.75');
-            tl.to($(".mask2"), 1.5, {y:"-100%", ease:Expo.easeInOut}, '-=1.7');
+            tl.to($("#mask"), 1.75, {y:"-100%", ease:Expo.easeInOut}, '-=1.5');
+            tl.to($("#mask3"), 1.75, {y:"-100%", ease:Expo.easeInOut}, '-=1.75');
+            tl.to($("#mask2"), 1.5, {y:"-100%", ease:Expo.easeInOut}, '-=1.7');
             tl.to($header, 0, {zIndex:101}, 2.5);
             tl.from($header.find('ul'), 1, {alpha: 0}, 2);
             tl.from($header.find('.burger'), 1, {alpha: 0}, 2);
@@ -185,7 +195,10 @@ var site = (function() {
         $("body").on("click", "a", function(e){
 
             var url = $(this).attr('href');
+            var $background = $(this).data('background');
+            var $text = $(this).data('text');
             var isblank = this.target === '_blank';
+           
             // check if the link has a hash
             if (isblank) {
                 e.preventDefault();
@@ -194,25 +207,19 @@ var site = (function() {
                 return;
                 }
             else{  
+               console.log($background);
+
+                var $mask = $("#mask");
+                var $mask2 = $("#mask2");
+                var $mask3 = $("#mask3");
                 e.preventDefault();
-                var $mask = $(".mask");
-                var $mask2 = $(".mask2");
-                var $mask3 = $(".mask3");
-
-            var $text = $(this).data('text');
-            var $background = $(this).data('background');
-            $mask.css("background-color",$text);
-            if($background){
-            $mask2.css("background-color",$background);
-            }
-            else{
-
-            $mask2.css("background-color",'#ffffff');
-            }
-            $mask3.css("background-color",$text);
-
               
+
+                document.getElementById('mask').style.background = $text;
+                document.getElementById('mask2').style.background = $background;
+                document.getElementById('mask3').style.background = $text;
                 var tl = new TimelineLite();
+
                 tl.fromTo($mask, 1.1, {y: "100%"}, { y: 0, ease:Expo.easeOut}, 0.1);
                 tl.fromTo($mask3, 1.1, {y: "100%"}, {y: 0, ease:Expo.easeOut}, '-=1.1');
                 tl.fromTo($mask2, 1, {y: "100%"}, {y: 0, ease:Expo.easeInOut, onComplete:function(){window.location = url;  window.scrollTo(0, 0);}}, '-=1.1');
@@ -388,94 +395,17 @@ var footer = (function() {
 var single = (function() {
     
     var init = function() {
-      Splitting();
-
-        $("#single--introduction__title .word").wrapInner('<div class="overflow--container"></div>');
-        $("#single--introduction__text .char").addClass('translate-in');
+       // $("#header").addClass('header--black');
+       // $('#header').removeClass('header--white');
+        $("#single--introduction__text text-line").wrap('<div class="overflow--container"></div>');
+        $("#single--introduction__text text-line").addClass('translate-in');
         $('#single--introduction .categories').wrap('<div class="overflow--container"></div>');
         $("#single--introduction__thumbnail .item__img").attr('data-v', '0.1');
         $('#single--introduction .h1 > *').wrap('<div class="overflow--container" data-v=""></div>');
 
-        introduction();
+
+        //introduction();
         //changeColor();
-
-
-
-
-
-
-
-const pageContainer = document.querySelector(".body--page");
-// Locomotive Scroll
-    gsap.registerPlugin(ScrollTrigger);
-
-
-/* SMOOTH SCROLL */
-const scroller = new LocomotiveScroll({
-  el: pageContainer,
-  smooth: true
-});
-
-
-
-
-scroller.on("scroll", ScrollTrigger.update);
-
-ScrollTrigger.scrollerProxy(pageContainer, {
-  scrollTop(value) {
-    return arguments.length
-      ? scroller.scrollTo(value, 0, 0)
-      : scroller.scroll.instance.scroll.y;
-  },
-  getBoundingClientRect() {
-    return {
-      left: 0,
-      top: 0,
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
-  },
-  pinType: pageContainer.style.transform ? "transform" : "fixed"
-});
-
-
-
-////////////////////////////////////
-////////////////////////////////////
-
-  let pinBoxes = document.querySelectorAll(".pin--wrap > *");
-  let pinWrap = document.querySelector(".pin--wrap");
-  let pinWrapWidth = pinWrap.offsetWidth;
-  let horizontalScrollLength = pinWrapWidth - window.innerWidth;
-
-  // Pinning and horizontal scrolling
-
-  gsap.to(".pin--wrap", {
-    scrollTrigger: {
-      scroller: pageContainer, //locomotive-scroll
-      scrub: true,
-      trigger: "#section--pin",
-      pin: true,
-      // anticipatePin: 1,
-      start: "top top",
-      end: pinWrapWidth
-    },
-    x: -horizontalScrollLength,
-    ease: "none"
-  });
-
-
-
-
-  ScrollTrigger.addEventListener("refresh", () => scroller.update()); //locomotive-scroll
-
-  ScrollTrigger.refresh();
-
-
-
-
-
-
 
 
 
@@ -486,21 +416,26 @@ ScrollTrigger.scrollerProxy(pageContainer, {
     }
     var introduction = function(){
 
-        var $el = $('#single--introduction__title'),
+        var $el = $('#single--introduction'),
             $text = $("#single--introduction .h1"),
             $line = $("#single--introduction .h1 .line"),
-            $rule1 = $("#single--introduction__title .h1 .word .overflow--container > *");
+            $rule1 = $("#single--introduction .h1 .overflow--container:nth-child(1) > *"),
+            $rule2 = $("#single--introduction .h1 .overflow--container:nth-child(2) > *"),
+            $rule3 = $("#single--introduction .h1 .overflow--container:nth-child(3) > *");
+
+            var tl = new TimelineLite();
             if (sessionStorage.viewWebsite > 1) {
                 
-                gsap.from($rule1, {duration: 1.75, yPercent: 200, scaleY: 2, force3D:true, ease:Expo.easeOut, stagger: 0.03, delay: 0.85});
-
+                tl.from($rule1, 1.5, {scaleY: 2, y:'200%', ease:Expo.easeOut}, 0.75);
             } 
             else {
-                gsap.from($rule1, {duration: 1.75, yPercent: 165, scaleY: 2, force3D:true, ease:Quint.easeOut, stagger: 0.035, delay: 2.1});
+                tl.from($rule1, 1.5, {scaleY: 2, y:'200%', ease:Expo.easeOut}, 2.1);
                 
             }   
-                gsap.from($el.find('.small-description span'), {duration: 1.75, yPercent: 200, scaleY: 2, force3D:true, ease:Expo.easeOut, stagger: 0.03, delay: 0.85});
-                gsap.from($el.find('.small-description .h3'), {duration: 1.75, alpha: 0, force3D:true, ease:Expo.easeOut, stagger: 0.03, delay: 1})
+                tl.from($rule2, 1.5, {scaleY: 2, y:'200%', ease:Expo.easeOut}, '-=1.3')
+                tl.from($rule3, 1.5, {scaleY: 2, y:'200%', ease:Expo.easeOut}, '-=1.3')
+                tl.from($el.find('#single--introduction__thumbnail .item__img'), 4, {scaleY:1.75, y:'50%', ease:Expo.easeInOut}, '-=3.8')
+                tl.from($el.find('.categories'), 1.5, {y:'200%', ease:Expo.easeOut}, '-=1.5');
     }
 /*
     var changeColor = function(){
@@ -836,15 +771,168 @@ var markeeFooter = function(){
 }
 
 
-
-
-
 // Launch site
 window.onload = function(){
-    window.addEventListener("pageshow", function() {
+
+
+
+
+/*
+
+
+
+
+
+    gsap.registerPlugin(ScrollTrigger);
+
+
+
+
+
+    function smooth(scrollContainer) {
       
 
-        site.loader();
+      
+const scroller = new LocomotiveScroll({
+  el: pageContainer,
+  smooth: true
+});
+
+      let currentScrollContainer = scrollContainer.querySelector('[data-scroll-container]')
+      scroll = new LocomotiveScroll({
+        el: currentScrollContainer,
+        smooth: true
+      });
+    
+    
+    
+      setTimeout(() => {
+        scroll.update();
+      }, 5000);
+    
+    }
+
+
+
+
+let scroll;
+
+barba.init({
+  
+
+  transitions: [{
+    name: 'opacity-transition',
+
+    once({ next }) {
+      return gsap.from(data.next.container, {
+        opacity: 0
+      });
+      smooth(next.container);
+    },
+    beforeEnter({ next }) {
+      scroll.destroy();
+      smooth(next.container);
+    },
+    leave({ next }) {
+      return gsap.to(data.current.container, {
+        opacity: 0
+      });
+    },
+  }]
+
+});
+
+
+*/
+
+
+
+
+const pageContainer = document.querySelector("[data-scroll-container]");
+// Locomotive Scroll
+    gsap.registerPlugin(ScrollTrigger);
+
+
+/* SMOOTH SCROLL */
+const scroller = new LocomotiveScroll({
+  el: pageContainer,
+  smooth: true
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    window.addEventListener("pageshow", function() {
+
+
+
+
+
+
+
+    // do something before the transition starts
+    barba.hooks.before(() => {
+
+        document.querySelector('html').classList.add('is-transitioning');
+        barba.wrapper.classList.add('is-animating');
+
+    });
+
+    barba.hooks.enter(() => {
+
+       window.scrollTo(0, 0);
+
+    });
+
+    // do something after the transition finishes
+    barba.hooks.after(() => {
+
+        document.querySelector('html').classList.remove('is-transitioning');
+        barba.wrapper.classList.remove('is-animating');
+        scroller.update();
+    });
+
+   
+barba.init({
+  transitions: [{
+    name: 'opacity-transition',
+    leave(data) {
+      return gsap.to(data.current.container, {
+        opacity: 0
+      });
+    },
+
+    enter(data) {
+      return gsap.from(data.next.container, {
+        opacity: 0
+      });
+    }
+  }]
+});
+
+
+
+
+
+        //site.loader();
 
     $(document).ready(function(){
     $(this).scrollTop(1);
@@ -852,6 +940,8 @@ window.onload = function(){
 });
         footer.init();
     }, false);
+
+
 
     
     /*
@@ -870,6 +960,65 @@ if (!isMobile()) { */
 
     if( $('body').hasClass('page--single') === true ){
         single.init();
+
+
+
+scroller.on("scroll", ScrollTrigger.update);
+
+ScrollTrigger.scrollerProxy(pageContainer, {
+  scrollTop(value) {
+    return arguments.length
+      ? scroller.scrollTo(value, 0, 0)
+      : scroller.scroll.instance.scroll.y;
+  },
+  getBoundingClientRect() {
+    return {
+      left: 0,
+      top: 0,
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  },
+  pinType: pageContainer.style.transform ? "transform" : "fixed"
+});
+
+
+
+////////////////////////////////////
+////////////////////////////////////
+
+  let pinBoxes = document.querySelectorAll(".pin--wrap > *");
+  let pinWrap = document.querySelector(".pin--wrap");
+  let pinWrapWidth = pinWrap.offsetWidth;
+  let horizontalScrollLength = pinWrapWidth - window.innerWidth;
+
+  // Pinning and horizontal scrolling
+
+  gsap.to(".pin--wrap", {
+    scrollTrigger: {
+      scroller: pageContainer, //locomotive-scroll
+      scrub: true,
+      trigger: "#section--pin",
+      pin: true,
+      // anticipatePin: 1,
+      start: "top top",
+      end: pinWrapWidth
+    },
+    x: -horizontalScrollLength,
+    ease: "none"
+  });
+
+
+
+
+  ScrollTrigger.addEventListener("refresh", () => scroller.update()); //locomotive-scroll
+
+  ScrollTrigger.refresh();
+
+
+
+
+
     };
 
     if( $('body').hasClass('page--about') === true ){
@@ -914,4 +1063,8 @@ if (!isMobile()) { */
     */
 
 }
+
+
+
+
 

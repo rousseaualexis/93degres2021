@@ -1,4 +1,4 @@
-<div class="grid__articles col-xs-16 col-xs-offset-1 col-sm-6 col-sm-offset-1 scroll-reveal" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>">
+<div class="grid__articles col-xs-16 col-xs-offset-1 col-sm-6 col-sm-offset-1 scroll-reveal" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>">
         <?php
             $thumbnail = get_field('thumbnail');
             $thumbnail_url = $thumbnail['sizes']['medium'];
@@ -21,9 +21,9 @@
             </div></div>
                         
 
-
-            <div class="small--categories"><img src="<?php echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/><span><?php echo $term_name; ?> — <?php the_time('d.m.Y'); ?></span></div>
-
+            
+            <div class="small--categories"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/>!--><span><?php echo $term_name; ?> — <?php the_time('d.m.Y'); ?></span></div>
+    
             <span class="h3"><?php 
 
 

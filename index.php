@@ -12,11 +12,14 @@ Template Name: Homepage
   }
 </style>
 <?php include'head.php'; ?>
-<?php get_header(); ?>
-<body class="page--homepage body--page">
+<body class="page--homepage">
+      <?php get_header(); ?>
 
-<main> 
-<div class="container">
+    <div data-scroll-container>
+
+
+<main > 
+<div class="container" data-barba="container">
         <section id="sectionPin">
       <div class="pin-wrap">
       </div>
@@ -52,20 +55,22 @@ Template Name: Homepage
 
                 ?>
                 <div id="homepage--cover--title" class="col-xs-offset-2 col-xs-20">
-                    <a href="<?php the_permalink(); ?>" class="h1 col-xs-24" data-lining>
-                        <div class="h1" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>">
+                    <a href="<?php the_permalink(); ?>" class="h1 col-xs-24" data-line>
+                        <div class="h1" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>">
                                 <?php the_title(); ?>
                         </div>
                     </a>
+                    <!--
                     <div class="categories"><img src="<?php  echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/><span><?php echo $term_name . " — " . $yearBegin;
                         if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></div>
+                    !-->
                 </div>
 
                 <?php 
                     $thumbnail = get_field( 'thumbnail' );
                 ?>
 
-                <a id="homepage--cover--image" class="item col-xs-24 col-sm-17" href="<?php the_permalink(); ?>" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>"data-text="<?php echo get_field('text-color'); ?>"> 
+                <a id="homepage--cover--image" class="item col-xs-24 col-sm-17" href="<?php the_permalink(); ?>" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>"> 
                     <div class="item__img-wrap image--3-2">
                         <div class="item__img-intro img-parallax">
                             <div class="item__img" style="background-image: url('<?php echo $thumbnail['sizes']['large'];?>');" alt="<?php echo $thumbnail['alt']; ?>">
@@ -124,7 +129,7 @@ foreach ($destinations as $destination) {
             
             <div id="about" class="row scroll-reveal">
                     <span class="h4 col-xs-22 col-xs-offset-1 col-sm-16 col-sm-offset-4 translate-in"> À propos </span>
-                    <div class="h2 col-xs-24"> <span class="col-xs-22 col-xs-offset-1 col-sm-16 col-sm-offset-4" data-lining><?php echo get_field('about', 2); ?></span>
+                    <div class="h2 col-xs-24"> <span class="col-xs-22 col-xs-offset-1 col-sm-16 col-sm-offset-4" data-line><?php echo get_field('about', 2); ?></span>
                     </div>
                     <a class="cta--rounded-square cta--rounded-square-white" href="<?php echo get_field('about_link', 2); ?>"><div class="cta--rounded-square__before"><?php echo file_get_contents(get_template_directory() . '/src/images/arrow.svg'); ?></div><span>En savoir plus</span></a>
                     

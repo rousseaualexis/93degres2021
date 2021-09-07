@@ -9,11 +9,11 @@
     color: <?php echo $txtColor ?>;
   }
   
-  #footer .footer-carousel, .mask, .mask2 {
+  #footer .footer-carousel, .mask2{
     background: <?php echo $bgdColor ?>;
   }
 
-  .mask3, #footer #list-destinations .flickity--list-element:after, #header .burger span, .header--white #header .menu-links a:after, .c-scrollbar_thumb{
+  #footer #list-destinations .flickity--list-element:after, #header .burger span, #header .menu-links a:after, .c-scrollbar_thumb{
     background: <?php echo $txtColor ?>;
   }
   .mouse-cursor .base--circle--dark:before{
@@ -30,11 +30,11 @@
 <?php get_header(); ?>
 
 
-<body class="page--single">
+<body class="page--single" data-background="<?php echo $bgdColor ?>" data-text="<?php echo $txtColor ?>">
 
 <main class="container body--page" >
 
-      <section id="section--pin" style="background: <?php echo $bgdColor ?>">
+      <section id="section--pin">
 
 
 <?php $thumbnail = get_field('thumbnail');
@@ -61,9 +61,10 @@
 
 
         <div class="pin--wrap">
+          <div class="single--introduction" style="background: <?php echo $bgdColor ?>">
 
           <div id="single--introduction__title" class="">
-      <h1 class="h1" style="color: <?php echo $txtColor ?>"><?php
+      <h1 class="h1" style="color: <?php echo $txtColor ?>" data-splitting="chars"><?php
           $title = get_the_title();
           $title = strip_tags( $title, '<strong>' );
           echo $title; ?></h1>
@@ -76,17 +77,17 @@
 
       </div>
 
-          <div id="single--introduction__image" style="background-image: url('<?php echo $thumbnail_url;?>')">
+          <div id="single--introduction__image" >
             <div class="bgd__image" style="background-image: url('<?php echo $thumbnail_url;?>')"></div>
           </div>
 
       <div id="single--introduction__text" class="">
-        <p class="h2" style="color: <?php echo $txtColor ?>">Un grand week-end, c’est la durée parfaite pour
+        <p class="h2" data-splitting="lines" style="color: <?php echo $txtColor ?>">Un grand week-end, c’est la durée parfaite pour
 découvrir Copenhague façon “slow travel”. Se
 promener doucement dans la ville, à notre rythme et le nez en l’air pour observer son architecture qui mélange tradition nordique et design contemporain. Un grand week-end, c’est la durée parfaite pour
-découvrir Copenhague façon “slow travel”. Se
-promener doucement dans la ville, à notre rythme et le nez en l’air pour observer son architecture qui mélange tradition nordique et design contemporain.<!--<?php echo strip_tags(get_field('intro'), '<br><em><strong>'); ?>!--></p>
+découvrir Copenhague façon “slow travel”.<!--<?php echo strip_tags(get_field('intro'), '<br><em><strong>'); ?>!--></p>
       </div>
+    </div>
 
    
  <?php

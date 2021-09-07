@@ -9,13 +9,13 @@
 	left: 0
 	right: 0
 .mask
-	background: #f19aa6
+	background: $color-93degres
 .mask2
-	background: $color-black
+	background: $color-white
 	z-index: 1002
 .mask3
-	background: #f19aa6
-	opacity: 0
+	background: $color-93degres
+	opacity: 1
 	z-index: 1001
 
 .mouse-cursor 
@@ -159,12 +159,9 @@
 		span
 			opacity: 1
 
-.overflow--container
+.blast
 	overflow: hidden
-	padding-top: 1%
-	margin-top: -1%
-	padding-bottom: 1%
-	margin-bottom: -1%
+	display: inline-block
 	
 
 div
@@ -195,7 +192,7 @@ body
 	line-height: 0.724
 	text-transform: uppercase
 	font-weight: 800
-	letter-spacing: 3%
+	letter-spacing: 0.001em
 
 	@media (min-aspect-ratio: 4/3)
 		font-size: 17.458vw
@@ -215,13 +212,12 @@ body
 	font-size: 6.4102564102564vmin
 
 	font-size: calc(3.2vh + 1.736vw)
+	font-size: calc(4.26vh + 1.154vw)
 	line-height: 80px
 	line-height: 7.8205128205128vmin
 	line-height: 1.22
 	letter-spacing: -0.02em
-	@media (min-aspect-ratio: 4/3)
-		font-size: 6.4102564102564vh
-
+	
 	+media-sm-and-less
 		font-size: 6vw
 		line-height: 8vw
@@ -238,9 +234,6 @@ body
 	font-family: $paragraph
 	font-size: calc(1.603vh + 0.868vw)
 	line-height: 1.28
-
-	@media (min-aspect-ratio: 4/3)
-		font-size: 3.206vh
 
 	+media-sm-and-less
 		font-size: 32px
@@ -288,6 +281,8 @@ body
 	font-size: calc(0.96vh + 0.52vw)
 	line-height: 1.66
 	text-decoration: none
+	color: inherit
+
 
 p 
 	

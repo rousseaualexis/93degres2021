@@ -18,7 +18,7 @@ Template Name: About
   <div id="about--introduction" class="content row">
       
       <div id="about--introduction__title" class="item col-xs-20 col-xs-offset-2" >
-      <h1 class="h1" data-lining><?php
+      <h1 class="h1" data-line><?php
           echo strip_tags(get_field('title'), '<br><em><strong><img>');
           ?></h1>
       </div>
