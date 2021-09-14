@@ -37,7 +37,7 @@
 				.word
 					overflow: hidden
 					margin-bottom: -$col-margin-43*0.35
-				.overflow--container
+				.char
 					top: $col-margin-43*0.4
 					position: relative
 			span.word, span.char
@@ -122,17 +122,25 @@
 
 		.acf--image-one
 			position: relative
-			height: 100vh
 			align-items: top
+			height: $col-margin-43*9
+			padding-top: $col-margin*3
+			margin-right: $col-margin*1
+
+			@media (min-aspect-ratio: 4/3)
+				padding-top: $col-margin-43*3
+
 
 			img
+			
 				height: $col-margin-43*9
-				width: auto
-				padding-top: $col-margin*3
-				margin-right: $col-margin*1
+			.lazyload-wrapper
+				float: left
 
-				@media (min-aspect-ratio: 4/3)
-					padding-top: $col-margin-43*3
+		.acf--image-two
+			display: inline-flex
+			background: red
+
 
 
 

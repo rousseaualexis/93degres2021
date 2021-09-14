@@ -58,19 +58,25 @@ const observerElements = document.querySelectorAll('.scroll-reveal');
 const Observer = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
+
+      let revealText = document.querySelectorAll("[data-splitting=lines]");
+      let results = Splitting({ target: revealText, by: "lines" });
       const animEl = entry.target.querySelectorAll('.animate-in');
       gsap.set(animEl, {y:250, alpha: 0});
       const transEl = entry.target.querySelectorAll('.translate-in');
        gsap.set(transEl, {y:'200%'});
+      //const h2El = entry.target.querySelectorAll('.h2-in');
+       //gsap.set(h2El, {y:'200%'});
       const scaleEl = entry.target.querySelectorAll('.scale-in');
       const maskEl = entry.target.querySelectorAll('.mask-in');
       
       if (entry.intersectionRatio > 0) {
         //console.log(entry.target, 'in')
         gsap.to(animEl, { duration: 1.25,  alpha: 1, y:0 , delay: 0, ease: Quart.easeOut});
-        gsap.to(transEl, {duration: 1.25, y:'0%', stagger: 0.1, delay: 0.2, ease:Expo.easeOut})
-        gsap.to(scaleEl, { duration: 1, rotation: '-360deg', autoAlpha: 1,  y: 0, stagger: .2 })
-        gsap.to(maskEl, {duration: 2, y:'-110%', stagger: 0.2, delay: 0.1, ease:Quart.Out})
+        gsap.to(transEl, {duration: 1.25, y:'0%', stagger: 0.1, delay: 0.2, ease:Expo.easeOut});
+        gsap.to(scaleEl, { duration: 1, rotation: '-360deg', autoAlpha: 1,  y: 0, stagger: .2 });
+        gsap.to(maskEl, {duration: 2, y:'-110%', stagger: 0.2, delay: 0.1, ease:Quart.Out});
+        //gsap.to(h2El, {duration: 1.25, y:'0%', stagger: 0.03, delay: 0.2, ease:Quint.easeOut});
         Observer.unobserve(entry.target);
       }
     });
@@ -263,15 +269,15 @@ var homepage = (function() {
         $("#header").addClass('header--white');
         $('#header').removeClass('header--black');
         $('#homepage--cover--title br').remove();
-        $('#homepage--cover--title text-line').wrap('<div class="overflow--container"></div>');
-        $('#homepage--cover--title .categories').wrap('<div class="overflow--container categories__container"></div>');
-        $('#homepage--destinations ul a').wrap('<div class="overflow--container"></div>');
-        $('#homepage--destinations .h4').wrap('<div class="overflow--container"></div>');
-        $('#about .h2 .line').wrap('<div class="overflow--container"></div>');
+        $('#homepage--cover--title text-line').wrap('<div class="overflow--animate"></div>');
+        $('#homepage--cover--title .categories').wrap('<div class="overflow--animate categories__container"></div>');
+        $('#homepage--destinations ul a').wrap('<div class="overflow--animate"></div>');
+        $('#homepage--destinations .h4').wrap('<div class="overflow--animate"></div>');
+        $('#about .h2 .line').wrap('<div class="overflow--animate"></div>');
         $('#about .h2 .line').addClass('translate-in');
-        $('#about .h4').wrap('<div class="overflow--container"></div>');
-        $('#other_articles .categories').wrap('<div class="overflow--container"></div>');
-        $('#other_articles .h3').wrap('<div class="overflow--container"></div>');
+        $('#about .h4').wrap('<div class="overflow--animate"></div>');
+        $('#other_articles .categories').wrap('<div class="overflow--animate"></div>');
+        $('#other_articles .h3').wrap('<div class="overflow--animate"></div>');
         
             if (!isMobile() && ($window.width() >= 768)) {
                 //$("#homepage--cover #homepage--cover--image .item__img").attr('data-v', '0.1');
@@ -378,7 +384,7 @@ var archive = (function() {
 var footer = (function() {
     
     var init = function() {
-        $('#footer-name').wrap('<div class="overflow--container"></div>');
+        $('#footer-name').wrap('<div class="overflow--animate"></div>');
     }
     return {
             init: init
@@ -386,15 +392,30 @@ var footer = (function() {
 })();
 
 var single = (function() {
+
+  const results = Splitting();
     
     var init = function() {
-      Splitting();
 
-        $("#single--introduction__title .word").wrapInner('<div class="overflow--container"></div>');
-        $("#single--introduction__text .char").addClass('translate-in');
-        $('#single--introduction .categories').wrap('<div class="overflow--container"></div>');
+
+
+
+        $("#single--introduction__title .h1 .word").wrapInner('<div class="inside--animate"></div>');
+        $("#single--introduction__title .h1 .word").addClass('overflow--animate');
+
+        $("#single--introduction__title h1 .word").wrapInner('<div class="inside--animate"></div>');
+        $("#single--introduction__title h1 .word").addClass('overflow--animate');
+
+        $('#single--introduction__title .categories').wrapInner('<div class="overflow--animate"></div>');
+
+
+        $('#single--introduction__text .h2 .word').wrapInner('<div class="inside--animate"></div>');
+        $('#single--introduction__text .h2 .word').addClass('overflow--animate');
+        $('#single--introduction__text .h2 .inside--animate').addClass('h2-in');
+
+
         $("#single--introduction__thumbnail .item__img").attr('data-v', '0.1');
-        $('#single--introduction .h1 > *').wrap('<div class="overflow--container" data-v=""></div>');
+        $('#single--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
 
         introduction();
         //changeColor();
@@ -485,22 +506,33 @@ ScrollTrigger.scrollerProxy(pageContainer, {
 
     }
     var introduction = function(){
-
+ 
         var $el = $('#single--introduction__title'),
-            $text = $("#single--introduction .h1"),
-            $line = $("#single--introduction .h1 .line"),
-            $rule1 = $("#single--introduction__title .h1 .word .overflow--container > *");
+            $title = $("#single--introduction__title .h1 .word .inside--animate > *");
+            var tl = gsap.timeline();
             if (sessionStorage.viewWebsite > 1) {
                 
-                gsap.from($rule1, {duration: 1.75, yPercent: 200, scaleY: 2, force3D:true, ease:Expo.easeOut, stagger: 0.03, delay: 0.85});
+                tl.from($title, {duration: 1.75, yPercent: 200, scaleY: 2, force3D:true, ease:Expo.easeOut, stagger: 0.03, delay: 0.85});
 
             } 
             else {
-                gsap.from($rule1, {duration: 1.75, yPercent: 165, scaleY: 2, force3D:true, ease:Quint.easeOut, stagger: 0.035, delay: 2.1});
+                tl.from($title, {duration: 1.75, yPercent: 165, scaleY: 2, force3D:true, ease:Quint.easeOut, stagger: 0.03, delay: 2.1});
                 
-            }   
-                gsap.from($el.find('.small-description span'), {duration: 1.75, yPercent: 200, scaleY: 2, force3D:true, ease:Expo.easeOut, stagger: 0.03, delay: 0.85});
-                gsap.from($el.find('.small-description .h3'), {duration: 1.75, alpha: 0, force3D:true, ease:Expo.easeOut, stagger: 0.03, delay: 1})
+            }  
+
+                 
+             results[2].lines.forEach((line, index) => {
+    line.forEach((word) => {
+      tl.from($(word).find('.inside--animate'), { duration: 1.25, yPercent: 165, force3D:true, ease:Quint.easeOut, delay: index / 10}, '-=1.5');
+    })
+  });
+
+             tl.from($el.find('.categories .word'), {duration: 1.25, yPercent: 100, force3D:true, ease:Quint.easeOut}, '-=1.5');
+
+
+
+
+                //tl.from($el.find('.small-description span'), {duration: 1.75, yPercent: 200, force3D:true, ease:Expo.easeOut, stagger: 0.03}, '-=2');
     }
 /*
     var changeColor = function(){
@@ -546,9 +578,9 @@ var list = (function() {
     var init = function() {
         $("#header").addClass('header--white');
         $('#header').removeClass('header--black');
-        $('.page--list__cover .h1').wrap('<div class="overflow--container"></div>');
-        $('.page--list__cover p').wrap('<div class="overflow--container"></div>');
-        $('.page--list__cover .list__tags').wrap('<div class="overflow--container"></div>');
+        $('.page--list__cover .h1').wrap('<div class="overflow--animate"></div>');
+        $('.page--list__cover p').wrap('<div class="overflow--animate"></div>');
+        $('.page--list__cover .list__tags').wrap('<div class="overflow--animate"></div>');
 
         introduction();
 
@@ -559,9 +591,9 @@ var list = (function() {
         var $el = $('.page--list__cover'),
             $text = $("#single--introduction .h1"),
             $line = $("#single--introduction .h1 .line"),
-            $rule1 = $("#single--introduction .h1 .overflow--container:nth-child(1) > *"),
-            $rule2 = $("#single--introduction .h1 .overflow--container:nth-child(2) > *"),
-            $rule3 = $("#single--introduction .h1 .overflow--container:nth-child(3) > *");
+            $rule1 = $("#single--introduction .h1 .overflow--animate:nth-child(1) > *"),
+            $rule2 = $("#single--introduction .h1 .overflow--animate:nth-child(2) > *"),
+            $rule3 = $("#single--introduction .h1 .overflow--animate:nth-child(3) > *");
 
             var tl = new TimelineLite();
             if (sessionStorage.viewWebsite > 1) {
@@ -589,7 +621,7 @@ var about = (function() {
     var init = function() {
         $("#header").addClass('header--black');
         $('#header').removeClass('header--white');
-        $('#about--introduction .h1 > *').wrap('<div class="overflow--container" data-v=""></div>');
+        $('#about--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
 
         introduction();
         changeColor();

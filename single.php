@@ -64,15 +64,15 @@
           <div class="single--introduction" style="background: <?php echo $bgdColor ?>">
 
           <div id="single--introduction__title" class="">
-      <h1 class="h1" style="color: <?php echo $txtColor ?>" data-splitting="chars"><?php
+      <p class="h1" style="color: <?php echo $txtColor ?>" data-splitting="chars"><?php
           $title = get_the_title();
           $title = strip_tags( $title, '<strong>' );
-          echo $title; ?></h1>
+          echo $title; ?></p>
           <div class="small-description">
-          <a href="<?php echo $term_url; ?>" class="categories" style="color: <?php echo $txtColor ?>"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo$flag['alt'];?>"/ >!--><span>
-                    <?php echo $term_name . " — " . $yearBegin;
+          <a href="<?php echo $term_url; ?>" class="categories" style="color: <?php echo $txtColor ?>"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo$flag['alt'];?>"/ >!--><span data-splitting="words">
+                    <?php echo $term_name . " · " . $yearBegin;
                         if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></a>
-                      <h1 class="h3" style="color: <?php echo $txtColor ?>">A two week roadtrip in the American West</h1>
+                      <h1 class="h3" style="color: <?php echo $txtColor ?>" data-splitting="lines">A two week roadtrip in the American West</h1>
                       </div>
 
       </div>
@@ -81,8 +81,8 @@
             <div class="bgd__image" style="background-image: url('<?php echo $thumbnail_url;?>')"></div>
           </div>
 
-      <div id="single--introduction__text" class="">
-        <p class="h2" data-splitting="lines" style="color: <?php echo $txtColor ?>">Un grand week-end, c’est la durée parfaite pour
+      <div id="single--introduction__text" class="scroll-reveal">
+        <p class="h2" data-splitting="words" style="color: <?php echo $txtColor ?>">Un grand week-end, c’est la durée parfaite pour
 découvrir Copenhague façon “slow travel”. Se
 promener doucement dans la ville, à notre rythme et le nez en l’air pour observer son architecture qui mélange tradition nordique et design contemporain. Un grand week-end, c’est la durée parfaite pour
 découvrir Copenhague façon “slow travel”.<!--<?php echo strip_tags(get_field('intro'), '<br><em><strong>'); ?>!--></p>
@@ -101,11 +101,7 @@ découvrir Copenhague façon “slow travel”.<!--<?php echo strip_tags(get_fie
         
 
 </section>
-      <section data-bgcolor="#e3857a" data-textcolor="#f1dba7"><img src="https://images.pexels.com/photos/4791474/pexels-photo-4791474.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
-        <h2 class="credit"><a href="https://thisisadvantage.com" target="_blank">Made by Advantage</a></h2>
-
-  </section>
-
+    
   
   
 <?php include 'src/views/content-realated.php'; get_footer(); ?>

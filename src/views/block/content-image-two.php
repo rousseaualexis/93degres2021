@@ -12,12 +12,9 @@ $caption_two = get_field('caption_two');
 
 
 ?>
-<div class="acf--image-two content row scroll-reveal">
-	<div class="col-xs-20 col-xs-offset-2 col-sm-6 col-sm-offset-9">
-		<div class="lazyload-wrapper" style="padding-bottom: calc(<?php echo $image_one['sizes']['medium-height']; ?> / <?php echo $image_one['sizes']['medium-width']; ?> * 100%)">
-        	<img class="lazyload" data-srcset="<?php echo $image_one['sizes']['medium']; ?>" alt="<?php echo $image_one['alt']; ?>" style="z-index: 1"/>
-        	<img src="<?php echo $image_one['sizes']['tiny']; ?>" alt="<?php echo $image_one['alt']; ?>" />
-        	
+<!--
+<div class="acf--image-two content">
+        	<img class="lazyload" data-srcset="<?php echo $image_one['sizes']['medium']; ?>" alt="<?php echo $image_one['alt']; ?>" style="z-index: 1"/>        	
     	</div>
     	<?php if(is_admin()){?>
     			<img src="<?php echo $image_one['sizes']['medium']; ?>" alt="<?php echo $image_one['alt']; ?>"/>
@@ -27,9 +24,7 @@ $caption_two = get_field('caption_two');
 		<?php } else{} ?>
 	</div>
 	<div class="col-xs-20 col-xs-offset-2 col-sm-6 col-sm-offset-1">
-		<div class="lazyload-wrapper" style="padding-bottom: calc(<?php echo $image_two['sizes']['medium-height']; ?> / <?php echo $image_two['sizes']['medium-width']; ?> * 100%)">
 	        <img class="lazyload" data-srcset="<?php echo $image_two['sizes']['medium']; ?>" alt="<?php echo $image_two['alt']; ?>" style="z-index: 1"/>
-	        <img src="<?php echo $image_two['sizes']['tiny']; ?>" alt="<?php echo $image_two['alt']; ?>" />
 	        
        	</div>
        	<?php if(is_admin()){?>
@@ -39,4 +34,20 @@ $caption_two = get_field('caption_two');
 		<span class="t--caption"><?php echo $caption_two ?></span>
 		<?php } else{} ?>
 	</div>
+</div>
+
+
+!-->
+
+<div class="acf--image-one">
+
+    		<img src="<?php echo $image_one['sizes']['medium']; ?>" alt="<?php echo $image_one['alt']; ?>"/>
+
+
+</div>
+<div class="acf--image-one">
+
+    		<img src="<?php echo $image_two['sizes']['medium']; ?>" alt="<?php echo $image_two['alt']; ?>"/>
+
+
 </div>

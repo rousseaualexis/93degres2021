@@ -214,6 +214,11 @@ var rootconfig = {
 var observerElements = document.querySelectorAll('.scroll-reveal');
 var Observer = new IntersectionObserver(function (entries) {
   entries.forEach(function (entry) {
+    var revealText = document.querySelectorAll("[data-splitting=lines]");
+    var results = Splitting({
+      target: revealText,
+      by: "lines"
+    });
     var animEl = entry.target.querySelectorAll('.animate-in');
     gsap.set(animEl, {
       y: 250,
@@ -481,15 +486,15 @@ var homepage = function () {
     $("#header").addClass('header--white');
     $('#header').removeClass('header--black');
     $('#homepage--cover--title br').remove();
-    $('#homepage--cover--title text-line').wrap('<div class="overflow--container"></div>');
-    $('#homepage--cover--title .categories').wrap('<div class="overflow--container categories__container"></div>');
-    $('#homepage--destinations ul a').wrap('<div class="overflow--container"></div>');
-    $('#homepage--destinations .h4').wrap('<div class="overflow--container"></div>');
-    $('#about .h2 .line').wrap('<div class="overflow--container"></div>');
+    $('#homepage--cover--title text-line').wrap('<div class="overflow--animate"></div>');
+    $('#homepage--cover--title .categories').wrap('<div class="overflow--animate categories__container"></div>');
+    $('#homepage--destinations ul a').wrap('<div class="overflow--animate"></div>');
+    $('#homepage--destinations .h4').wrap('<div class="overflow--animate"></div>');
+    $('#about .h2 .line').wrap('<div class="overflow--animate"></div>');
     $('#about .h2 .line').addClass('translate-in');
-    $('#about .h4').wrap('<div class="overflow--container"></div>');
-    $('#other_articles .categories').wrap('<div class="overflow--container"></div>');
-    $('#other_articles .h3').wrap('<div class="overflow--container"></div>');
+    $('#about .h4').wrap('<div class="overflow--animate"></div>');
+    $('#other_articles .categories').wrap('<div class="overflow--animate"></div>');
+    $('#other_articles .h3').wrap('<div class="overflow--animate"></div>');
 
     if (!isMobile() && $window.width() >= 768) {
       $("#homepage--destinations ul li:nth-child(1n)").attr('data-h', '0.3');
@@ -626,7 +631,7 @@ var archive = function () {
 
 var footer = function () {
   var init = function init() {
-    $('#footer-name').wrap('<div class="overflow--container"></div>');
+    $('#footer-name').wrap('<div class="overflow--animate"></div>');
   };
 
   return {
@@ -635,13 +640,19 @@ var footer = function () {
 }();
 
 var single = function () {
+  var results = Splitting();
+
   var init = function init() {
-    Splitting();
-    $("#single--introduction__title .word").wrapInner('<div class="overflow--container"></div>');
-    $("#single--introduction__text .char").addClass('translate-in');
-    $('#single--introduction .categories').wrap('<div class="overflow--container"></div>');
+    $("#single--introduction__title .h1 .word").wrapInner('<div class="inside--animate"></div>');
+    $("#single--introduction__title .h1 .word").addClass('overflow--animate');
+    $("#single--introduction__title h1 .word").wrapInner('<div class="inside--animate"></div>');
+    $("#single--introduction__title h1 .word").addClass('overflow--animate');
+    $('#single--introduction__title .categories').wrapInner('<div class="overflow--animate"></div>');
+    $('#single--introduction__text .h2 .word').wrapInner('<div class="inside--animate"></div>');
+    $('#single--introduction__text .h2 .word').addClass('overflow--animate');
+    $('#single--introduction__text .h2 .inside--animate').addClass('h2-in');
     $("#single--introduction__thumbnail .item__img").attr('data-v', '0.1');
-    $('#single--introduction .h1 > *').wrap('<div class="overflow--container" data-v=""></div>');
+    $('#single--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
     introduction();
     var pageContainer = document.querySelector(".body--page");
     gsap.registerPlugin(ScrollTrigger);
@@ -688,12 +699,11 @@ var single = function () {
 
   var introduction = function introduction() {
     var $el = $('#single--introduction__title'),
-        $text = $("#single--introduction .h1"),
-        $line = $("#single--introduction .h1 .line"),
-        $rule1 = $("#single--introduction__title .h1 .word .overflow--container > *");
+        $title = $("#single--introduction__title .h1 .word .inside--animate > *");
+    var tl = gsap.timeline();
 
     if (sessionStorage.viewWebsite > 1) {
-      gsap.from($rule1, {
+      tl.from($title, {
         duration: 1.75,
         yPercent: 200,
         scaleY: 2,
@@ -703,34 +713,34 @@ var single = function () {
         delay: 0.85
       });
     } else {
-      gsap.from($rule1, {
+      tl.from($title, {
         duration: 1.75,
         yPercent: 165,
         scaleY: 2,
         force3D: true,
         ease: Quint.easeOut,
-        stagger: 0.035,
+        stagger: 0.03,
         delay: 2.1
       });
     }
 
-    gsap.from($el.find('.small-description span'), {
-      duration: 1.75,
-      yPercent: 200,
-      scaleY: 2,
-      force3D: true,
-      ease: Expo.easeOut,
-      stagger: 0.03,
-      delay: 0.85
+    results[2].lines.forEach(function (line, index) {
+      line.forEach(function (word) {
+        tl.from($(word).find('.inside--animate'), {
+          duration: 1.25,
+          yPercent: 165,
+          force3D: true,
+          ease: Quint.easeOut,
+          delay: index / 10
+        }, '-=1.5');
+      });
     });
-    gsap.from($el.find('.small-description .h3'), {
-      duration: 1.75,
-      alpha: 0,
+    tl.from($el.find('.categories .word'), {
+      duration: 1.25,
+      yPercent: 100,
       force3D: true,
-      ease: Expo.easeOut,
-      stagger: 0.03,
-      delay: 1
-    });
+      ease: Quint.easeOut
+    }, '-=1.5');
   };
 
   return {
@@ -742,9 +752,9 @@ var list = function () {
   var init = function init() {
     $("#header").addClass('header--white');
     $('#header').removeClass('header--black');
-    $('.page--list__cover .h1').wrap('<div class="overflow--container"></div>');
-    $('.page--list__cover p').wrap('<div class="overflow--container"></div>');
-    $('.page--list__cover .list__tags').wrap('<div class="overflow--container"></div>');
+    $('.page--list__cover .h1').wrap('<div class="overflow--animate"></div>');
+    $('.page--list__cover p').wrap('<div class="overflow--animate"></div>');
+    $('.page--list__cover .list__tags').wrap('<div class="overflow--animate"></div>');
     introduction();
   };
 
@@ -752,9 +762,9 @@ var list = function () {
     var $el = $('.page--list__cover'),
         $text = $("#single--introduction .h1"),
         $line = $("#single--introduction .h1 .line"),
-        $rule1 = $("#single--introduction .h1 .overflow--container:nth-child(1) > *"),
-        $rule2 = $("#single--introduction .h1 .overflow--container:nth-child(2) > *"),
-        $rule3 = $("#single--introduction .h1 .overflow--container:nth-child(3) > *");
+        $rule1 = $("#single--introduction .h1 .overflow--animate:nth-child(1) > *"),
+        $rule2 = $("#single--introduction .h1 .overflow--animate:nth-child(2) > *"),
+        $rule3 = $("#single--introduction .h1 .overflow--animate:nth-child(3) > *");
     var tl = new TimelineLite();
 
     if (sessionStorage.viewWebsite > 1) {
@@ -803,7 +813,7 @@ var about = function () {
   var init = function init() {
     $("#header").addClass('header--black');
     $('#header').removeClass('header--white');
-    $('#about--introduction .h1 > *').wrap('<div class="overflow--container" data-v=""></div>');
+    $('#about--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
     introduction();
     changeColor();
   };
