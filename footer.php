@@ -1,7 +1,7 @@
 <div id="footer" class="content row" >
 
-    <div id="list-destinations" class="footer-carousel col-xs-24">
-            <!-- Slides -->
+    <div id="list-destinations" class="footer-carousel">
+           
             <?php
             $term_args = array(
                 'taxonomy' => array('category','themes','cities'),
@@ -40,7 +40,7 @@
             );
             wp_nav_menu( $args ); ?>
     </div>
-    <div id="copyright" class="col-xs-11">
+    <div id="copyright" class="col-xs-11 t--text">
         <p> ©93.Degrés – by Alexis & Agathe</p>
     </div>
 </div>

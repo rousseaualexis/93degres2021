@@ -285,12 +285,12 @@ li{display:inline-block}
 .menu-secondary-container{text-align:right}
 #footer{text-align:center;padding-bottom:4.1666666667vw;margin:0;overflow:hidden}
 #footer-name{position:relative;color:#ffadb9;display:block;margin-bottom:12.5vw;margin-top:12.5vw}
-#footer #list-destinations{-webkit-transform:rotate(-5deg);transform:rotate(-5deg);margin-top:6.25vw}
+#footer #list-destinations{-webkit-transform:rotate(-5deg);transform:rotate(-5deg);margin-top:6.25vw;margin-bottom:6.25vw}
 #footer #list-destinations-2{-webkit-transform:rotate(5deg);transform:rotate(5deg)}
 #footer #list-destinations-3{-webkit-transform:rotate(-2deg);transform:rotate(-2deg)}
-#footer .footer-carousel{background:#ffadb9}
+#footer .footer-carousel{width:100%;background:#ffadb9;height:0}
 #footer .footer-carousel a{color:#000}
-#footer #list-destinations,#footer #list-destinations-2,#footer #list-destinations-3{white-space:nowrap;overflow-x:scroll;width:102%;left:-1%}
+#footer #list-destinations,#footer #list-destinations-2,#footer #list-destinations-3{white-space:nowrap;width:102%;left:-1%}
 #footer #list-destinations .flickity--list-element,#footer #list-destinations-2 .flickity--list-element,#footer #list-destinations-3 .flickity--list-element{list-style:none}
 #footer #list-destinations a,#footer #list-destinations-2 a,#footer #list-destinations-3 a{line-height:36px;display:inline-block;vertical-align:middle;margin-right:1.0416666667vw}
 #footer #list-destinations .flickity-viewport,#footer #list-destinations-2 .flickity-viewport,#footer #list-destinations-3 .flickity-viewport{padding:.5208333333vw 0 .6944444444vw 0}
