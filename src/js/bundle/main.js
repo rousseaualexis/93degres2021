@@ -224,6 +224,8 @@ var site = (function() {
 
 
         $(".burger").on('click', function() {
+            $(".mouse-cursor .base--circle").css("border-color", '#ffffff');
+
             $('.menu-burger').toggleClass('active-menu');
             $('.menu-burger--overlay').toggleClass('active-menu');
             $('body').toggleClass('noscroll');
@@ -234,9 +236,16 @@ var site = (function() {
              tl.staggerFromTo($('.menu-burger--content li'), 1, {x:-200}, {x:0, ease:Expo.easeOut}, 0.05, 0.2);
              tl.fromTo($('.menu-burger--overlay'), 2, {alpha: 0},{alpha: 0.75, ease:Quart.easeOut}, 0);
                // tl.from(mask2, 1, {display: "none", y: "100%", ease:Expo.easeInOut, onComplete:function(){window.location = url;}}, 0.1);
+            var property = $('#test').css('display');
         });
         $(".close").on('click', function() {
-            
+            //Check if body color attribute exist and apply to cursor border
+            if($('body').data('text')){
+                $(".mouse-cursor .base--circle").css("border-color", $('body').data('text'));
+            }
+            else{
+                $(".mouse-cursor .base--circle").css("border-color", "");
+            }
             
             var tl = new TimelineLite();
                 tl.to($('.menu-burger--left'), 0.5, {x: "-100%", ease:Expo.easeIn}, 0);
@@ -248,6 +257,7 @@ var site = (function() {
 
                 }, 0);
                 $('body').removeClass('noscroll');
+
                // tl.from(mask2, 1, {display: "none", y: "100%", ease:Expo.easeInOut, onComplete:function(){window.location = url;}}, 0.1);
         });
 
@@ -608,7 +618,7 @@ var about = (function() {
         $('#about--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
 
         introduction();
-        changeColor();
+        //changeColor();
 
 
     }
@@ -666,6 +676,8 @@ var WCsingle = (function() {
     var init = function() {
         
         introduction();
+
+
 
     }
     var introduction = function(){
@@ -884,7 +896,7 @@ if (!isMobile()) { */
         $("#footer .footer-carousel a").css("color",$text);
         $("#footer-name").css("color",$text);
 
-        //$("#footer").css("background-color",$background);
+        $("#footer").css("background-color",$background);
         $(".footer-carousel").css("background-color",$background);
 
 
@@ -897,7 +909,7 @@ if (!isMobile()) { */
         $(".mouse-cursor .base--circle").css("border-color", $text);
 
         $("#header #link--instagram svg").css("fill",$text);
-        $("#header #logo #logo__93degres").css("fill",$text);
+        $("  #header #logo #logo__93degres").css("fill",$text);
 
 
 

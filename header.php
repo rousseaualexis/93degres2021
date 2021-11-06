@@ -1,5 +1,5 @@
 <div class="menu-burger row content">
-    <div class="menu-burger--left col-xs-24 col-sm-12">
+    <div class="menu-burger--left">
         <div class="menu-burger--content">
             <div class="close"><?php echo file_get_contents(get_template_directory() . '/src/images/cross.svg'); ?></div>
             <ul class="col-xs-16 col-xs-offset-4">
@@ -21,7 +21,7 @@
             
         </div>
     </div>
-    <div class="menu-burger--right col-xs-24 col-sm-12  close"></div>
+    <div class="menu-burger--right close"></div>
    
 </div>
 <div class="menu-burger--overlay close"></div>

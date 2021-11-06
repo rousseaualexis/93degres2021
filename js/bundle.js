@@ -327,6 +327,7 @@ var site = function () {
       }
     });
     $(".burger").on('click', function () {
+      $(".mouse-cursor .base--circle").css("border-color", '#ffffff');
       $('.menu-burger').toggleClass('active-menu');
       $('.menu-burger--overlay').toggleClass('active-menu');
       $('body').toggleClass('noscroll');
@@ -350,8 +351,15 @@ var site = function () {
         alpha: 0.75,
         ease: Quart.easeOut
       }, 0);
+      var property = $('#test').css('display');
     });
     $(".close").on('click', function () {
+      if ($('body').data('text')) {
+        $(".mouse-cursor .base--circle").css("border-color", $('body').data('text'));
+      } else {
+        $(".mouse-cursor .base--circle").css("border-color", "");
+      }
+
       var tl = new TimelineLite();
       tl.to($('.menu-burger--left'), 0.5, {
         x: "-100%",
@@ -706,7 +714,6 @@ var about = function () {
     $('#header').removeClass('header--white');
     $('#about--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
     introduction();
-    changeColor();
   };
 
   var introduction = function introduction() {
@@ -904,6 +911,7 @@ window.onload = function () {
     $(".text--link a").css("color", $text);
     $("#footer .footer-carousel a").css("color", $text);
     $("#footer-name").css("color", $text);
+    $("#footer").css("background-color", $background);
     $(".footer-carousel").css("background-color", $background);
     $("#footer #list-destinations .flickity--list-element:after").css("background-color", $text);
     $("#header .burger span").css("background-color", $text);
@@ -911,7 +919,7 @@ window.onload = function () {
     $(".c-scrollbar_thumb").css("background-color", $text);
     $(".mouse-cursor .base--circle").css("border-color", $text);
     $("#header #link--instagram svg").css("fill", $text);
-    $("#header #logo #logo__93degres").css("fill", $text);
+    $("  #header #logo #logo__93degres").css("fill", $text);
   }
 
   ;
