@@ -1,31 +1,5 @@
 <?php include'head.php'; ?>
-<?php
-  $bgdColor = get_field('background-color');
-  $txtColor = get_field('text-color');
-?>
-<style>
 
-  #header .menu-links a, .text--link a, #footer .footer-carousel a{
-    color: <?php echo $txtColor ?>;
-  }
-  
-  #footer .footer-carousel, .mask2{
-    background: <?php echo $bgdColor ?>;
-  }
-
-  #footer #list-destinations .flickity--list-element:after, #header .burger span, #header .menu-links a:after, .c-scrollbar_thumb{
-    background: <?php echo $txtColor ?>;
-  }
-  .mouse-cursor .base--circle--dark:before{
-    box-shadow: 0 0 0 2px <?php echo $txtColor ?>;
-  }
-
-  #header #logo #logo__93degres, #header #link--instagram svg{
-    fill: <?php echo $txtColor ?>;
-  }
-
-
-</style>
 
 <?php get_header(); ?>
 
@@ -68,15 +42,13 @@
           $title = get_the_title();
           $title = strip_tags( $title, '<strong>' );
           echo $title; ?></p>
-          <div class="small-description">
-          <a href="<?php echo $term_url; ?>" class="categories" style="color: <?php echo $txtColor ?>"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo$flag['alt'];?>"/ >!--><span data-splitting="words">
+            <div class="small-description">
+              <a href="<?php echo $term_url; ?>" class="categories" style="color: <?php echo $txtColor ?>"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo$flag['alt'];?>"/ >!--><span data-splitting="words">
                     <?php echo $term_name . " · " . $yearBegin;
                         if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></a>
                       <h1 class="h3" style="color: <?php echo $txtColor ?>" data-splitting="lines">A two week roadtrip in the American West</h1>
-                      </div>
-
-      </div>
-
+            </div>
+          </div>
           <div id="single--introduction__image" >
             <div class="bgd__image" style="background-image: url('<?php echo $thumbnail_url;?>')"></div>
           </div>

@@ -70,6 +70,7 @@ function followCursor(event){
     sessionStorage.setItem("mouseprevious", mouseprevious);
     setTimeout(function(){mouse.classList.add("inload");}, 1);
     sessionStorage.setItem("mouseLoad", 1);
+    /*
 
     if( $('body').hasClass('page--single') === true ){
         var footerChange = $('#realated--content');
@@ -153,7 +154,7 @@ function followCursor(event){
         }
     }
     
-    if(($(".menu-burger").hasClass('active-menu')  === true )){
+    else if(($(".menu-burger").hasClass('active-menu')  === true )){
         if(curX < (window.innerWidth / 2))  {
             console.log('lol');
             $("#mouse .base--circle").addClass('base--circle--dark');
@@ -168,6 +169,7 @@ function followCursor(event){
     else{
       $("#mouse .base--circle").addClass('base--circle--white');
     }
+    */
 }
 /*
 if (mouseLoad == 1){

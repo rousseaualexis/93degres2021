@@ -1,0 +1,71 @@
+.page--wc--single
+
+	.woocommerce-breadcrumb
+		display: none
+
+	.product
+		display: flex
+		flex-wrap: wrap
+
+		.h1-small
+			
+			margin-bottom: $col-margin/2
+			z-index: 1
+			.word
+				overflow: hidden
+				margin-bottom: -$col-margin-43*0.35
+			.char
+				top: $col-margin-43*0.4
+				position: relative
+			span.word, span.char
+				display: inline-block 
+	.product-details__short-description
+		margin-bottom: $col-margin/2
+		margin-top: -$col-margin/4
+
+	.product--image--container
+		background: $color-light-grey
+		width: $col-margin*14
+		float: left
+
+		margin-top: $col-margin*-1.5
+		@media (min-aspect-ratio: 4/3)
+			margin-top: $col-margin-43*-1.5
+
+		img
+			width: 80%
+			padding: 10%
+
+	.single--description
+		width: $col-margin*8
+		padding-left: $col-margin*1
+		padding-right: $col-margin*1
+		height: 100vh
+		z-index: 1
+		position: relative
+		float: left
+		padding-top: $col-margin*3
+		margin-top: $col-margin*-1.5
+		@media (min-aspect-ratio: 4/3)
+			padding-top: $col-margin-43*3
+			margin-top: $col-margin-43*-1.5
+
+		.input-text
+			border: none
+			background-image: none
+			background-color: transparent
+			-webkit-box-shadow: none
+			-moz-box-shadow: none
+			box-shadow: none
+
+		.cart
+			margin-bottom: $col-margin
+		.tabs
+			margin-bottom: $col-margin*0.25
+
+			li
+				margin-right: $col-margin*0.4
+				opacity: 0.5
+
+			.active
+				opacity: 1

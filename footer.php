@@ -1,7 +1,4 @@
-
-
 <div id="footer" class="content row" >
-    <div id="instafeed"></div>
 
     <div id="list-destinations" class="footer-carousel col-xs-24">
             <!-- Slides -->
@@ -22,8 +19,7 @@
                 echo sprintf( esc_html__( '%s', 'textdomain' ), $term_link );
             }   
         ?>
-    </div>    
-    </div>
+    </div> 
 
     <div class="col-xs-18 col-xs-offset-3" >
         <span id="footer-name" class="h1 scroll-reveal" data-line>Quatre-vingt treize Degrés</span>
@@ -48,6 +44,4 @@
         <p> ©93.Degrés – by Alexis & Agathe</p>
     </div>
 </div>
-</main>
-
 

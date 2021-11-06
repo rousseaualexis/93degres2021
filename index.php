@@ -3,6 +3,8 @@
 Template Name: Homepage
 */
 ?>
+
+<?php include'head.php'; ?>
 <style>
   #homepage--cover--title .h1 strong{
     color: <?php echo get_field('background-color'); ?>;
@@ -11,19 +13,14 @@ Template Name: Homepage
     background-color: <?php echo get_field('text-color'); ?>;
   }
 </style>
-<?php include'head.php'; ?>
+
+<?php get_header(); ?>
+
+
 <body class="page--homepage">
-      <?php get_header(); ?>
 
-    <div data-scroll-container>
+<main class="container body--page" >
 
-
-<main > 
-<div class="container" data-barba="container">
-        <section id="sectionPin">
-      <div class="pin-wrap">
-      </div>
-  </section>
     <?php
     $args = array(
         'post_type' => array('post'),
@@ -136,8 +133,8 @@ foreach ($destinations as $destination) {
             </div>
 
 
- </div>
-
-<?php include 'src/views/content-realated.php'; get_footer(); ?>
+  
+<?php get_footer(); ?>
+</main>
 <?php include'script.php'; ?>
 <?php include'end.php'; ?>  

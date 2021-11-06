@@ -1,5 +1,6 @@
 <?php
 
+
 // Add scripts and stylesheets
 function startwordpress_scripts() {
     wp_enqueue_style( 'blog', get_template_directory_uri() . '/style.css' );
@@ -42,6 +43,8 @@ function tiny_mce_remove_unused_formats($init) {
  * Advanced Custom Fields Modifications of the height of tge WYSIWIG
  * -----------------------------------------------------------------------------
 */
+
+/*
 function PREFIX_apply_acf_modifications() {
 ?>
   <style>
@@ -68,6 +71,7 @@ function PREFIX_apply_acf_modifications() {
   </script>
 <?php
 }
+*/
 /*
  * -----------------------------------------------------------------------------
  * WordPress hooks
@@ -293,7 +297,7 @@ add_action('acf/init', 'my_acf_add_local_field_groups');
 
 
 // Rename category to Coutnry
-function change_category_to_coutnry() {
+function change_category_to_country() {
     global $wp_taxonomies;
     $labels = &$wp_taxonomies['category']->labels;
     $labels->name = 'Countries/Regions';
@@ -310,7 +314,7 @@ function change_category_to_coutnry() {
     $labels->menu_name = 'Countries/Regions';
     $labels->name_admin_bar = 'Countries/Regions';
 }
-add_action( 'init', 'change_category_to_coutnry' );
+add_action( 'init', 'change_category_to_country' );
 
 
 
@@ -388,82 +392,6 @@ function create_theme_taxonomy() {
 }
 //hook into the init action and call create_book_taxonomies when it fires
 add_action( 'init', 'create_theme_taxonomy', 0 );
-
-
-
-
-function my_acf_google_map_api( $api ){
-  $api['key'] = 'AIzaSyDJKoy-47CzNbgcsYUm-rZ8Fa0fRJ94aF8';
-  return $api;
-}
-
-add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
-
-
-
-
-//Create custom post type map and taxonomy
-// REGISTER CUSTOM POST TYPES
-// You can register more, just duplicate the register_post_type code inside of the function and change the values. You are set!
-if ( ! function_exists( 'create_post_type' ) ) :
-
-function create_post_type() {
-  
-  // You'll want to replace the values below with your own.
-  register_post_type( 'cpt_map', // change the name
-    array(
-      'labels' => array(
-        'name' => __( 'Places' ), // change the name
-        'singular_name' => __( 'Place' ), // change the name
-      ),
-      'public' => true,
-      'supports' => array ( 'title', 'custom-fields', 'thumbnail' ), // do you need all of these options?
-      //'taxonomies' => array( 'category'), // do you need categories and tags?
-      'hierarchical' => true,
-      'rewrite' => array ( 'slug' => __( 'carte' ) ) // change the name
-    )
-  );
-
-}
-add_action( 'init', 'create_post_type' );
-
-endif; // ####
-
-function create_map_taxonomy() {
- 
-// Add new taxonomy, make it hierarchical like categories
-//first do the translations part for GUI
-  $labels = array(
-    'name' => _x( 'Categories Places', 'taxonomy general name' ),
-    'singular_name' => _x( 'Category Place', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Categories Places' ),
-    'all_items' => __( 'All Categories Places' ),
-    'parent_item' => __( 'Parent Category Place' ),
-    'parent_item_colon' => __( 'Parent Category Place:' ),
-    'edit_item' => __( 'Edit Category Place' ), 
-    'update_item' => __( 'Update Category Place' ),
-    'add_new_item' => __( 'Add New Category Place' ),
-    'new_item_name' => __( 'New Category Place Name' ),
-    'menu_name' => __( 'Categories Places' ),
-  );    
- 
-// Now register the taxonomy
-  register_taxonomy('maps',array('cpt_map'), array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'show_in_rest' => true,
-    'show_admin_column' => true,
-    'publicly_queryable' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'map' ),
-  ));
-}
-//hook into the init action and call create_book_taxonomies when it fires
-add_action( 'init', 'create_map_taxonomy', 0 );
-
-
-
 
 
 
@@ -566,16 +494,6 @@ function my_acf_init() {
       'icon'        => 'format-image',
       'keywords'      => array( 'image', 'full', 'picture', 'split' ),
     ));
-    // register Deux tiers un tiers block
-    acf_register_block(array(
-      'name'        => 'image-deux-tiers-',
-      'title'       => __('Image Deux Tiers'),
-      'description'   => __('A custom image block.'),
-      'render_callback' => 'my_acf_block_render_callback',
-      'category'      => 'formatting',
-      'icon'        => 'format-image',
-      'keywords'      => array( 'image', 'deux tiers'),
-    ));
     // register One Image block
     acf_register_block(array(
       'name'        => 'image-one',
@@ -595,16 +513,6 @@ function my_acf_init() {
       'category'      => 'formatting',
       'icon'        => 'format-image',
       'keywords'      => array( 'image', 'two', 'two image' ),
-    ));
-    // register Three Image block
-    acf_register_block(array(
-      'name'        => 'image-three',
-      'title'       => __('Three Image'),
-      'description'   => __('A custom Image block.'),
-      'render_callback' => 'my_acf_block_render_callback',
-      'category'      => 'formatting',
-      'icon'        => 'format-image',
-      'keywords'      => array( 'image', 'three', 'three image' ),
     ));
     // register Paragraph block
     acf_register_block(array(
@@ -626,16 +534,6 @@ function my_acf_init() {
       'icon'        => 'editor-bold',
       'keywords'      => array( 'paragraph', 'text' ),
     ));
-    // register Slider block
-    acf_register_block(array(
-      'name'        => 'slider',
-      'title'       => __('Slider'),
-      'description'   => __('A custom Slider block.'),
-      'render_callback' => 'my_acf_block_render_callback',
-      'category'      => 'formatting',
-      'icon'        => 'format-image',
-      'keywords'      => array( 'Slider', 'Gallery' ),
-    ));
     // register Separator block
     acf_register_block(array(
       'name'        => 'separator',
@@ -650,6 +548,8 @@ function my_acf_init() {
 }
 
  
+
+
 add_filter('acf/settings/save_json', 'my_acf_json_save_point');
  
 function my_acf_json_save_point( $path ) {
@@ -712,3 +612,47 @@ function myplugin_ajaxurl() {
            var ajaxurl = "' . admin_url('admin-ajax.php') . '";
          </script>';
 }
+
+
+
+
+
+/* WOOCOMMERCE */
+function mytheme_add_woocommerce_support() {
+  add_theme_support( 'woocommerce' );
+    /**
+     * Hook: woocommerce_single_product_summary.
+     *
+     * @hooked woocommerce_template_single_title - 5
+     * @hooked woocommerce_template_single_rating - 10
+     * @hooked woocommerce_template_single_price - 10
+     * @hooked woocommerce_template_single_excerpt - 50
+     * @hooked woocommerce_template_single_add_to_cart - 30
+     * @hooked woocommerce_template_single_meta - 40
+     * @hooked woocommerce_template_single_sharing - 50
+     * @hooked WC_Structured_Data::generate_product_data() - 60
+     */
+// --------------------- START - Rearrange Product Image, Product Summary, and 'Ask a Question' button -----------------------------------
+// 2/7/2019
+
+//remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20);
+//remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+
+//add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_title', 10 );
+//add_action('woocommerce_after_single_product_summary', 'woocommerce_show_product_images', 1);
+add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 60 );
+
+//
+}
+add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
+
+// Remove all Woo Styles
+add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+
+
+
+

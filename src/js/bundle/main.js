@@ -45,7 +45,21 @@ var tools = (function() {
 var $window = $(window);
 function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
+};
+
+
+
+const pageContainer = document.querySelector(".body--page");
+// Locomotive Scroll
+    gsap.registerPlugin(ScrollTrigger);
+
+
+/* SMOOTH SCROLL */
+const scroller = new LocomotiveScroll({
+  el: pageContainer,
+  smooth: true
+});
+
 
 const rootconfig = {
   root: null,
@@ -59,8 +73,8 @@ const Observer = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
 
-      let revealText = document.querySelectorAll("[data-splitting=lines]");
-      let results = Splitting({ target: revealText, by: "lines" });
+      //let revealText = document.querySelectorAll("[data-splitting=lines]");
+      //let results = Splitting({ target: revealText, by: "lines" });
       const animEl = entry.target.querySelectorAll('.animate-in');
       gsap.set(animEl, {y:250, alpha: 0});
       const transEl = entry.target.querySelectorAll('.translate-in');
@@ -140,14 +154,6 @@ var site = (function() {
         // ANIMATION ONLY ONCE PER SESSION
         // Other Session
 
-          var $background = $('body').data('background');
-            var $text = $('body').data('text');
-            $(".mask").css("background-color",$text);
-            if($background){
-            $(".mask2").css("background-color",$background);
-            }
-            $(".mask3").css("background-color",$text);
-
 
         if (sessionStorage.viewWebsite >= 1) {
             sessionStorage.viewWebsite = Number(sessionStorage.viewWebsite) + 1;
@@ -163,13 +169,12 @@ var site = (function() {
             var $header = $('header');
             var tl = new TimelineLite();
             const vh = (coef) => window.innerHeight * (coef/100)
-            tl.to($header.find('#logo #logo__93degres'), 0.1, {fill:"#ffffff"}, 0);
+            tl.to($header.find('#logo #logo__93degres'), 0.1, {fill:"#000000"}, 0);
             tl.to($header, 0, {zIndex:2000}, 0);
             tl.fromTo($header.find('#logo #logo__93degres'), 1.5, {y:'400%'},{y:'0%', force3D: false, ease:Expo.easeOut}, 0.2);
             tl.fromTo($header.find('#logo #logo__93degres'), 1.5, {scaleY: '2'}, {scaleY: '1.00001', ease:Quint.easeOut}, 0.2);
             tl.from($header, 1.5, {top:'-12.5%', ease:Quint.easeInOut}, '-=0.5');
             tl.fromTo($header.find('#logo'), 1.5, {y:'50vh', scale:'1.5'},{y: 0, scale:'1.0001', force3D: false, ease:Quint.easeInOut}, '-=1.5');     
-            tl.from($header.find('#logo #logo__93degres'), 1.5, {fill:"#ffffff", ease:Expo.easeInOut}, '-=2');
             tl.to($(".mask"), 1.75, {y:"-100%", ease:Expo.easeInOut}, '-=1.5');
             tl.to($(".mask3"), 1.75, {y:"-100%", ease:Expo.easeInOut}, '-=1.75');
             tl.to($(".mask2"), 1.5, {y:"-100%", ease:Expo.easeInOut}, '-=1.7');
@@ -192,6 +197,7 @@ var site = (function() {
 
             var url = $(this).attr('href');
             var isblank = this.target === '_blank';
+            var isinternal = $(this).hasClass('js-internal-link');
             // check if the link has a hash
             if (isblank) {
                 e.preventDefault();
@@ -199,23 +205,14 @@ var site = (function() {
                 window.open(url);
                 return;
                 }
+            else if(isinternal){
+
+            }
             else{  
                 e.preventDefault();
                 var $mask = $(".mask");
                 var $mask2 = $(".mask2");
                 var $mask3 = $(".mask3");
-
-            var $text = $(this).data('text');
-            var $background = $(this).data('background');
-            $mask.css("background-color",$text);
-            if($background){
-            $mask2.css("background-color",$background);
-            }
-            else{
-
-            $mask2.css("background-color",'#ffffff');
-            }
-            $mask3.css("background-color",$text);
 
               
                 var tl = new TimelineLite();
@@ -398,8 +395,6 @@ var single = (function() {
     var init = function() {
 
 
-
-
         $("#single--introduction__title .h1 .word").wrapInner('<div class="inside--animate"></div>');
         $("#single--introduction__title .h1 .word").addClass('overflow--animate');
 
@@ -425,17 +420,6 @@ var single = (function() {
 
 
 
-
-const pageContainer = document.querySelector(".body--page");
-// Locomotive Scroll
-    gsap.registerPlugin(ScrollTrigger);
-
-
-/* SMOOTH SCROLL */
-const scroller = new LocomotiveScroll({
-  el: pageContainer,
-  smooth: true
-});
 
 
 
@@ -676,33 +660,24 @@ var about = (function() {
         }
 })();
 
-var map = (function() {
+
+var WCsingle = (function() {
     
     var init = function() {
-        $("#header").addClass('header--white');
+        
         introduction();
-
 
     }
     var introduction = function(){
 
-        var $el = $('.acf-map');
-
-            var tl = new TimelineLite();
-            if (sessionStorage.viewWebsite > 1) {
-                tl.fromTo($el, 1.5, {scale: 1.1}, {scale: 1.001, ease:Quart.easeOut}, 0.9);
-            } 
-            else {
-                tl.from($el, 1.5, {scale: 1.1}, {scale: 1.001, ease:Quart.easeOut}, 2.1);
-                
-            }   
+    
     }
-
 
     return {
             init: init
         }
 })();
+
 
 var pagequatre = (function() {
     
@@ -874,9 +849,8 @@ var markeeFooter = function(){
 // Launch site
 window.onload = function(){
     window.addEventListener("pageshow", function() {
-      
-
         site.loader();
+        markeeFooter();
 
     $(document).ready(function(){
     $(this).scrollTop(1);
@@ -892,17 +866,51 @@ return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(nav
 }
 if (!isMobile()) { */
   
-    if( !$('body').hasClass('page--map')){
-        markeeFooter();
-    };
+    
 
     if( $('body').hasClass('page--homepage') === true ) {
         homepage.init();
     };
 
+    //CHange color on page with ACF color fields
+    if( $('body').hasClass('page--single') === true || $('body').hasClass('page--wc--single') === true ){
+        var $background = $('body').data('background');
+        var $text = $('body').data('text');
+        $(".mask").css("background-color",$text);
+        $(".mask2").css("background-color",'#ffffff');
+        $(".mask3").css("background-color",$text);
+        $("#header .menu-links a").css("color",$text);
+        $(".text--link a").css("color",$text);
+        $("#footer .footer-carousel a").css("color",$text);
+        $("#footer-name").css("color",$text);
+
+        //$("#footer").css("background-color",$background);
+        $(".footer-carousel").css("background-color",$background);
+
+
+        $("#footer #list-destinations .flickity--list-element:after").css("background-color",$text);
+        $("#header .burger span").css("background-color",$text);
+        $("#header .menu-links a:after").css("background-color",$text);
+        $(".c-scrollbar_thumb").css("background-color",$text);
+
+
+        $(".mouse-cursor .base--circle").css("border-color", $text);
+
+        $("#header #link--instagram svg").css("fill",$text);
+        $("#header #logo #logo__93degres").css("fill",$text);
+
+
+
+    };
+
     if( $('body').hasClass('page--single') === true ){
         single.init();
     };
+
+    if( $('body').hasClass('page--wc--single') === true ){
+        WCsingle.init();
+    };
+
 
     if( $('body').hasClass('page--about') === true ){
         about.init();
@@ -916,12 +924,9 @@ if (!isMobile()) { */
     };
     if( $('body').hasClass('page--404')){
         pagequatre.init();
-        console.log('hge');
+        alert('404');
     };
-    
-    if( $('body').hasClass('page--map')){
-        map.init();
-    };
+     
     
     /*
 

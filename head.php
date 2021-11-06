@@ -11,6 +11,30 @@
 <link rel="icon" type="image/png" sizes="16x16" href="<?php bloginfo('template_url') ?>/src/images/favicon-16x16.png" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.1/dist/locomotive-scroll.css"/>
 <meta name="theme-color" content="#ffffff" />
+
+<?php
+  $bgdColor = get_field('background-color');
+  $txtColor = get_field('text-color');
+  if (($bgdColor && $txtColor) !=  null) :
+  	?>
+<style>
+
+  .single--description > *{
+    color: <?php echo $txtColor ?>;
+  }
+  
+  .single--description{
+    background: <?php echo $bgdColor ?>;
+  }
+
+.cta--rounded-square:before{
+    background: <?php echo $txtColor ?> !important;
+  }
+ 
+
+
+</style>
+<?php endif ?>
 </head>
 
 <div class="mask"></div>

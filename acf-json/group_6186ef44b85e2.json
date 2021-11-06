@@ -1,0 +1,89 @@
+{
+    "key": "group_6186ef44b85e2",
+    "title": "Products",
+    "fields": [
+        {
+            "key": "field_6186ef44bac82",
+            "label": "Couleur d'arrière plan",
+            "name": "background-color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#000000",
+            "enable_opacity": false,
+            "return_format": "string"
+        },
+        {
+            "key": "field_6186ef44bacab",
+            "label": "Couleur de Texte",
+            "name": "text-color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#000000",
+            "enable_opacity": false,
+            "return_format": "string"
+        },
+        {
+            "key": "field_6186ef44bacbf",
+            "label": "Realated",
+            "name": "realated",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "carnets",
+                "guides",
+                "conseils"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": 2,
+            "return_format": "object"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1636233384
+}
