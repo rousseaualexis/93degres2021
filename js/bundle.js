@@ -86,12 +86,6 @@ function showImage() {
 }
 "use strict";
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 var tools = function () {
   var isDesktop = function isDesktop() {
     return $(window).width() >= 992;
@@ -133,6 +127,41 @@ var scroller = new LocomotiveScroll({
   el: pageContainer,
   smooth: true
 });
+scroller.on("scroll", ScrollTrigger.update);
+ScrollTrigger.scrollerProxy(pageContainer, {
+  scrollTop: function scrollTop(value) {
+    return arguments.length ? scroller.scrollTo(value, 0, 0) : scroller.scroll.instance.scroll.y;
+  },
+  getBoundingClientRect: function getBoundingClientRect() {
+    return {
+      left: 0,
+      top: 0,
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  },
+  pinType: pageContainer.style.transform ? "transform" : "fixed"
+});
+var pinBoxes = document.querySelectorAll(".pin--wrap > *");
+var pinWrap = document.querySelector(".pin--wrap");
+
+if (pinWrap) {
+  var pinWrapWidth = pinWrap.offsetWidth;
+  var horizontalScrollLength = pinWrapWidth - window.innerWidth;
+  gsap.to(".pin--wrap", {
+    scrollTrigger: {
+      scroller: pageContainer,
+      scrub: true,
+      trigger: "#section--pin",
+      pin: true,
+      start: "top top",
+      end: pinWrapWidth
+    },
+    x: -horizontalScrollLength,
+    ease: "none"
+  });
+}
+
 var rootconfig = {
   root: null,
   rootMargin: '0% 0px'
@@ -406,38 +435,7 @@ var homepage = function () {
       $("#homepage--destinations ul li:nth-child(2n)").attr('data-h', '-0.15');
       $("#homepage--destinations ul li:nth-child(3n)").attr('data-h', '0.15');
       firstPost();
-
-      var parallaxHoritzontal = function parallaxHoritzontal() {
-        var parallaxEls = document.querySelectorAll("[data-h]");
-        window.addEventListener("scroll", scrollHandler);
-
-        function scrollHandler() {
-          var _iterator = _createForOfIteratorHelper(parallaxEls),
-              _step;
-
-          try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var parallaxEl = _step.value;
-              var scrollTop = $(window).scrollTop(),
-                  elementOffset = $('#homepage--destinations').offset().top,
-                  elementHeight = $('#homepage--destinations').height(),
-                  distance = elementOffset - scrollTop;
-
-              if (scrollTop > elementOffset - elementHeight && scrollTop < elementOffset + elementHeight) {
-                var transformX = distance * parallaxEl.dataset.h;
-                parallaxEl.style.transform = "translate3d(".concat(transformX, "px,0,0)");
-              }
-            }
-          } catch (err) {
-            _iterator.e(err);
-          } finally {
-            _iterator.f();
-          }
-        }
-      };
-
-      parallaxHoritzontal();
-      changeColor();
+      Trigger();
     }
   };
 
@@ -495,26 +493,37 @@ var homepage = function () {
     }, '-=1.5');
   };
 
-  var changeColor = function changeColor() {
-    var scroll_start = 0;
-    var headerHeight = $('#header').height();
-    var contentChange = $('#svg__world');
-    var contentOffset = contentChange.offset();
-    $(document).scroll(function () {
-      scroll_start = $(this).scrollTop();
-
-      if (contentChange.length) {
-        if (scroll_start > contentOffset.top - headerHeight / 2 && scroll_start < contentOffset.top + contentChange.height() - headerHeight / 2) {
-          $("#header").addClass('header--black');
-          $('#header').removeClass('header--white');
-          $('#header #logo #logo__93degres').css("fill", "#000000");
-        } else {
-          $('#header').addClass('header--white');
-          $('#header').removeClass('header--black');
-          $('#header #logo #logo__93degres').css("fill", "#ffffff");
-        }
+  var Trigger = function Trigger() {
+    var childOne = document.querySelector(".homepage--destinations--names:nth-child(1)");
+    var childTwo = document.querySelector(".homepage--destinations--names:nth-child(2)");
+    var childThree = document.querySelector(".homepage--destinations--names:nth-child(3)");
+    var tlDestinations = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#homepage--destinations ul",
+        scroller: pageContainer,
+        scrub: true,
+        pin: false,
+        start: "top 100%"
       }
     });
+    tlDestinations.fromTo(childOne, {
+      x: '-10%'
+    }, {
+      x: '10%',
+      ease: 'none'
+    });
+    tlDestinations.fromTo(childTwo, {
+      x: '10%'
+    }, {
+      x: '-10%',
+      ease: 'none'
+    }, "<");
+    tlDestinations.fromTo(childThree, {
+      x: '-10%'
+    }, {
+      x: '10%',
+      ease: 'none'
+    }, "<");
   };
 
   return {
@@ -559,41 +568,6 @@ var single = function () {
     $("#single--introduction__thumbnail .item__img").attr('data-v', '0.1');
     $('#single--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
     introduction();
-    scroller.on("scroll", ScrollTrigger.update);
-    ScrollTrigger.scrollerProxy(pageContainer, {
-      scrollTop: function scrollTop(value) {
-        return arguments.length ? scroller.scrollTo(value, 0, 0) : scroller.scroll.instance.scroll.y;
-      },
-      getBoundingClientRect: function getBoundingClientRect() {
-        return {
-          left: 0,
-          top: 0,
-          width: window.innerWidth,
-          height: window.innerHeight
-        };
-      },
-      pinType: pageContainer.style.transform ? "transform" : "fixed"
-    });
-    var pinBoxes = document.querySelectorAll(".pin--wrap > *");
-    var pinWrap = document.querySelector(".pin--wrap");
-    var pinWrapWidth = pinWrap.offsetWidth;
-    var horizontalScrollLength = pinWrapWidth - window.innerWidth;
-    gsap.to(".pin--wrap", {
-      scrollTrigger: {
-        scroller: pageContainer,
-        scrub: true,
-        trigger: "#section--pin",
-        pin: true,
-        start: "top top",
-        end: pinWrapWidth
-      },
-      x: -horizontalScrollLength,
-      ease: "none"
-    });
-    ScrollTrigger.addEventListener("refresh", function () {
-      return scroller.update();
-    });
-    ScrollTrigger.refresh();
   };
 
   var introduction = function introduction() {
@@ -909,10 +883,9 @@ window.onload = function () {
     $(".mask3").css("background-color", $text);
     $("#header .menu-links a").css("color", $text);
     $(".text--link a").css("color", $text);
+    $("#header .menu-links a").css("background", "");
     $("#footer .footer-carousel a").css("color", $text);
-    $("#footer-name").css("color", $text);
-    $("#footer").css("background-color", $background);
-    $(".footer-carousel").css("background-color", $background);
+    $("#footer .footer-carousel").css("background-color", $background);
     $("#footer #list-destinations .flickity--list-element:after").css("background-color", $text);
     $("#header .burger span").css("background-color", $text);
     $("#header .menu-links a:after").css("background-color", $text);
@@ -960,6 +933,10 @@ window.onload = function () {
   }
 
   ;
+  ScrollTrigger.addEventListener("refresh", function () {
+    return scroller.update();
+  });
+  ScrollTrigger.refresh();
 };
 "use strict";
 

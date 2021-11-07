@@ -26,7 +26,7 @@
 </div>
 <div class="menu-burger--overlay close"></div>
 
-    <header id="header" class="row header--white">
+    <header id="header">
         <div id="logo">
             <a href="<?php echo get_bloginfo( 'wpurl' );?>">
                 <?php echo file_get_contents(get_template_directory() . '/src/images/logo.svg'); ?>

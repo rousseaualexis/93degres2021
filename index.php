@@ -19,7 +19,7 @@ Template Name: Homepage
 
 <body class="page--homepage">
 
-<main class="container body--page" >
+<main class="body--page" >
 
     <?php
     $args = array(

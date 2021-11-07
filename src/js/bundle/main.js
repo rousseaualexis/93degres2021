@@ -61,6 +61,74 @@ const scroller = new LocomotiveScroll({
 });
 
 
+
+
+
+scroller.on("scroll", ScrollTrigger.update);
+
+ScrollTrigger.scrollerProxy(pageContainer, {
+  scrollTop(value) {
+    return arguments.length
+      ? scroller.scrollTo(value, 0, 0)
+      : scroller.scroll.instance.scroll.y;
+  },
+  getBoundingClientRect() {
+    return {
+      left: 0,
+      top: 0,
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  },
+  pinType: pageContainer.style.transform ? "transform" : "fixed"
+});
+
+
+
+////////////////////////////////////
+////////////////////////////////////
+
+  let pinBoxes = document.querySelectorAll(".pin--wrap > *");
+  let pinWrap = document.querySelector(".pin--wrap");
+  if(pinWrap){
+  let pinWrapWidth = pinWrap.offsetWidth;
+  let horizontalScrollLength = pinWrapWidth - window.innerWidth;
+
+  // Pinning and horizontal scrolling
+
+  gsap.to(".pin--wrap", {
+    scrollTrigger: {
+      scroller: pageContainer, //locomotive-scroll
+      scrub: true,
+      trigger: "#section--pin",
+      pin: true,
+      // anticipatePin: 1,
+      start: "top top",
+      end: pinWrapWidth
+    },
+    x: -horizontalScrollLength,
+    ease: "none"
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const rootconfig = {
   root: null,
   rootMargin: '0% 0px',
@@ -118,35 +186,6 @@ var site = (function() {
     }
 
 
-/*
-// PARALLAX IMAGES
-  $(document).ready(function() {
-  $(window).scroll(function() {
-    parallaxScroll();
-  });
-  
-  function parallaxScroll() {
-    $(".img-parallax").each(function(){
-      var scrollTop         = $(window).scrollTop(),
-          containerHeight   = $(this).parent(".item__img-wrap").innerHeight(),
-          windowHeight      = window.innerHeight,
-          elementOffset     = $(this).parent(".item__img-wrap").offset().top,
-          distance          = (elementOffset - scrollTop + containerHeight),
-          superDistance     = (containerHeight + windowHeight),
-          percent           = (distance / superDistance),
-          actualPercent     = (percent * (0-25));
-        console.log('windowHeight:' + windowHeight);
-        //$(this).css("transform", `translateY(${(actualPercent + "%")})`);
-      if(actualPercent >= (0-25) && actualPercent <= 0){
-
-        $(this).css("transform", `translateY(${(actualPercent + "%")})`);
-        //$(this).css("top",(actualPercent + "%"));
-      }
-    });
-  }
-});
-
-*/
 
     // PRELOADER
   
@@ -294,31 +333,25 @@ var homepage = (function() {
                 $("#homepage--destinations ul li:nth-child(3n)").attr('data-h', '0.15');
                 //$("<div/>").appendTo("#other_articles .item__img-wrap").addClass("item__img-mask mask-in");
                 firstPost();
-                var parallaxHoritzontal = function(){
-                    const parallaxEls = document.querySelectorAll("[data-h]");
-                    window.addEventListener("scroll", scrollHandler);
-                    function scrollHandler() {
-                        for (const parallaxEl of parallaxEls) {
-                            var scrollTop     = $(window).scrollTop(),
-                            elementOffset = $('#homepage--destinations').offset().top,
-                            elementHeight = $('#homepage--destinations').height(),
-                            distance = (elementOffset - scrollTop);
-                            if ((scrollTop > (elementOffset - elementHeight)) && (scrollTop < (elementOffset + elementHeight))) {
-                                const transformX = distance * parallaxEl.dataset.h;
-                                parallaxEl.style.transform = `translate3d(${transformX}px,0,0)`;
-                            }
-                        }
-                    } 
-                }
-                
-                
-                               
-                            
-                parallaxHoritzontal();
-           
-                changeColor();
- 
+                Trigger();
             }
+
+/*¨
+    gsap.from("#svg__world", {
+  scrollTrigger: {
+    trigger: "#homepage--destinations",
+    scroller: pageContainer,
+    scrub: true,
+    pin: false,
+    start: "top 100%",
+    end: "100% top"
+  },
+  scale: 0, 
+  transformOrigin: "center", 
+  ease: Expo.easeOut
+});
+*/
+
     }
 
 
@@ -342,28 +375,23 @@ var homepage = (function() {
                 tl.from($el.find('.categories'), {duration: 1.5, y:'150px', ease:Expo.easeOut}, '-=1.5');
     }
 
-    var changeColor = function(){
-        var scroll_start = 0;
-            var headerHeight = $('#header').height();
-            var contentChange = $('#svg__world');
-            var contentOffset = contentChange.offset();
-            $(document).scroll(function() { 
-                scroll_start = $(this).scrollTop();
-                if (contentChange.length){
-                    if((scroll_start > (contentOffset.top - headerHeight/2)) && (scroll_start < (contentOffset.top + contentChange.height() - headerHeight/2))) {
-                        $("#header").addClass('header--black');
-                        $('#header').removeClass('header--white');
-                        $('#header #logo #logo__93degres').css("fill","#000000");
-                    }
-                    else {
-                        $('#header').addClass('header--white');
-                        $('#header').removeClass('header--black');
-                        $('#header #logo #logo__93degres').css("fill","#ffffff");
-                    }
 
-
-                }
-           });
+    var Trigger = function(){
+        
+    const childOne = document.querySelector(`.homepage--destinations--names:nth-child(1)`);
+    const childTwo = document.querySelector(`.homepage--destinations--names:nth-child(2)`);
+    const childThree = document.querySelector(`.homepage--destinations--names:nth-child(3)`);
+    var tlDestinations = gsap.timeline({
+            scrollTrigger: {
+    trigger: "#homepage--destinations ul",
+    scroller: pageContainer,
+    scrub: true,
+    pin: false,
+    start: "top 100%"
+  }});
+    tlDestinations.fromTo(childOne, { x: '-10%'},{ x: '10%', ease: 'none'});
+    tlDestinations.fromTo(childTwo, { x: '10%'},{ x: '-10%', ease: 'none'}, "<");
+    tlDestinations.fromTo(childThree, { x: '-10%'},{ x: '10%', ease: 'none'}, "<");
     }
 
     return {
@@ -424,80 +452,6 @@ var single = (function() {
 
         introduction();
         //changeColor();
-
-
-
-
-
-
-
-
-
-
-scroller.on("scroll", ScrollTrigger.update);
-
-ScrollTrigger.scrollerProxy(pageContainer, {
-  scrollTop(value) {
-    return arguments.length
-      ? scroller.scrollTo(value, 0, 0)
-      : scroller.scroll.instance.scroll.y;
-  },
-  getBoundingClientRect() {
-    return {
-      left: 0,
-      top: 0,
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
-  },
-  pinType: pageContainer.style.transform ? "transform" : "fixed"
-});
-
-
-
-////////////////////////////////////
-////////////////////////////////////
-
-  let pinBoxes = document.querySelectorAll(".pin--wrap > *");
-  let pinWrap = document.querySelector(".pin--wrap");
-  let pinWrapWidth = pinWrap.offsetWidth;
-  let horizontalScrollLength = pinWrapWidth - window.innerWidth;
-
-  // Pinning and horizontal scrolling
-
-  gsap.to(".pin--wrap", {
-    scrollTrigger: {
-      scroller: pageContainer, //locomotive-scroll
-      scrub: true,
-      trigger: "#section--pin",
-      pin: true,
-      // anticipatePin: 1,
-      start: "top top",
-      end: pinWrapWidth
-    },
-    x: -horizontalScrollLength,
-    ease: "none"
-  });
-
-
-
-
-  ScrollTrigger.addEventListener("refresh", () => scroller.update()); //locomotive-scroll
-
-  ScrollTrigger.refresh();
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
     var introduction = function(){
  
@@ -893,11 +847,12 @@ if (!isMobile()) { */
         $(".mask3").css("background-color",$text);
         $("#header .menu-links a").css("color",$text);
         $(".text--link a").css("color",$text);
+        $("#header .menu-links a").css("background","");
         $("#footer .footer-carousel a").css("color",$text);
-        $("#footer-name").css("color",$text);
+        //$("#footer-name").css("color",$text);
 
-        $("#footer").css("background-color",$background);
-        $(".footer-carousel").css("background-color",$background);
+        //$("#footer").css("background-color",$background);
+        $("#footer .footer-carousel").css("background-color",$background);
 
 
         $("#footer #list-destinations .flickity--list-element:after").css("background-color",$text);
@@ -961,6 +916,15 @@ if (!isMobile()) { */
         }, 200);
     };
     */
+
+
+
+
+  ScrollTrigger.addEventListener("refresh", () => scroller.update()); //locomotive-scroll
+  ScrollTrigger.refresh();
+
+
+
 
 }
 

@@ -243,6 +243,12 @@ body
 		letter-spacing: 0
 		text-transform: uppercase
 
+	a
+		font-size: inherit
+		font-weight: inherit
+		color: inherit
+		font-family: inherit
+
 .h3
 
 	font-family: $paragraph
@@ -321,8 +327,24 @@ p
 		*/
 		
 
-.c-scrollbar_thumb
-	background: red !important
+
+.c-scrollbar
+
+	&:hover
+		transform: scale(1) !important
+		
+		width: 10px
+
+		.c-scrollbar_thumb
+			width: 10px !important
+
+	&_thumb
+		background-color: $color-dark !important
+		border-radius: 1000px !important
+		opacity: 1 !important
+		width: 5px !important
+		margin: 4px !important
+		transition: width 0.3s !important
 
 button
 	display: inline-block

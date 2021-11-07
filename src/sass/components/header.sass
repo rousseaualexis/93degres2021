@@ -54,9 +54,8 @@
 		transition: fill 0.25s
 	.menu-links
 		a
-			color: $color-dark
 			transition: color 0.25s
-	.burger span, .menu-links a:after
+	.burger span
 		background: $color-dark
 
 
@@ -123,6 +122,7 @@
 				@include a-hover
 
 				&:after
+					height: 1px
 					background: $color-white
 		
 		.flag
@@ -168,10 +168,9 @@
 	vertical-align: middle
 
 	a 
-		color: $color-white
+		color: $color-dark
 		display: inline-block
 		padding: 5px 0px
-		@include a-hover
 
 
 	
@@ -184,7 +183,8 @@
 			vertical-align: middle
 
 	.burger, li
-		margin-right: 60px
+		
+		margin-right: $col-margin / 2
 		display: inline-block
 		vertical-align: middle
 		float: none
@@ -206,7 +206,6 @@
 		width: 15px
 		padding: 10px
 		margin-left: -10px
-		margin-right: 30px
 		margin-top: 0
 
 		span
