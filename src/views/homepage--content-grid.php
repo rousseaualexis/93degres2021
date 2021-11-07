@@ -21,13 +21,13 @@
             ?>  
             
                 <div class="item__img-wrap image--3-2">
-                <div class="item__img img-parallax" style="background-image: url('<?php echo $thumbnail_url;?>');" alt="<?php echo $thumbnail['alt']; ?>"></div>
+                <div class="item__img" style="background-image: url('<?php echo $thumbnail_url;?>');" alt="<?php echo $thumbnail['alt']; ?>"></div>
                 </div>                            
 
             
-                <div class="categories translate-in"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/>!--><span><?php echo $term_name . " — " . $yearBegin;
+                <div class="categories"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/>!--><span><?php echo $term_name . " — " . $yearBegin;
                         if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></div>
-                <h3 class="h3 translate-in">
+                <h3 class="h3">
                     <?php $title = get_the_title();
             $title = strip_tags( $title, '<strong>' ); //ADD - strip tags before sending to template
             echo $title; ?><?php if(!empty(get_field('subtitle'))){echo '<br><span>' . get_field('subtitle') . '</span>';}?>

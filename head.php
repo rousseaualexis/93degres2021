@@ -27,7 +27,7 @@
     background: <?php echo $bgdColor ?>;
   }
 
-.cta--rounded-square:before{
+.single--description .cta--rounded-square:before{
     background: <?php echo $txtColor ?> !important;
   }
  

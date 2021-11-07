@@ -230,12 +230,12 @@ function my_wp_nav_menu_objects( $items, $args ) {
   				$image_url= get_field('flag', $taxonomy.'_'.$term_id);
   				
   				if(!empty($image_url)){
-  				echo '<li><a href="' . $item->url . '" class="h2" data-mouse="link-internal"> ' . $item->title . '<img class="flag" src="'.$image_url['sizes']['thumbnail'].'" /></a></li>';
+  				echo '<li><a href="' . $item->url . '" class="h2"> ' . $item->title . '<img class="flag" src="'.$image_url['sizes']['thumbnail'].'" /></a></li>';
   				}
   				else{
 
             
-  					echo '<li><a href="' . $item->url . '" class="h2" data-mouse="link-internal"> ' . $item->title . '</a></li>';
+  					echo '<li><a href="' . $item->url . '" class="h2"> ' . $item->title . '</a></li>';
   				}
                   
   				//echo '<img src="'.$image_size.'" />'; //replace large with size you wish
@@ -245,7 +245,7 @@ function my_wp_nav_menu_objects( $items, $args ) {
   		}
 
   		else{
-  		   echo '<li class="title-link"><p>' . $item->title . '</p></li>';
+  		   echo '<li class="title-link"><p class="t--text">' . $item->title . '</p></li>';
   		}
 
   	}

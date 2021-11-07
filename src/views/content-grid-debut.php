@@ -1,4 +1,4 @@
-<div class="grid__articles grid__articles--medium col-xs-16 col-xs-offset-1 col-sm-9 col-sm-offset-2 col-sm-pull-1 scroll-reveal" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>" >
+<div class="grid__articles grid__articles--medium col-xs-16 col-xs-offset-1 col-sm-9 col-sm-offset-2 col-sm-pull-1" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>" >
         <?php
             $thumbnail = get_field('thumbnail');
             $thumbnail_url = $thumbnail['sizes']['medium'];
@@ -20,7 +20,7 @@
         ?>  
         <a href="<?php the_permalink(); ?>">
             <div class="item__img-wrap image--16-9">
-            <div class="item__img img-parallax" style="background-image: url('<?php echo $thumbnail_url;?>');" title="<?php echo $thumbnail['alt']; ?>">
+            <div class="item__img" style="background-image: url('<?php echo $thumbnail_url;?>');" title="<?php echo $thumbnail['alt']; ?>">
             </div></div>
                         
 

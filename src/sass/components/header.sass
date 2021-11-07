@@ -71,15 +71,20 @@
 	#svg__cross
 		fill: $color-white
 		width: 14px
-		position: absolute
-		right: 45px
+		position: fixed
+		left: $col-margin*12
 		top: 45px
+		cursor: pointer
+		z-index: 103
 
 	&--left
 		height: 100%
 		background: $color-dark
 		display: table
 		width: $col-margin*13
+		position: absolute
+		top: 0
+		left: 0
 	&--right
 		height: 100%
 		width: $col-margin*11
@@ -95,16 +100,21 @@
 		ul
 			margin: $col-margin*2
 			width: $col-margin*9
+			float: left
 		li
 			display: block
-			font-size: 0
 			float: left
 			clear: both
+			font-size: 0
 		a, p
 			color: $color-white
-			text-transform: uppercase
-			display: block
 		.h2
+			padding: 4px 0
+			position: relative
+			@include a-hover
+			&:after
+				height: 3px
+				background: $color-white
 			+media-sm-and-more
 				line-height: 4.888888888888889vw
 
@@ -114,17 +124,19 @@
 
 		.title-link
 			
-			a,p
+			a, p
 				text-transform: none
-				line-height: 36px
+				color: $color-white
+				float: left
 
 			a
-				color: $color-white
 				@include a-hover
 
 				&:after
-					height: 1px
 					background: $color-white
+			p
+				margin-bottom: $col-margin/2
+				opacity: 0.5
 		
 		.flag
 			position: relative
@@ -134,19 +146,14 @@
 			
 		.small-link
 
-			margin-bottom: $col-margin*1.5
+			margin-bottom: $col-margin*1.25
 			margin-top: $col-margin/4
-
-			padding-bottom: 10px
 			a
 
-				font-size: 12px
-				line-height: 24px
 				@include a-hover
 
 				&:after
 					background: $color-white
-					height: 1px
 
 	&--overlay
 		background: $color-black

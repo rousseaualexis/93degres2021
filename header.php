@@ -1,7 +1,9 @@
-<div class="menu-burger row content">
+<div class="menu-burger">
+
     <div class="menu-burger--left">
+        <div class="close"><?php echo file_get_contents(get_template_directory() . '/src/images/cross.svg'); ?></div>
         <div class="menu-burger--content">
-            <div class="close"><?php echo file_get_contents(get_template_directory() . '/src/images/cross.svg'); ?></div>
+            
             <ul>
                 <?php 
                 $args = array(
