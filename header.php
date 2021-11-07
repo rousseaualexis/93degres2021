@@ -2,7 +2,7 @@
     <div class="menu-burger--left">
         <div class="menu-burger--content">
             <div class="close"><?php echo file_get_contents(get_template_directory() . '/src/images/cross.svg'); ?></div>
-            <ul class="col-xs-16 col-xs-offset-4">
+            <ul>
                 <?php 
                 $args = array(
                 'depth'       => 0,

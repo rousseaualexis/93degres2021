@@ -252,9 +252,9 @@ li{display:inline-block}
 .menu-burger{display:none;position:fixed;width:100%;height:100%;overflow:hidden;overflow-y:scroll;z-index:102}
 .menu-burger #svg__cross{fill:#fff;width:14px;position:absolute;right:45px;top:45px}
 .menu-burger--left{height:100%;background:#121317;display:table;width:54.1666666665vw}
-.menu-burger--right{height:100%;position:absolute}
+.menu-burger--right{height:100%;width:45.8333333332vw;position:absolute;top:0;right:0}
 .menu-burger--content{display:table-cell;vertical-align:middle}
-.menu-burger--content ul{margin-top:12.5vw;margin-bottom:12.5vw}
+.menu-burger--content ul{margin:8.3333333333vw;width:37.4999999999vw}
 .menu-burger--content li{display:block;font-size:0;float:left;clear:both}
 .menu-burger--content a,.menu-burger--content p{color:#fff;text-transform:uppercase;display:block}
 .menu-burger--content .overflow--animate{padding:0;margin:0}

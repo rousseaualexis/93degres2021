@@ -228,12 +228,13 @@ function my_wp_nav_menu_objects( $items, $args ) {
   				$taxonomy = $item->object;
   				$term_id = $item->object_id;
   				$image_url= get_field('flag', $taxonomy.'_'.$term_id);
-  				$image_size = $image_url['sizes']['medium']; //replace "icoon" with the fieldname you give to the image
   				
   				if(!empty($image_url)){
-  				echo '<li><a href="' . $item->url . '" class="h2" data-mouse="link-internal"> ' . $item->title . '<img class="flag" src="'.$image_size.'" /></a></li>';
+  				echo '<li><a href="' . $item->url . '" class="h2" data-mouse="link-internal"> ' . $item->title . '<img class="flag" src="'.$image_url['sizes']['thumbnail'].'" /></a></li>';
   				}
   				else{
+
+            
   					echo '<li><a href="' . $item->url . '" class="h2" data-mouse="link-internal"> ' . $item->title . '</a></li>';
   				}
                   
