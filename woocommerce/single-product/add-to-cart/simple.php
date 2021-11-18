@@ -34,7 +34,7 @@ if ( $product->is_in_stock() ) : ?>
 
 		<?php
 		do_action( 'woocommerce_before_add_to_cart_quantity' );
-/*
+		/*
 		woocommerce_quantity_input(
 			array(
 				'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
@@ -45,7 +45,6 @@ if ( $product->is_in_stock() ) : ?>
 		*/
 		do_action( 'woocommerce_after_add_to_cart_quantity' );
 		?>
-
 
 
 		<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="cta--rounded-square cta--rounded-square-dark custom_add_to_cart" style="background: <?php echo $txtColor ?>"><div class="cta--rounded-square__before "><?php echo file_get_contents(get_template_directory() . '/src/images/arrow.svg'); ?></div><span><?php echo esc_html( $product->single_add_to_cart_text() ); ?> - <?php echo strip_tags($product->get_price_html()) ?></span></button>

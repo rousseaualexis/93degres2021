@@ -30,6 +30,14 @@
 .single--description .cta--rounded-square:before{
     background: <?php echo $txtColor ?> !important;
   }
+
+  .menu-links--right .cart-contents{
+    background: <?php echo $txtColor ?>;
+  }
+  .menu-links--right .cart-contents span{
+    color: <?php echo $bgdColor ?>;
+    
+  }
  
 
 

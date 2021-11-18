@@ -29,5 +29,20 @@ if ( ! $product_attributes ) {
 			<th class="woocommerce-product-attributes-item__label"><?php echo wp_kses_post( $product_attribute['label'] ); ?></th>
 			<td class="woocommerce-product-attributes-item__value"><?php echo wp_kses_post( $product_attribute['value'] ); ?></td>
 		</tr>
-	<?php endforeach; ?>
+	<?php endforeach; 
+
+
+$values = wc_get_product_terms( $product->id, 'taille', array( 'fields' =>  'all' ) );
+if( $values ){
+    echo '<dl>';
+        foreach ( $values as $term ){
+            echo '<dh>' . $term->name.' </dh>';
+            echo '<dd>' . term_description( $term->term_id, $term->taxonomy ) . '</dd>';
+        }
+    echo '</dl>';
+}
+
+?>
+
+
 </table>

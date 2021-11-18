@@ -35,8 +35,8 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 			<tbody>
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 					<tr>
-						<td class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></td>
-						<td class="value">
+						<td class="label t--text"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></td>
+						<td class="value t--text">
 							<?php
 								wc_dropdown_variation_attribute_options(
 									array(
@@ -45,15 +45,23 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 										'product'   => $product,
 									)
 								);
+								/*
 								echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
+								*/
 							?>
 						</td>
 					</tr>
+
+
 				<?php endforeach; ?>
+
 			</tbody>
 		</table>
 
+
 		<div class="single_variation_wrap">
+
+
 			<?php
 				/**
 				 * Hook: woocommerce_before_single_variation.

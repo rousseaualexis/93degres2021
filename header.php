@@ -34,6 +34,9 @@
                 <?php echo file_get_contents(get_template_directory() . '/src/images/logo.svg'); ?>
             </a>
         </div>
+
+        
+       
         <ul class="menu-links menu-links--left">
             <li class="burger"><span></span><span></span><span></span></li>
             
@@ -51,6 +54,11 @@
                 'link_after'  => '',
                 );
                 wp_nav_menu( $args ); ?>
+
+             <li id="link--instagram">
+                <a href="https://www.instagram.com/93.degres/" target="_blank" rel="noopener">Suivez-nous <?php echo file_get_contents(get_template_directory() . '/src/images/logo--instagram.svg'); ?>
+                </a>
+            </li>
         </ul>
 
         <ul class="menu-links menu-links--right">
@@ -68,10 +76,8 @@
             'link_after'  => '',
             );
             wp_nav_menu( $args ); */?>
-            <li id="link--instagram">
-                <a href="https://www.instagram.com/93.degres/" target="_blank" rel="noopener">Suivez-nous <?php echo file_get_contents(get_template_directory() . '/src/images/logo--instagram.svg'); ?>
-                </a>
-            </li>
+            <?php echo do_shortcode("[woocommerce_cart_icon]"); ?>
+           
         </ul>
     </header>
  

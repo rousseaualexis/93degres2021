@@ -605,15 +605,6 @@ function wp_blur_up_image_size() {
 }
 
 
-add_action('wp_head', 'myplugin_ajaxurl');
-
-function myplugin_ajaxurl() {
-
-   echo '<script type="text/javascript">
-           var ajaxurl = "' . admin_url('admin-ajax.php') . '";
-         </script>';
-}
-
 
 
 
@@ -651,9 +642,128 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_da
 }
 add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 
+
 // Remove all Woo Styles
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
+/*
+ * Shortcode for WooCommerce Cart Icon for Menu Item
+*/
+add_shortcode ('woocommerce_cart_icon', 'woo_cart_icon' );
+function woo_cart_icon() {
+    ob_start();
+ 
+        $cart_count = WC()->cart->cart_contents_count; // Set variable for cart item count
+        $cart_url = wc_get_cart_url();  // Set variable for Cart URL
+  
+        echo '<li><a class="menu-item cart-contents" href="'.$cart_url.'" title="Cart">';
+        
+        if ( $cart_count > 0 ) {
+        
+            echo '<span class="cart-contents-count">'.$cart_count.'</span>';
+       
+        }
+        
+        echo '</a></li>';
+        
+            
+    return ob_get_clean();
+ 
+}
 
 
 
+// * Filter with AJAX When Cart Contents Update
+ 
+add_filter( 'woocommerce_add_to_cart_fragments', 'woo_cart_icon_count' );
+function woo_cart_icon_count( $fragments ) {
+ 
+    ob_start();
+    
+    $cart_count = WC()->cart->cart_contents_count;
+    $cart_url = wc_get_cart_url();
+    
+    
+    echo '<a class="cart-contents menu-item" href="'.$cart_url.'" title="View Cart">';
+    
+    if ( $cart_count > 0 ) {
+        
+        echo '<span class="cart-contents-count">'.$cart_count.'</span>';
+                    
+    }
+    echo '</a>';
+ 
+    $fragments['a.cart-contents'] = ob_get_clean();
+     
+    return $fragments;
+}
+
+
+//* Append Cart Icon Particular Menu
+ 
+add_filter('wp_nav_menu_items','woo_cart_icon_menu', 10, 2);
+function woo_cart_icon_menu($menu, $args) {
+
+    if($args->theme_location == 'primary') { // 'primary' is my menu ID
+        $cart = do_shortcode("[woo_cart_but]");
+        return $cart . $menu;
+    }
+
+    return $menu;
+}
+
+
+function shuffle_variable_product_elements(){
+    if ( is_product() ) {
+        global $post;
+        $product = wc_get_product( $post->ID );
+        if ( $product->is_type( 'variable' ) ) {
+            remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );
+            add_action( 'woocommerce_before_variations_form', 'woocommerce_single_variation', 20 );
+
+            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+            add_action( 'woocommerce_before_variations_form', 'woocommerce_template_single_title', 10 );
+
+            remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+            add_action( 'woocommerce_before_variations_form', 'woocommerce_template_single_excerpt', 30 );
+        }
+    }
+}
+add_action( 'woocommerce_before_single_product', 'shuffle_variable_product_elements' );
+
+
+add_action( 'wp_footer', 'move_variation_description' );
+function move_variation_description(){
+    global $product;
+    // Only on single product pages for variable products
+    if ( ! ( is_product() && $product->is_type('variable') ) ) return;
+    // jQuery code
+    ?>
+    <script type="text/javascript">
+        jQuery(function($){
+            a = '.woocommerce-variation-description', b = a+' p', c = 'input.variation_id',
+            d = '#tab-description .product-post-content', de = $(d).html();
+
+            // On load, adding a mandatory very small delay
+            setTimeout(function(){
+                // variation ID selected by default
+                if( '' != $(c).val() && $(a).text() != '' )
+                    $(d).html($(a).html());
+            }, 300);
+
+            // On live event (attribute select fields change)
+            $('table.variations select').on( 'blur', function(){
+                // variation ID is selected
+                if( '' != $(c).val() && $(a).text() != '' ){
+                    $(d).html($(a).html()); // We copy the variation description
+                }
+                // No variation ID selected
+                else {
+                    $(d).html($(a).html()); // We set back the variable product description
+                }
+                console.log($('input.variation_id').val()); // TEST: Selected variation ID … To be removed
+            });
+        });
+    </script>
+    <?php
+}

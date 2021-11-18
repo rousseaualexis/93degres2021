@@ -812,6 +812,8 @@ window.onload = function () {
     $("#header .burger span").css("background-color", $text);
     $("#header .menu-links a:after").css("background-color", $text);
     $(".c-scrollbar_thumb").css("background-color", $text);
+    $(".menu-links--right .cart-contents").css("background-color", $text);
+    $(".menu-links--right .cart-contents-count").css("color", $background);
     $(".mouse-cursor .base--circle").css("border-color", $text);
     $("#header #link--instagram svg").css("fill", $text);
     $("  #header #logo #logo__93degres").css("fill", $text);
@@ -861,45 +863,3 @@ window.onload = function () {
   ScrollTrigger.refresh();
 };
 "use strict";
-
-jQuery(document).ready(function ($) {
-  "use strict";
-
-  $('.custom_add_to_cart').click(function (e) {
-    e.preventDefault();
-    var id = $(this).next().next().attr('value');
-    var data = {
-      product_id: id,
-      quantity: 1
-    };
-    $(this).parent().addClass('loading');
-    $.post(wc_add_to_cart_params.wc_ajax_url.toString().replace('%%endpoint%%', 'add_to_cart'), data, function (response) {
-      if (!response) {
-        return;
-      }
-
-      if (response.error) {
-        alert("Custom Massage ");
-        $('.custom_add_to_cart').parent().removeClass('loading');
-        return;
-      }
-
-      if (response) {
-        var url = woocommerce_params.wc_ajax_url;
-        url = url.replace("%%endpoint%%", "get_refreshed_fragments");
-        $.post(url, function (data, status) {
-          $(".woocommerce.widget_shopping_cart").html(data.fragments["div.widget_shopping_cart_content"]);
-
-          if (data.fragments) {
-            jQuery.each(data.fragments, function (key, value) {
-              jQuery(key).replaceWith(value);
-            });
-          }
-
-          jQuery("body").trigger("wc_fragments_refreshed");
-        });
-        $('.custom_add_to_cart').parent().removeClass('loading');
-      }
-    });
-  });
-});

@@ -571,7 +571,7 @@ var about = (function() {
 var WCsingle = (function() {
     
     var init = function() {
-        
+ 
         introduction();
 
 
@@ -801,6 +801,12 @@ if (!isMobile()) { */
         $("#header .burger span").css("background-color",$text);
         $("#header .menu-links a:after").css("background-color",$text);
         $(".c-scrollbar_thumb").css("background-color",$text);
+        $(".menu-links--right .cart-contents").css("background-color",$text);
+
+
+        $(".menu-links--right .cart-contents-count").css("color",$background);
+
+
 
 
         $(".mouse-cursor .base--circle").css("border-color", $text);
