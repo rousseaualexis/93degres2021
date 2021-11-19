@@ -61,23 +61,8 @@
             </li>
         </ul>
 
-        <ul class="menu-links menu-links--right">
-            <?php /*
-            $args = array(
-            'depth'       => 0,
-            'sort_column' => 'menu_order',
-            'theme_location' => 'top-right-links',
-            'menu_class'  => 'menu',
-            'include'     => '',
-            'exclude'     => '',
-            'echo'        => true,
-            'show_home'   => false,
-            'link_before' => '',
-            'link_after'  => '',
-            );
-            wp_nav_menu( $args ); */?>
-            <?php echo do_shortcode("[woocommerce_cart_icon]"); ?>
-           
+        <ul class="menu-cart">
+            <a class="cart-button js-internal-link" title="<?php _e( 'View your shopping cart' ); ?>"><?php echo WC()->cart->get_cart_contents_count(); ?></a>        
         </ul>
     </header>
  

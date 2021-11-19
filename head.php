@@ -38,11 +38,11 @@
     color: <?php echo $bgdColor ?>;
     
   }
- 
-
-
 </style>
-<?php endif ?>
+<?php endif; ?>
+<div id="mini-cart-container" style="display:none"> 
+<?php wc_get_template('woocommerce/cart/mini-cart.php');?>
+</div>
 </head>
 
 <div class="mask"></div>

@@ -646,71 +646,31 @@ add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 // Remove all Woo Styles
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
-/*
- * Shortcode for WooCommerce Cart Icon for Menu Item
-*/
-add_shortcode ('woocommerce_cart_icon', 'woo_cart_icon' );
-function woo_cart_icon() {
-    ob_start();
- 
-        $cart_count = WC()->cart->cart_contents_count; // Set variable for cart item count
-        $cart_url = wc_get_cart_url();  // Set variable for Cart URL
-  
-        echo '<li><a class="menu-item cart-contents" href="'.$cart_url.'" title="Cart">';
-        
-        if ( $cart_count > 0 ) {
-        
-            echo '<span class="cart-contents-count">'.$cart_count.'</span>';
-       
-        }
-        
-        echo '</a></li>';
-        
-            
-    return ob_get_clean();
- 
-}
-
 
 
 // * Filter with AJAX When Cart Contents Update
- 
-add_filter( 'woocommerce_add_to_cart_fragments', 'woo_cart_icon_count' );
-function woo_cart_icon_count( $fragments ) {
- 
+add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');
+
+function woocommerce_header_add_to_cart_fragment( $fragments ) {
+    global $woocommerce;
+
     ob_start();
-    
-    $cart_count = WC()->cart->cart_contents_count;
-    $cart_url = wc_get_cart_url();
-    
-    
-    echo '<a class="cart-contents menu-item" href="'.$cart_url.'" title="View Cart">';
-    
-    if ( $cart_count > 0 ) {
-        
-        echo '<span class="cart-contents-count">'.$cart_count.'</span>';
-                    
-    }
-    echo '</a>';
- 
-    $fragments['a.cart-contents'] = ob_get_clean();
-     
+
+    ?>
+    <a class="cart-button js-internal-link" title="<?php _e( 'View your shopping cart' ); ?>"><?php echo WC()->cart->get_cart_contents_count(); ?></a>
+
+    <?php
+
+    $fragments['a.cart-button'] = ob_get_clean();
+
     return $fragments;
+
 }
 
 
 //* Append Cart Icon Particular Menu
  
-add_filter('wp_nav_menu_items','woo_cart_icon_menu', 10, 2);
-function woo_cart_icon_menu($menu, $args) {
 
-    if($args->theme_location == 'primary') { // 'primary' is my menu ID
-        $cart = do_shortcode("[woo_cart_but]");
-        return $cart . $menu;
-    }
-
-    return $menu;
-}
 
 
 function shuffle_variable_product_elements(){
@@ -732,6 +692,7 @@ function shuffle_variable_product_elements(){
 add_action( 'woocommerce_before_single_product', 'shuffle_variable_product_elements' );
 
 
+// Move variable description in global description
 add_action( 'wp_footer', 'move_variation_description' );
 function move_variation_description(){
     global $product;
@@ -767,3 +728,32 @@ function move_variation_description(){
     </script>
     <?php
 }
+
+//Hide choose an option from drop-down variable
+add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'filter_dropdown_option_html', 12, 2 );
+function filter_dropdown_option_html( $html, $args ) {
+    $show_option_none_text = $args['show_option_none'] ? $args['show_option_none'] : __( 'Choose an option', 'woocommerce' );
+    $show_option_none_html = '<option value="">' . esc_html( $show_option_none_text ) . '</option>';
+
+    $html = str_replace($show_option_none_html, '', $html);
+
+    return $html;
+}
+
+
+
+// Update mini-cart when add to cart ajax
+add_filter( 'woocommerce_add_to_cart_fragments', function($fragments) {
+
+
+    ob_start();
+    ?>
+
+<div id="mini-cart-container"> 
+<?php wc_get_template('woocommerce/cart/mini-cart.php');?>
+</div>
+
+    <?php $fragments['div#mini-cart-container'] = ob_get_clean();
+    return $fragments;
+
+} );

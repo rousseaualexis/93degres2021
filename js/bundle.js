@@ -863,3 +863,46 @@ window.onload = function () {
   ScrollTrigger.refresh();
 };
 "use strict";
+
+$(".menu-cart").on('click', function () {
+  $("#mini-cart-container").css("display", 'block');
+  $('body').toggleClass('noscroll');
+  var tlMiniCartOpen = gsap.timeline();
+  tlMiniCartOpen.fromTo($('.menu-burger--left'), {
+    xPercent: -100
+  }, {
+    duration: 1,
+    xPercent: 0,
+    ease: Expo.easeOut
+  });
+  tlMiniCartOpen.fromTo($('.menu-burger--overlay'), {
+    alpha: 0
+  }, {
+    duration: 1,
+    alpha: 0.75
+  }, "<");
+  var property = $('#test').css('display');
+});
+$(".close").on('click', function () {
+  if ($('body').data('text')) {
+    $(".mouse-cursor .base--circle").css("border-color", $('body').data('text'));
+  } else {
+    $(".mouse-cursor .base--circle").css("border-color", "");
+  }
+
+  var tlBurgerClose = gsap.timeline();
+  tlBurgerClose.to($('.menu-burger--left'), {
+    duration: 0.75,
+    xPercent: -100,
+    ease: Expo.easeOut
+  });
+  tlBurgerClose.to($('.menu-burger--overlay'), {
+    duration: 0.75,
+    alpha: 0,
+    onComplete: function onComplete() {
+      $('.menu-burger').removeClass('active-menu');
+      $('.menu-burger--overlay').removeClass('active-menu');
+    }
+  }, "<");
+  $('body').removeClass('noscroll');
+});
