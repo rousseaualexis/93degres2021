@@ -1,14 +1,75 @@
-#mini-cart-container
+.mini-cart-container
 	width: $col-margin*8
 	position: fixed
 	right: 0
 	z-index: 100
 	background: $color-white
+	display: none
+
+.active-cart
+	display: block
+
+
+/* The container must be positioned relative: */
+.variations 
+	width: 100%
+	margin-bottom: $col-margin/2
+
+	.label
+		padding-right: 10px
+		float: left
+		width: 100%
+
+	.custom-select
+		position: relative
+		width: 100%
+		float: left
+
+
+
+	select 
+	
+		width: 100%
+		padding: 0
+		margin: 0
+		border-radius: 0
+		box-shadow: none
+		background: none
+		color: $color-dark
+		border: none
+		border-bottom: solid 2px $color-dark
+		outline: none
+		display:  inline-block
+		appearance: none
+		cursor: pointer
+		margin-bottom: $col-margin/2
+		display: none /*hide original SELECT element: */
+
+	.variation-radios
+		position: relative
+
+		input
+
+			display: none
+
+		label
+			padding: 20px
+			position: relative
+			float: left
+			border-radius: 100000px
+			border: solid 1px $color-dark
+			margin-right: 10px
+
+			&:active, &focus
+				background: red
+
 
 .page--wc--single
 
 	.woocommerce-breadcrumb
 		display: none
+
+
 
 	.product
 		display: flex

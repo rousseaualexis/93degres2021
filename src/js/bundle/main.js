@@ -155,7 +155,7 @@ var site = (function() {
     var loader = function() {
         // ANIMATION ONLY ONCE PER SESSION
         // Other Session
-
+        $("#mini-cart-container").css("display", 'none');
 
         if (sessionStorage.viewWebsite >= 1) {
             sessionStorage.viewWebsite = Number(sessionStorage.viewWebsite) + 1;
@@ -228,14 +228,14 @@ var site = (function() {
         $(".burger").on('click', function() {
             $(".mouse-cursor .base--circle").css("border-color", '#ffffff');
             $('.menu-burger').toggleClass('active-menu');
-            $('.menu-burger--overlay').toggleClass('active-menu');
+            $('.menu--overlay').toggleClass('active-menu');
             $('body').toggleClass('noscroll');
 
             var tlBurgerOpen = gsap.timeline();
              //tl.to($('main'), 2, {x: "15%", ease:Expo.easeOut}, 0);
              //tl.to($('header'), 2, {x: "15%", ease:Expo.easeOut}, 0);
              tlBurgerOpen.fromTo($('.menu-burger--left'),  {xPercent: -100}, {duration: 1, xPercent: 0, ease:Expo.easeOut});
-             tlBurgerOpen.fromTo($('.menu-burger--overlay'), {alpha: 0}, {duration: 1, alpha: 0.75}, "<");
+             tlBurgerOpen.fromTo($('.menu--overlay'), {alpha: 0}, {duration: 1, alpha: 0.75}, "<");
                // tl.from(mask2, 1, {display: "none", y: "100%", ease:Expo.easeInOut, onComplete:function(){window.location = url;}}, 0.1);
             var property = $('#test').css('display');
         });
@@ -250,9 +250,9 @@ var site = (function() {
             
             var tlBurgerClose = gsap.timeline()
                 tlBurgerClose.to($('.menu-burger--left'), {duration: 0.75, xPercent: -100, ease:Expo.easeOut});
-                tlBurgerClose.to($('.menu-burger--overlay'), {duration: 0.75, alpha: 0, onComplete:function(){
+                tlBurgerClose.to($('.menu--overlay'), {duration: 0.75, alpha: 0, onComplete:function(){
                     $('.menu-burger').removeClass('active-menu');
-                    $('.menu-burger--overlay').removeClass('active-menu');
+                    $('.menu--overlay').removeClass('active-menu');
                     }
 
                 }, "<");

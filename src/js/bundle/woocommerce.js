@@ -86,17 +86,46 @@ jQuery(function($){
 });
 */
 
+//JS Change variation drop down to radio button
+$(document).on('change', '.variation-radios input', function() {
+  $('.variation-radios input:checked').each(function(index, element) {
+    var $el = $(element);
+    var thisName = $el.attr('name');
+    var thisVal  = $el.attr('value');
+    $('select[name="'+thisName+'"]').val(thisVal).trigger('change');
+  });
+});
+$(document).on('woocommerce_update_variation_values', function() {
+  $('.variation-radios input').each(function(index, element) {
+    var $el = $(element);
+    var thisName = $el.attr('name');
+    var thisVal  = $el.attr('value');
+    $el.removeAttr('disabled');
+    if($('select[name="'+thisName+'"] option[value="'+thisVal+'"]').is(':disabled')) {
+      $el.prop('disabled', true);
+    }
+  });
+});
+
+
+
+// CUSTOM MINI CART ON CLICK
+
+
 
         $(".menu-cart").on('click', function() {
 
-            $("#mini-cart-container").css("display", 'block');
+
+
+            $('.mini-cart-container').toggleClass('active-cart');
+            $('.menu--overlay').toggleClass('active-cart');
             $('body').toggleClass('noscroll');
 
             var tlMiniCartOpen = gsap.timeline();
              //tl.to($('main'), 2, {x: "15%", ease:Expo.easeOut}, 0);
              //tl.to($('header'), 2, {x: "15%", ease:Expo.easeOut}, 0);
              tlMiniCartOpen.fromTo($('.menu-burger--left'),  {xPercent: -100}, {duration: 1, xPercent: 0, ease:Expo.easeOut});
-             tlMiniCartOpen.fromTo($('.menu-burger--overlay'), {alpha: 0}, {duration: 1, alpha: 0.75}, "<");
+             tlMiniCartOpen.fromTo($('.menu--overlay'), {alpha: 0}, {duration: 1, alpha: 0.75}, "<");
                // tl.from(mask2, 1, {display: "none", y: "100%", ease:Expo.easeInOut, onComplete:function(){window.location = url;}}, 0.1);
             var property = $('#test').css('display');
         });
@@ -109,11 +138,11 @@ jQuery(function($){
                 $(".mouse-cursor .base--circle").css("border-color", "");
             }
             
-            var tlBurgerClose = gsap.timeline()
-                tlBurgerClose.to($('.menu-burger--left'), {duration: 0.75, xPercent: -100, ease:Expo.easeOut});
-                tlBurgerClose.to($('.menu-burger--overlay'), {duration: 0.75, alpha: 0, onComplete:function(){
-                    $('.menu-burger').removeClass('active-menu');
-                    $('.menu-burger--overlay').removeClass('active-menu');
+            var tlMiniCartClose = gsap.timeline()
+                tlMiniCartClose.to($('.menu-burger--left'), {duration: 0.75, xPercent: -100, ease:Expo.easeOut});
+                tlMiniCartClose.to($('.menu-burger--overlay'), {duration: 0.75, alpha: 0, onComplete:function(){
+                    $('.mini-cart-container').removeClass('active-cart');
+                    $('.menu--overlay').removeClass('active-cart');
                     }
 
                 }, "<");

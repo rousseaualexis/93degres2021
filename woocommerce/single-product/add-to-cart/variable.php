@@ -36,13 +36,14 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 					<tr>
 						<td class="label t--text"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></td>
-						<td class="value t--text">
+						<td class="value custom-select t--text">
 							<?php
 								wc_dropdown_variation_attribute_options(
 									array(
 										'options'   => $options,
 										'attribute' => $attribute_name,
 										'product'   => $product,
+										'class' => 't--text',
 									)
 								);
 								/*

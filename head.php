@@ -40,9 +40,9 @@
   }
 </style>
 <?php endif; ?>
-<div id="mini-cart-container" style="display:none"> 
-<?php wc_get_template('woocommerce/cart/mini-cart.php');?>
-</div>
+
+  <?php wc_get_template('woocommerce/cart/mini-cart.php');?>
+
 </head>
 
 <div class="mask"></div>

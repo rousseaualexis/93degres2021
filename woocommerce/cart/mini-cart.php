@@ -16,8 +16,14 @@
  * @package WooCommerce\Templates
  * @version 5.2.0
  */
+?>
+<div class="mini-cart-container">
 
+	<?php
 defined( 'ABSPATH' ) || exit;
+
+
+
 
 do_action( 'woocommerce_before_mini_cart' ); ?>
 
@@ -42,7 +48,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 					echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						'woocommerce_cart_item_remove_link',
 						sprintf(
-							'<a href="%s" class="remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
+							'<a href="%s" class="remove remove_from_cart_button js-internal-link" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
 							esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 							esc_attr__( 'Remove this item', 'woocommerce' ),
 							esc_attr( $product_id ),
@@ -93,4 +99,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 <?php endif; ?>
 
+
 <?php do_action( 'woocommerce_after_mini_cart' ); ?>
+
+</div>

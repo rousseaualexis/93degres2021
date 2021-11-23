@@ -26,7 +26,7 @@
     <div class="menu-burger--right close"></div>
    
 </div>
-<div class="menu-burger--overlay close"></div>
+<div class="menu--overlay close"></div>
 
     <header id="header">
         <div id="logo">
