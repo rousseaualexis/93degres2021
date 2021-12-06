@@ -749,13 +749,13 @@ add_filter( 'woocommerce_add_to_cart_fragments', function($fragments) {
     ob_start();
 
 wc_get_template('woocommerce/cart/mini-cart.php');
-$fragments['div#mini-cart-container'] = ob_get_clean();
+$fragments['div.woocommerce-mini-cart'] = ob_get_clean();
      return $fragments;
 
 
 } );
 
-
+/*
 
 //Change variations drop down to radio button
 function variation_radio_buttons($html, $args) {
@@ -825,3 +825,5 @@ function variation_check($active, $variation) {
   return $active;
 }
 add_filter('woocommerce_variation_is_active', 'variation_check', 10, 2);
+
+*/

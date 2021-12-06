@@ -28,14 +28,14 @@ for (var me=0; me < mouses.length; me++) {
             mouse.classList.add("mouse--read");
             mouse.classList.remove('mouse--link-internal');
             var width = document.getElementById('mousecontainer-read').clientWidth;
-            var size = document.getElementById('mousecontainer-read').style.transform = 'translate(' + width/2 + 'px,'  + -width/2 + 'px)';
+            var size = document.getElementById('mousecontainer-read').style.transform = 'translate3d(' + width/2 + 'px,'  + -width/2 + 'px' + ',0)';
             //lottie.play("Mouse heart");
         }
         else if ( this.dataset.mouse === 'link-internal' ){
             mouse.classList.add("mouse--link-internal");
             mouse.classList.remove('mouse--read');
             var width = document.getElementById('mousecontainer-link-internal').clientWidth;
-            var size = document.getElementById('mousecontainer-link-internal').style.transform = 'translate(' + width/2 + 'px,'  + -width/2 + 'px)';
+            var size = document.getElementById('mousecontainer-link-internal').style.transform = 'translate3d(' + width/2 + 'px,'  + -width/2 + 'px' + ',0)';
             //lottie.play("Mouse heart");
         }
 
@@ -64,9 +64,9 @@ function followCursor(event){
     var curY = event.clientY;
     var scroll_start = 0;
 
-    mouse.style.transform = "translate(calc(" + curX + "px - 50vw),calc(" + curY + "px - 50vh))";
+    mouse.style.transform = "translate3d(calc(" + curX + "px - 50vw),calc(" + curY + "px - 50vh), 0)";
     //Store mouse cursor previsous page and inject them
-    var mouseprevious = "translate(calc(" + curX + "px - 50vw),calc(" + curY + "px - 50vh))";
+    var mouseprevious = "translate3d(calc(" + curX + "px - 50vw),calc(" + curY + "px - 50vh), 0)";
     sessionStorage.setItem("mouseprevious", mouseprevious);
     setTimeout(function(){mouse.classList.add("inload");}, 1);
     sessionStorage.setItem("mouseLoad", 1);

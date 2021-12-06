@@ -9,8 +9,8 @@ if (!isMobile()) {
     var curX = event.clientX;
     var curY = event.clientY;
     var scroll_start = 0;
-    mouse.style.transform = "translate(calc(" + curX + "px - 50vw),calc(" + curY + "px - 50vh))";
-    var mouseprevious = "translate(calc(" + curX + "px - 50vw),calc(" + curY + "px - 50vh))";
+    mouse.style.transform = "translate3d(calc(" + curX + "px - 50vw),calc(" + curY + "px - 50vh), 0)";
+    var mouseprevious = "translate3d(calc(" + curX + "px - 50vw),calc(" + curY + "px - 50vh), 0)";
     sessionStorage.setItem("mouseprevious", mouseprevious);
     setTimeout(function () {
       mouse.classList.add("inload");
@@ -42,12 +42,12 @@ if (!isMobile()) {
         mouse.classList.add("mouse--read");
         mouse.classList.remove('mouse--link-internal');
         var width = document.getElementById('mousecontainer-read').clientWidth;
-        var size = document.getElementById('mousecontainer-read').style.transform = 'translate(' + width / 2 + 'px,' + -width / 2 + 'px)';
+        var size = document.getElementById('mousecontainer-read').style.transform = 'translate3d(' + width / 2 + 'px,' + -width / 2 + 'px' + ',0)';
       } else if (this.dataset.mouse === 'link-internal') {
         mouse.classList.add("mouse--link-internal");
         mouse.classList.remove('mouse--read');
         var width = document.getElementById('mousecontainer-link-internal').clientWidth;
-        var size = document.getElementById('mousecontainer-link-internal').style.transform = 'translate(' + width / 2 + 'px,' + -width / 2 + 'px)';
+        var size = document.getElementById('mousecontainer-link-internal').style.transform = 'translate3d(' + width / 2 + 'px,' + -width / 2 + 'px' + ',0)';
       }
     };
 
@@ -121,11 +121,15 @@ function isMobile() {
 }
 
 ;
+gsap.config({
+  force3D: true
+});
 var pageContainer = document.querySelector(".body--page");
 gsap.registerPlugin(ScrollTrigger);
 var scroller = new LocomotiveScroll({
   el: pageContainer,
-  smooth: true
+  smooth: true,
+  lerp: 0.2
 });
 scroller.on("scroll", ScrollTrigger.update);
 ScrollTrigger.scrollerProxy(pageContainer, {
@@ -313,11 +317,12 @@ var site = function () {
       $('body').toggleClass('noscroll');
       var tlBurgerOpen = gsap.timeline();
       tlBurgerOpen.fromTo($('.menu-burger--left'), {
-        xPercent: -100
+        x: '-100%'
       }, {
         duration: 1,
-        xPercent: 0,
-        ease: Expo.easeOut
+        delay: 0.1,
+        x: 0,
+        ease: Quart.easeOut
       });
       tlBurgerOpen.fromTo($('.menu--overlay'), {
         alpha: 0
@@ -337,8 +342,8 @@ var site = function () {
       var tlBurgerClose = gsap.timeline();
       tlBurgerClose.to($('.menu-burger--left'), {
         duration: 0.75,
-        xPercent: -100,
-        ease: Expo.easeOut
+        x: '-100%',
+        ease: Quart.easeOut
       });
       tlBurgerClose.to($('.menu--overlay'), {
         duration: 0.75,
@@ -505,7 +510,6 @@ var single = function () {
         duration: 1.75,
         yPercent: 200,
         scaleY: 2,
-        force3D: true,
         ease: Expo.easeOut,
         stagger: 0.03,
         delay: 0.85
@@ -515,7 +519,6 @@ var single = function () {
         duration: 1.75,
         yPercent: 165,
         scaleY: 2,
-        force3D: true,
         ease: Quint.easeOut,
         stagger: 0.03,
         delay: 2.1
@@ -720,6 +723,7 @@ var pagequatre = function () {
         end: pinWrapWidth
       },
       x: -horizontalScrollLength,
+      force3D: true,
       ease: "none"
     });
     ScrollTrigger.addEventListener("refresh", function () {
@@ -890,13 +894,15 @@ $(".menu-cart").on('click', function () {
   $('.mini-cart-container').toggleClass('active-cart');
   $('.menu--overlay').toggleClass('active-cart');
   $('body').toggleClass('noscroll');
+  console.log('lollo');
   var tlMiniCartOpen = gsap.timeline();
-  tlMiniCartOpen.fromTo($('.menu-burger--left'), {
-    xPercent: -100
+  tlMiniCartOpen.fromTo($('.mini-cart-container'), {
+    x: "100%"
   }, {
     duration: 1,
-    xPercent: 0,
-    ease: Expo.easeOut
+    delay: 0.1,
+    x: 0,
+    ease: Quart.easeOut
   });
   tlMiniCartOpen.fromTo($('.menu--overlay'), {
     alpha: 0
@@ -904,7 +910,6 @@ $(".menu-cart").on('click', function () {
     duration: 1,
     alpha: 0.75
   }, "<");
-  var property = $('#test').css('display');
 });
 $(".close").on('click', function () {
   if ($('body').data('text')) {
@@ -914,12 +919,12 @@ $(".close").on('click', function () {
   }
 
   var tlMiniCartClose = gsap.timeline();
-  tlMiniCartClose.to($('.menu-burger--left'), {
+  tlMiniCartClose.to($('.mini-cart-container'), {
     duration: 0.75,
-    xPercent: -100,
-    ease: Expo.easeOut
+    x: "100%",
+    ease: Quart.easeOut
   });
-  tlMiniCartClose.to($('.menu-burger--overlay'), {
+  tlMiniCartClose.to($('.menu--overlay'), {
     duration: 0.75,
     alpha: 0,
     onComplete: function onComplete() {

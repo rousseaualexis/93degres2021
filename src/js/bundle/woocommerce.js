@@ -114,20 +114,16 @@ $(document).on('woocommerce_update_variation_values', function() {
 
 
         $(".menu-cart").on('click', function() {
-
-
-
             $('.mini-cart-container').toggleClass('active-cart');
             $('.menu--overlay').toggleClass('active-cart');
             $('body').toggleClass('noscroll');
-
+            console.log('lollo')
             var tlMiniCartOpen = gsap.timeline();
              //tl.to($('main'), 2, {x: "15%", ease:Expo.easeOut}, 0);
              //tl.to($('header'), 2, {x: "15%", ease:Expo.easeOut}, 0);
-             tlMiniCartOpen.fromTo($('.menu-burger--left'),  {xPercent: -100}, {duration: 1, xPercent: 0, ease:Expo.easeOut});
+             tlMiniCartOpen.fromTo($('.mini-cart-container'), {x: "100%"},{duration: 1, delay: 0.1, x: 0, ease:Quart.easeOut});
              tlMiniCartOpen.fromTo($('.menu--overlay'), {alpha: 0}, {duration: 1, alpha: 0.75}, "<");
                // tl.from(mask2, 1, {display: "none", y: "100%", ease:Expo.easeInOut, onComplete:function(){window.location = url;}}, 0.1);
-            var property = $('#test').css('display');
         });
         $(".close").on('click', function() {
             //Check if body color attribute exist and apply to cursor border
@@ -139,8 +135,8 @@ $(document).on('woocommerce_update_variation_values', function() {
             }
             
             var tlMiniCartClose = gsap.timeline()
-                tlMiniCartClose.to($('.menu-burger--left'), {duration: 0.75, xPercent: -100, ease:Expo.easeOut});
-                tlMiniCartClose.to($('.menu-burger--overlay'), {duration: 0.75, alpha: 0, onComplete:function(){
+                tlMiniCartClose.to($('.mini-cart-container'), {duration: 0.75, x: "100%", ease:Quart.easeOut});
+                tlMiniCartClose.to($('.menu--overlay'), {duration: 0.75, alpha: 0, onComplete:function(){
                     $('.mini-cart-container').removeClass('active-cart');
                     $('.menu--overlay').removeClass('active-cart');
                     }

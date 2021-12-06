@@ -61,8 +61,8 @@
             </li>
         </ul>
 
-        <ul class="menu-cart">
-            <a class="cart-button js-internal-link" title="<?php _e( 'View your shopping cart' ); ?>"><?php echo WC()->cart->get_cart_contents_count(); ?></a>        
+        <ul class="menu-cart menu-links--right">
+            <a class="cart-button js-internal-link" title="<?php _e( 'View your shopping cart' ); ?>"><span><?php echo WC()->cart->get_cart_contents_count(); ?></span></a>        
         </ul>
     </header>
  

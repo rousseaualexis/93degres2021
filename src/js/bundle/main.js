@@ -48,6 +48,13 @@ function isMobile() {
 };
 
 
+gsap.config({
+
+  force3D: true,
+
+  // units: {left: "%", top: "%", rotation: "rad"}
+});
+
 
 const pageContainer = document.querySelector(".body--page");
 // Locomotive Scroll
@@ -57,8 +64,10 @@ const pageContainer = document.querySelector(".body--page");
 /* SMOOTH SCROLL */
 const scroller = new LocomotiveScroll({
   el: pageContainer,
-  smooth: true
+  smooth: true,
+  lerp: 0.2
 });
+
 
 
 
@@ -234,7 +243,7 @@ var site = (function() {
             var tlBurgerOpen = gsap.timeline();
              //tl.to($('main'), 2, {x: "15%", ease:Expo.easeOut}, 0);
              //tl.to($('header'), 2, {x: "15%", ease:Expo.easeOut}, 0);
-             tlBurgerOpen.fromTo($('.menu-burger--left'),  {xPercent: -100}, {duration: 1, xPercent: 0, ease:Expo.easeOut});
+             tlBurgerOpen.fromTo($('.menu-burger--left'), {x: '-100%'}, {duration: 1, delay: 0.1, x: 0, ease:Quart.easeOut});
              tlBurgerOpen.fromTo($('.menu--overlay'), {alpha: 0}, {duration: 1, alpha: 0.75}, "<");
                // tl.from(mask2, 1, {display: "none", y: "100%", ease:Expo.easeInOut, onComplete:function(){window.location = url;}}, 0.1);
             var property = $('#test').css('display');
@@ -249,7 +258,7 @@ var site = (function() {
             }
             
             var tlBurgerClose = gsap.timeline()
-                tlBurgerClose.to($('.menu-burger--left'), {duration: 0.75, xPercent: -100, ease:Expo.easeOut});
+                tlBurgerClose.to($('.menu-burger--left'), {duration: 0.75, x: '-100%', ease:Quart.easeOut});
                 tlBurgerClose.to($('.menu--overlay'), {duration: 0.75, alpha: 0, onComplete:function(){
                     $('.menu-burger').removeClass('active-menu');
                     $('.menu--overlay').removeClass('active-menu');
@@ -403,11 +412,11 @@ var single = (function() {
             $title = $("#single--introduction__title .h1 .word .inside--animate > *");
             var tl = gsap.timeline();
             if (sessionStorage.viewWebsite > 1) {
-                tl.from($title, {duration: 1.75, yPercent: 200, scaleY: 2, force3D:true, ease:Expo.easeOut, stagger: 0.03, delay: 0.85});
+                tl.from($title, {duration: 1.75, yPercent: 200, scaleY: 2,  ease:Expo.easeOut, stagger: 0.03, delay: 0.85});
 
             } 
             else {
-                tl.from($title, {duration: 1.75, yPercent: 165, scaleY: 2, force3D:true, ease:Quint.easeOut, stagger: 0.03, delay: 2.1});
+                tl.from($title, {duration: 1.75, yPercent: 165, scaleY: 2, ease:Quint.easeOut, stagger: 0.03, delay: 2.1});
                 
             }  
 
@@ -649,6 +658,7 @@ ScrollTrigger.scrollerProxy(pageContainer, {
       end: pinWrapWidth
     },
     x: -horizontalScrollLength,
+    force3D: true,
     ease: "none"
   });
 
