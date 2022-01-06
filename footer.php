@@ -1,10 +1,18 @@
-<div id="footer" class="content row" >
+<footer>
+    <div id="sub-footer">
+        <div id="follow-footer">
+            <p class="h3">
+                Stay up to date and inspired
+            by everything in our world
+            </p>
+            <a href="instagram" class="t--small"> instagram </a>
+        </div>
         <?php 
             $args = array(
             'depth'       => 0,
             'sort_column' => 'menu_order',
             'theme_location' => 'footer-menu',
-            'menu_class'  => 'footer-list h2',
+            'menu_class'  => 'footer-list t--small',
             'include'     => '',
             'exclude'     => '',
             'echo'        => true,
@@ -13,9 +21,20 @@
             'link_after'  => ''
             );
             wp_nav_menu( $args ); ?>
-    <div id="copyright">
-        <p class="t--text"> ©93.Degrés – by Agathe & Alexis </p>
+
     </div>
+        
+
+
+<div id="footer" class="content row" >
+
+    <div id="big--93" class="h1">
+        93Degrés
+    </div>
+    <div id="copyright">
+        <p class="t--small"> ©93.Degrés – by Agathe & Alexis </p>
+    </div>
+    <!--
     <div id="list-destinations-rotate">
         <div id="list-destinations" class="footer-carousel">
                
@@ -38,5 +57,7 @@
             ?>
         </div>
     </div>
+    <!-->
 </div>
+</footer>
 

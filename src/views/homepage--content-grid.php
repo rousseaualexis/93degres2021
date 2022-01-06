@@ -1,5 +1,5 @@
 
-    <a href="<?php the_permalink(); ?>" class="item push-article col-xs-22 col-xs-offset-1 col-sm-9 col-sm-offset-2" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>">
+    <a href="<?php the_permalink(); ?>" class="item push-article" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>">
             <?php
 
                 $thumbnail = get_field('thumbnail');

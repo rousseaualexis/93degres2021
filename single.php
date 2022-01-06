@@ -38,7 +38,7 @@
           <div class="single--introduction" style="background: <?php echo $bgdColor ?>">
 
           <div id="single--introduction__title" class="">
-      <p class="h1" style="color: <?php echo $txtColor ?>" data-splitting="chars"><?php
+      <p class="h1" style="color: <?php echo $txtColor ?>" data-splitting="words"><?php
           $title = get_the_title();
           $title = strip_tags( $title, '<strong>' );
           echo $title; ?></p>

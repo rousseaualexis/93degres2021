@@ -29,23 +29,35 @@
 
 
 	&--title
-		color: $color-93degres
+		color: $color-white
+		margin-top: 
 		position: absolute
 		z-index: 1
 		text-align: center
 		pointer-events: none
+		width: $col-margin*20
+		margin-left: $col-margin*2
 
-		+media-sm-and-less
-			position: relative
-			font-size: 0
-
-		a .h1
+		.h1
+			padding-top: $col-margin*3
 			display: inline-block
 			position: relative
 			width: 100%
 			cursor: pointer
 			margin: 0
 			pointer-events: visible
+			@media (min-aspect-ratio: 4/3)
+				padding-top: $col-margin-43*3
+			.word
+				overflow: hidden
+				margin-bottom: -$col-margin-43*0.35
+			.inside--animate
+				top: $col-margin-43*0.4
+				position: relative
+			span.word, span.char
+				display: inline-block
+
+
 
 			strong
 				float: left
@@ -77,13 +89,17 @@
 
 	&--image
 
-		margin-top: $col-margin*1.5
 		transform-origin: bottom
-		height: auto
+		width: $col-margin*24
+		height: 100vh
 		overflow: hidden
 
 		+media-sm-and-less
 			margin-top: -$col-margin*1.5
+
+		.bgd__image
+			width: 100%
+			height: 100%
 
 	.t--caption
 
@@ -97,69 +113,59 @@
 			text-align: center
 			margin-left: 0
 
-				
-#homepage--other-articles
+#section--pin
+	width: 100vw
+	overflow: hidden
+	display: flex
+	left: 0
+	.pin--wrap, #homepage--other-articles
+		display: flex
+		justify-content: flex-start
+		align-items: flex-start
+
+		#homepage--other-articles
+		 	padding-left: $col-margin*2
+		 	padding-top: $col-margin*1
+		 	padding-bottom: $col-margin*2
+		 	
+		
 
 
-	.push-article
-		overflow: hidden
-		margin-bottom: $col-margin*2
 
-		+media-sm-and-less
-			margin-bottom: $col-margin*3
-	
-
-		.item__img-wrap
-
-			margin-bottom: $col-margin*2
-			+media-sm-and-less
-				margin-bottom: $col-margin*1.5
-
-		a
-
-			display: block
-
-		h3
-			strong	
-				transition: $transition-quick
-
-		.categories
-			margin-bottom: $col-margin/4
-
-			+media-sm-and-less
-				margin-bottom: $col-margin / 2
-
-		&:nth-child(3)
-			margin-bottom: 0
-			.item__img-wrap
-				padding-bottom: 56.25%
-
-				+media-sm-and-less
-					padding-bottom: 66.66%
-
-		&:nth-child(2)
-			float: right
-			margin-left: 0
-			@include make-sm-column-pull(2)
-
-			+media-sm-and-less
-				float: left
-				@include make-xs-column-offset(1)
-
-
+		.push-article
+			position: relative
+			align-items: top
+			margin-right: $col-margin*1
+			width: $col-margin*13
+		
 
 			.item__img-wrap
-				padding-bottom: 100%
-				
+
+				margin-bottom: $col-margin/2
 				+media-sm-and-less
-					padding-bottom: 66.66%
+					margin-bottom: $col-margin*1.5
 
-#homepage--more-articles
+			a
 
-	text-align: center
+				display: block
 
-	.cta--rounded-square 
-		margin-top: $col-margin	
+			h3
+				strong	
+					transition: $transition-quick
+
+			.categories
+				margin-bottom: $col-margin/4
+
+				+media-sm-and-less
+					margin-bottom: $col-margin / 2
+
+
+	#homepage--more-articles
+
+		text-align: center
+
+		.cta--rounded-square 
+			margin-top: $col-margin	
 
 
 #homepage--destinations

@@ -364,11 +364,11 @@ var site = function () {
 
 var homepage = function () {
   var init = function init() {
+    $("#homepage--cover--title .h1 .word").wrapInner('<div class="inside--animate"></div>');
+    $("#homepage--cover--title .h1 .word").addClass('overflow--animate');
     $("#header").addClass('header--white');
     $('#header').removeClass('header--black');
     $('#homepage--cover--title br').remove();
-    $('#homepage--cover--title text-line').wrap('<div class="overflow--animate"></div>');
-    $('#homepage--cover--title .categories').wrap('<div class="overflow--animate categories__container"></div>');
 
     if (!isMobile() && $window.width() >= 768) {
       $("#homepage--destinations ul li:nth-child(1n)").attr('data-h', '0.3');
@@ -382,7 +382,7 @@ var homepage = function () {
   var firstPost = function firstPost() {
     var $el = $('#homepage--cover'),
         $text = $("#homepage--cover .h1"),
-        $line = $("#homepage--cover .h1 .line"),
+        $line = $("#homepage--cover .h1 .word"),
         $rule1 = $("#homepage--cover #homepage--cover--title .h1 > *");
     var tl = gsap.timeline();
 
@@ -393,13 +393,13 @@ var homepage = function () {
         scaleY: 1.75,
         ease: Expo.easeInOut
       }, -.75);
-      tl.from($rule1.find('.line'), {
+      tl.from($rule1.find('.inside--animate'), {
         duration: 1.5,
         y: '200%',
         stagger: 0.2,
         ease: Expo.easeOut
       }, 1.75);
-      tl.from($rule1.find('.line'), {
+      tl.from($rule1.find('.inside--animate'), {
         duration: 1.65,
         scaleY: 2,
         stagger: 0.2,
@@ -412,13 +412,13 @@ var homepage = function () {
         scaleY: 1.75,
         ease: Expo.easeInOut
       }, 0.5);
-      tl.from($rule1.find('.line'), {
+      tl.from($rule1.find('.inside--animate'), {
         duration: 1.5,
         y: '200%',
         stagger: 0.2,
         ease: Expo.easeOut
       }, 2.25);
-      tl.from($rule1.find('.line'), {
+      tl.from($rule1.find('.inside--animate'), {
         duration: 1.65,
         scaleY: 2,
         stagger: 0.2,
@@ -495,14 +495,12 @@ var single = function () {
     $('#single--introduction__text .h2 .word').wrapInner('<div class="inside--animate"></div>');
     $('#single--introduction__text .h2 .word').addClass('overflow--animate');
     $('#single--introduction__text .h2 .inside--animate').addClass('h2-in');
-    $("#single--introduction__thumbnail .item__img").attr('data-v', '0.1');
-    $('#single--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
     introduction();
   };
 
   var introduction = function introduction() {
     var $el = $('#single--introduction__title'),
-        $title = $("#single--introduction__title .h1 .word .inside--animate > *");
+        $title = $("#single--introduction__title .h1 .overflow--animate > *");
     var tl = gsap.timeline();
 
     if (sessionStorage.viewWebsite > 1) {
@@ -511,7 +509,7 @@ var single = function () {
         yPercent: 200,
         scaleY: 2,
         ease: Expo.easeOut,
-        stagger: 0.03,
+        stagger: 0.05,
         delay: 0.85
       });
     } else {
@@ -520,7 +518,7 @@ var single = function () {
         yPercent: 165,
         scaleY: 2,
         ease: Quint.easeOut,
-        stagger: 0.03,
+        stagger: 0.05,
         delay: 2.1
       });
     }
@@ -870,24 +868,71 @@ window.onload = function () {
 };
 "use strict";
 
-$(document).on('change', '.variation-radios input', function () {
-  $('.variation-radios input:checked').each(function (index, element) {
-    var $el = $(element);
-    var thisName = $el.attr('name');
-    var thisVal = $el.attr('value');
-    $('select[name="' + thisName + '"]').val(thisVal).trigger('change');
-  });
-});
-$(document).on('woocommerce_update_variation_values', function () {
-  $('.variation-radios input').each(function (index, element) {
-    var $el = $(element);
-    var thisName = $el.attr('name');
-    var thisVal = $el.attr('value');
-    $el.removeAttr('disabled');
+jQuery(function ($) {
+  if (typeof wc_add_to_cart_params === 'undefined') {
+    return false;
+  }
 
-    if ($('select[name="' + thisName + '"] option[value="' + thisVal + '"]').is(':disabled')) {
-      $el.prop('disabled', true);
+  $(document).on('submit', 'form.cart', function (e) {
+    var form = $(this),
+        button = form.find('.single_add_to_cart_button');
+    var formFields = form.find('input:not([name="product_id"]), select, button, textarea');
+    var formData = [];
+    formFields.each(function (i, field) {
+      var fieldName = field.name,
+          fieldValue = field.value;
+
+      if (fieldName && fieldValue) {
+        if (fieldName == 'add-to-cart') {
+          fieldName = 'product_id';
+          fieldValue = form.find('input[name=variation_id]').val() || fieldValue;
+        }
+
+        if ((field.type == 'checkbox' || field.type == 'radio') && field.checked == false) {
+          return;
+        }
+
+        formData.push({
+          name: fieldName,
+          value: fieldValue
+        });
+      }
+    });
+
+    if (!formData.length) {
+      return;
     }
+
+    e.preventDefault();
+    form.block({
+      message: null,
+      overlayCSS: {
+        background: "#ffffff",
+        opacity: 0.6
+      }
+    });
+    $(document.body).trigger('adding_to_cart', [button, formData]);
+    $.ajax({
+      type: 'POST',
+      url: woocommerce_params.wc_ajax_url.toString().replace('%%endpoint%%', 'add_to_cart'),
+      data: formData,
+      success: function success(response) {
+        if (!response) {
+          return;
+        }
+
+        if (response.error & response.product_url) {
+          window.location = response.product_url;
+          return;
+        }
+
+        $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, button]);
+      },
+      complete: function complete() {
+        form.unblock();
+      }
+    });
+    return false;
   });
 });
 $(".menu-cart").on('click', function () {

@@ -741,20 +741,6 @@ function filter_dropdown_option_html( $html, $args ) {
 }
 
 
-
-// Update mini-cart when add to cart ajax
-add_filter( 'woocommerce_add_to_cart_fragments', function($fragments) {
-
-
-    ob_start();
-
-wc_get_template('woocommerce/cart/mini-cart.php');
-$fragments['div.woocommerce-mini-cart'] = ob_get_clean();
-     return $fragments;
-
-
-} );
-
 /*
 
 //Change variations drop down to radio button

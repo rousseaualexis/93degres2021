@@ -51,51 +51,56 @@ Template Name: Homepage
                     }
 
                 ?>
-                <div id="homepage--cover--title" class="col-xs-offset-2 col-xs-20">
-                    <a href="<?php the_permalink(); ?>" class="h1 col-xs-24" data-line>
-                        <div class="h1" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>">
-                                <?php the_title(); ?>
-                        </div>
-                    </a>
-                    <!--
-                    <div class="categories"><img src="<?php  echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/><span><?php echo $term_name . " — " . $yearBegin;
-                        if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></div>
-                    !-->
-                </div>
+
+              
+
+
 
                 <?php 
                     $thumbnail = get_field( 'thumbnail' );
                 ?>
 
-                <a id="homepage--cover--image" class="item col-xs-24 col-sm-17" href="<?php the_permalink(); ?>" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>"> 
-                    <div class="item__img-wrap image--3-2">
-                        <div class="item__img-intro">
-                            <div class="item__img" style="background-image: url('<?php echo $thumbnail['sizes']['large'];?>');" alt="<?php echo $thumbnail['alt']; ?>">
+                <a id="homepage--cover--image" class="item" href="<?php the_permalink(); ?>" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>"> 
+                                    <div id="homepage--cover--title" class="col-xs-offset-2 col-xs-20">
+                        <p class="h1" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>" data-splitting="words">
+                                <?php the_title(); ?>
+                        </p>
+                    <!--
+                    <div class="categories"><img src="<?php  echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/><span><?php echo $term_name . " — " . $yearBegin;
+                        if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></div>
+                    !-->
+                </div>
+                            <div class="bgd__image" style="background-image: url('<?php echo $thumbnail['sizes']['large'];?>');" alt="<?php echo $thumbnail['alt']; ?>">
                             </div>
-                        </div>
-                    </div>
                 </a>
                 <h1 class="t--caption">93 Degrés, blog de voyage, aventure et photographie</h1>
             </div> 
 
+             
+
+
+    <section id="section--pin">
+        <div class="pin--wrap">
+
             <div id="homepage--other-articles" class="content row">
-    <?php
+                <?php
 
-            else :
+                        else :
 
-                get_template_part( 'src/views/homepage--content-grid' );
-            endif;
-        endwhile;
-    endif;
+                            get_template_part( 'src/views/homepage--content-grid' );
+                        endif;
+                    endwhile;
+                endif;
 
-    wp_reset_query();
-    ?>      
-<div id="homepage--more-articles" class="col-xs-20 col-xs-offset-2 col-md-16 col-md-offset-4">
-                <a class="cta--rounded-square cta--rounded-square-white" href="<?php echo get_field('article_link', 2); ?>"><div class="cta--rounded-square__before"><?php echo file_get_contents(get_template_directory() . '/src/images/arrow.svg'); ?></div><span>Voir la suite</span></a>
+                wp_reset_query();
+                ?>      
+  
+                
             </div>
-            
-            </div>
-    
+        </div>
+    </section>
+
+
     
 
 

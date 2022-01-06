@@ -282,11 +282,15 @@ var homepage = (function() {
     
     var init = function() {
         //color();
+
+        $("#homepage--cover--title .h1 .word").wrapInner('<div class="inside--animate"></div>');
+        $("#homepage--cover--title .h1 .word").addClass('overflow--animate');
+
+        
         $("#header").addClass('header--white');
         $('#header').removeClass('header--black');
+
         $('#homepage--cover--title br').remove();
-        $('#homepage--cover--title text-line').wrap('<div class="overflow--animate"></div>');
-        $('#homepage--cover--title .categories').wrap('<div class="overflow--animate categories__container"></div>');
 
             if (!isMobile() && ($window.width() >= 768)) {
                 //$("#homepage--cover #homepage--cover--image .item__img").attr('data-v', '0.1');
@@ -321,19 +325,19 @@ var homepage = (function() {
     var firstPost = function(){
         var $el = $('#homepage--cover'),
             $text = $("#homepage--cover .h1"),
-            $line = $("#homepage--cover .h1 .line"),
+            $line = $("#homepage--cover .h1 .word"),
             $rule1 = $("#homepage--cover #homepage--cover--title .h1 > *");
             var tl = gsap.timeline();
 
             if (sessionStorage.viewWebsite > 1) {
                 tl.from($el.find('.item__img'),{duration: 3, y:'50%', scaleY: 1.75, ease:Expo.easeInOut}, -.75);
-                tl.from($rule1.find('.line'), {duration: 1.5, y:'200%', stagger: 0.2, ease:Expo.easeOut}, 1.75);
-                tl.from($rule1.find('.line'), {duration: 1.65, scaleY: 2, stagger: 0.2, ease:Quint.easeOut}, '-=1.95');
+                tl.from($rule1.find('.inside--animate'), {duration: 1.5, y:'200%', stagger: 0.2, ease:Expo.easeOut}, 1.75);
+                tl.from($rule1.find('.inside--animate'), {duration: 1.65, scaleY: 2, stagger: 0.2, ease:Quint.easeOut}, '-=1.95');
             } 
             else {
                 tl.from($el.find('.item__img'), {duration: 3, y:'50%', scaleY: 1.75, ease:Expo.easeInOut}, 0.5);
-                tl.from($rule1.find('.line'), {duration: 1.5, y:'200%', stagger: 0.2, ease:Expo.easeOut}, 2.25);
-                tl.from($rule1.find('.line'), {duration: 1.65, scaleY: 2, stagger: 0.2, ease:Quint.easeOut}, '-=1.95');
+                tl.from($rule1.find('.inside--animate'), {duration: 1.5, y:'200%', stagger: 0.2, ease:Expo.easeOut}, 2.25);
+                tl.from($rule1.find('.inside--animate'), {duration: 1.65, scaleY: 2, stagger: 0.2, ease:Quint.easeOut}, '-=1.95');
             }
                 tl.from($el.find('.categories'), {duration: 1.5, y:'150px', ease:Expo.easeOut}, '-=1.5');
     }
@@ -387,7 +391,7 @@ var single = (function() {
 
 
         $("#single--introduction__title .h1 .word").wrapInner('<div class="inside--animate"></div>');
-        $("#single--introduction__title .h1 .word").addClass('overflow--animate');
+        $("#single--introduction__title .h1 .word").addClass('overflow--animate')
 
         $("#single--introduction__title h1 .word").wrapInner('<div class="inside--animate"></div>');
         $("#single--introduction__title h1 .word").addClass('overflow--animate');
@@ -400,8 +404,8 @@ var single = (function() {
         $('#single--introduction__text .h2 .inside--animate').addClass('h2-in');
 
 
-        $("#single--introduction__thumbnail .item__img").attr('data-v', '0.1');
-        $('#single--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
+        //$("#single--introduction__thumbnail .item__img").attr('data-v', '0.1');
+        //$('#single--introduction .h1 > *').wrap('<div class="overflow--animate" data-v=""></div>');
 
         introduction();
         //changeColor();
@@ -409,14 +413,21 @@ var single = (function() {
     var introduction = function(){
  
         var $el = $('#single--introduction__title'),
-            $title = $("#single--introduction__title .h1 .word .inside--animate > *");
+            $title = $("#single--introduction__title .h1 .overflow--animate > *");
             var tl = gsap.timeline();
             if (sessionStorage.viewWebsite > 1) {
-                tl.from($title, {duration: 1.75, yPercent: 200, scaleY: 2,  ease:Expo.easeOut, stagger: 0.03, delay: 0.85});
+                tl.from($title, {duration: 1.75, yPercent: 200, scaleY: 2,  ease:Expo.easeOut, stagger: 0.05, delay: 0.85
+                   /* , onComplete:function(){
+                    $('#single--introduction__title .h1 .word .inside--animate').replaceWith(function()  { return $(this).contents(); });
+                    $title.replaceWith(function()  { return $(this).contents(); });
+                    }
+                    */
+                });
+               
 
             } 
             else {
-                tl.from($title, {duration: 1.75, yPercent: 165, scaleY: 2, ease:Quint.easeOut, stagger: 0.03, delay: 2.1});
+                tl.from($title, {duration: 1.75, yPercent: 165, scaleY: 2, ease:Quint.easeOut, stagger: 0.05, delay: 2.1});
                 
             }  
 

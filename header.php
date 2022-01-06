@@ -29,15 +29,7 @@
 <div class="menu--overlay close"></div>
 
     <header id="header">
-        <div id="logo">
-            <a href="<?php echo get_bloginfo( 'wpurl' );?>">
-                <?php echo file_get_contents(get_template_directory() . '/src/images/logo.svg'); ?>
-            </a>
-        </div>
-
-        
-       
-        <ul class="menu-links menu-links--left">
+        <ul class="menu-links menu-links--left t--small">
             <li class="burger"><span></span><span></span><span></span></li>
             
                 <?php 
@@ -45,7 +37,7 @@
                 'depth'       => 0,
                 'sort_column' => 'menu_order',
                 'theme_location' => 'top-left-links',
-                'menu_class'  => 'menu t-text',
+                'menu_class'  => 'menu t--small',
                 'include'     => '',
                 'exclude'     => '',
                 'echo'        => true,
@@ -55,13 +47,20 @@
                 );
                 wp_nav_menu( $args ); ?>
 
-             <li id="link--instagram">
+        </ul>
+
+        <div id="logo">
+            <a href="<?php echo get_bloginfo( 'wpurl' );?>">
+                <?php echo file_get_contents(get_template_directory() . '/src/images/logo.svg'); ?>
+            </a>
+        </div>
+
+        <ul class="menu-cart menu-links--right t--small">
+            
+             <li id="link--instagram" class="t--small">
                 <a href="https://www.instagram.com/93.degres/" target="_blank" rel="noopener">Suivez-nous <?php echo file_get_contents(get_template_directory() . '/src/images/logo--instagram.svg'); ?>
                 </a>
             </li>
-        </ul>
-
-        <ul class="menu-cart menu-links--right">
             <a class="cart-button js-internal-link" title="<?php _e( 'View your shopping cart' ); ?>"><span><?php echo WC()->cart->get_cart_contents_count(); ?></span></a>        
         </ul>
     </header>
