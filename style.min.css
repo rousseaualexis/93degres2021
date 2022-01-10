@@ -248,7 +248,6 @@ li{display:inline-block}
 .menu-burger--content .title-link a:hover:after{-webkit-transform:none;transform:none;-webkit-transform-origin:left;transform-origin:left}
 .menu-burger--content .title-link a:after{background:#fff}
 .menu-burger--content .title-link p{margin-bottom:2.0833333333vw;opacity:.5}
-.menu-burger--content .flag{position:relative;height:3vw;top:1px;margin-left:15px}
 .menu-burger--content .small-link{margin-bottom:5.2083333333vw;margin-top:1.0416666667vw}
 .menu-burger--content .small-link a{position:relative;padding:4px 0}
 .menu-burger--content .small-link a:after{content:'';position:absolute;width:100%;height:2px;bottom:0;left:0;-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-transform-origin:right;transform-origin:right;-webkit-transition:-webkit-transform .45s cubic-bezier(0.4,0,0,1);transition:-webkit-transform .45s cubic-bezier(0.4,0,0,1);transition:transform .45s cubic-bezier(0.4,0,0,1);transition:transform .45s cubic-bezier(0.4,0,0,1),-webkit-transform .45s cubic-bezier(0.4,0,0,1)}
@@ -285,15 +284,23 @@ footer #copyright{margin-left:8.3333333333vw;margin-top:4.1666666667vw}
 footer #copyright .t--text{opacity:.5;width:41.6666666665vw;margin-left:8.3333333333vw;display:block;color:#fff}
 #footer{padding-bottom:8.3333333333vw;margin:0;overflow:hidden;padding-top:10.4166666666vw;background:#121317;color:#fff}
 #footer #big--93{text-align:center;font-size:29.1666666666vw}
-.strate{width:100%;float:left}
+.strate{width:100%;float:left;margin-bottom:8.3333333333vw}
 .fifty-left-col,.fifty-right-col{width:49.9999999998vw;float:left;position:relative}
-.strate-destination-shop{position:relative}
-.strate-destination-shop .fifty-left-col{z-index:1}
-.strate-destination-shop .fifty-left-col .content{padding:8.3333333333vw 4.1666666667vw 8.3333333333vw 8.3333333333vw}
-.strate-destination-shop .fifty-left-col .h1{margin-bottom:4.1666666667vw}
-.strate-destination-shop .fifty-left-col .h3{margin-bottom:8.3333333333vw}
-.strate-destination-shop .fifty-right-col{position:absolute;width:50%;height:100%;right:0}
-.strate-destination-shop .fifty-right-col .background{position:absolute;opacity:.2;width:100%;height:100%}
+.strate--destination-shop{position:relative}
+.strate--destination-shop .fifty-left-col{z-index:1}
+.strate--destination-shop .fifty-left-col .content{padding:8.3333333333vw 4.1666666667vw 8.3333333333vw 8.3333333333vw}
+.strate--destination-shop .fifty-left-col .h1{margin-bottom:4.1666666667vw}
+.strate--destination-shop .fifty-left-col .h3{margin-bottom:8.3333333333vw}
+.strate--destination-shop .fifty-right-col{position:absolute;width:50%;height:100%;right:0}
+.strate--destination-shop .fifty-right-col .background{position:absolute;opacity:.2;width:100%;height:100%}
+.strate--destinations .h1{width:62.4999999998vw}
+.strate--destinations .destination-image{position:absolute;width:16.6666666666vw;right:8.3333333333vw}
+.strate--destinations ul li{margin-left:8.3333333333vw;clear:both}
+.strate--destinations ul li:hover .homepage--destinations--image{-webkit-transform:none;transform:none;-webkit-transform-origin:top;transform-origin:top}
+.strate--destinations ul li:nth-child(1n+1) .homepage--destinations--image__container{left:-100%;right:100%}
+.strate--destinations ul li:nth-child(1n+1) .homepage--destinations--image{right:50px;left:auto}
+.strate--destinations ul li:nth-child(2n) .homepage--destinations--image__container{right:-100%;left:100%}
+.strate--destinations ul li:nth-child(2n) .homepage--destinations--image{left:50px;right:auto}
 #content-grid{font-size:0}
 .grid__articles{margin-bottom:4.1666666667vw}
 .grid__articles .small--categories{margin-top:12.5vw;padding-bottom:4.1666666667vw}
@@ -328,24 +335,6 @@ footer #copyright .t--text{opacity:.5;width:41.6666666665vw;margin-left:8.333333
 #homepage--other-articles .categories{margin-bottom:1.0416666667vw}
 #homepage--other-articles #homepage--more-articles{text-align:center}
 #homepage--other-articles #homepage--more-articles .cta--rounded-square{margin-top:4.1666666667vw}
-#homepage--destinations{position:relative;padding-bottom:10.4166666666vw;padding-top:10.4166666666vw;text-align:center;overflow:hidden;background:#ffadb9}
-#homepage--destinations .h4{text-align:center;color:#000}
-#homepage--destinations ul{z-index:2;margin-top:2.0833333333vw;margin-bottom:4.1666666667vw;-webkit-transform:rotate(5deg);transform:rotate(5deg)}
-#homepage--destinations ul li{clear:both}
-#homepage--destinations ul li:hover .homepage--destinations--image{-webkit-transform:none;transform:none;-webkit-transform-origin:top;transform-origin:top}
-#homepage--destinations ul li:nth-child(1n+1){float:right;right:-10px}
-#homepage--destinations ul li:nth-child(1n+1) .homepage--destinations--image__container{left:-100%;right:100%}
-#homepage--destinations ul li:nth-child(1n+1) .homepage--destinations--image{right:50px;left:auto}
-#homepage--destinations ul li:nth-child(2n){left:-10px;float:left}
-#homepage--destinations ul li:nth-child(2n) .homepage--destinations--image__container{right:-100%;left:100%}
-#homepage--destinations ul li:nth-child(2n) .homepage--destinations--image{left:50px;right:auto}
-#homepage--destinations .homepage--destinations--names{margin-top:2.0833333333vw;position:initial;z-index:100;-webkit-transition:.55s cubic-bezier(0,0,0,1);transition:.55s cubic-bezier(0,0,0,1)}
-#homepage--destinations .homepage--destinations--names .li{padding-top:1vw}
-#homepage--destinations .homepage--destinations--names a{color:#000;display:block}
-#homepage--destinations .homepage--destinations--image{position:absolute;height:100%;background-size:contain;background-repeat:no-repeat;background-position:center;opacity:1}
-#homepage--destinations .homepage--destinations--image__container{left:-100%;right:-100%;position:absolute;height:100%;z-index:-1;overflow:hidden}
-#homepage--destinations #svg__world{width:110%;height:100%;left:-5%;top:0;position:absolute;opacity:.2;stroke-width:1px;stroke:#000;fill:none}
-#homepage--destinations #svg__world>*{vector-effect:non-scaling-stroke}
 #about{margin-top:12.5vw;margin-bottom:8.3333333333vw;text-align:center}
 #about a{margin-top:4.1666666667vw}
 #about .h2{margin-top:2.0833333333vw}
@@ -744,12 +733,6 @@ footer #copyright .t--text{opacity:.5;width:41.6666666665vw;margin-left:8.333333
 #homepage--cover .t--caption{text-align:center;margin-left:0}
 #homepage--other-articles .item__img-wrap{margin-bottom:6.25vw}
 #homepage--other-articles .categories{margin-bottom:2.0833333333vw}
-#homepage--destinations ul{margin-top:8.3333333333vw}
-#homepage--destinations ul li:nth-child(1n+1){float:left;width:100%;right:0;left:0;text-align:center}
-#homepage--destinations ul li:nth-child(2n){float:left;width:100%;right:0;left:0;text-align:center}
-#homepage--destinations ul li .homepage--destinations--image{opacity:1;-webkit-transform:none;transform:none;-webkit-transform-origin:left;transform-origin:left;-webkit-transition:opacity .45s cubic-bezier(0.4,0,0,1),-webkit-transform .45s cubic-bezier(0.4,0,0,1);transition:opacity .45s cubic-bezier(0.4,0,0,1),-webkit-transform .45s cubic-bezier(0.4,0,0,1);transition:transform .45s cubic-bezier(0.4,0,0,1),opacity .45s cubic-bezier(0.4,0,0,1);transition:transform .45s cubic-bezier(0.4,0,0,1),opacity .45s cubic-bezier(0.4,0,0,1),-webkit-transform .45s cubic-bezier(0.4,0,0,1)}
-#homepage--destinations .homepage--destinations--image{opacity:1;float:left;display:block;height:40px}
-#homepage--destinations .homepage--destinations--image__container{position:relative;overflow:initial;float:left;display:block;margin-bottom:4.1666666667vw}
 .page--destinations--names>div:hover .big_title{-webkit-text-stroke:none;-webkit-text-fill-color:initial}
 .page--about #about--introduction{padding-top:24.9999999999vw;margin-bottom:16.6666666666vw}
 .page--about #about--introduction h1>*{clear:none;display:inline-block}

@@ -303,21 +303,6 @@ var homepage = (function() {
                 Trigger();
             }
 
-/*¨
-    gsap.from("#svg__world", {
-  scrollTrigger: {
-    trigger: "#homepage--destinations",
-    scroller: pageContainer,
-    scrub: true,
-    pin: false,
-    start: "top 100%",
-    end: "100% top"
-  },
-  scale: 0, 
-  transformOrigin: "center", 
-  ease: Expo.easeOut
-});
-*/
 
     }
 

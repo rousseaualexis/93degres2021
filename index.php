@@ -45,8 +45,6 @@ Template Name: Homepage
                         if( $term->parent == 0 ){
                             $term_arr[$term->term_id] = $term->name;
                             $term_name = implode($term_arr);
-                            $flag = get_field('flag', $term);
-                            $flag_url = $flag['sizes']['thumbnail'];
                             $term_url = get_term_link($term);
                         }
                     }
@@ -67,7 +65,7 @@ Template Name: Homepage
                                 <?php the_title(); ?>
                         </p>
                     <!--
-                    <div class="categories"><img src="<?php  echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/><span><?php echo $term_name . " — " . $yearBegin;
+                    <div class="categories"><span><?php echo $term_name . " — " . $yearBegin;
                         if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></div>
                     !-->
                 </div>
@@ -124,30 +122,6 @@ Template Name: Homepage
 
     
 
-
-            <div id="homepage--destinations" class="strate">
-                    <span class="h4 col-xs-22 col-xs-offset-1">Nos destinations préférées</span>
-                    
-
-
-                    <ul class="col-xs-24 ">
-                      <?php  $destinations = get_field('destinations', 2);
-
-foreach ($destinations as $destination) {
-  ?><li class="menu__link homepage--destinations--names">
-                                <a href="<?php echo get_category_link( $destination->term_id ); ?> " class="h1" data-mouse="link-internal">
-                                    
-                                <?php echo $destination->name; ?>
-                            
-                                </a>
-                                </li>
-                                <?php } ?>
-
-                    </ul>
-                    <a class="cta--rounded-square cta--rounded-square-dark" href="<?php echo get_field('destinations_link', 2); ?>"><div class="cta--rounded-square__before"><?php echo file_get_contents(get_template_directory() . '/src/images/arrow.svg'); ?></div><span>En savoir plus</span></a>
-                    <?php echo file_get_contents(get_template_directory() . '/src/images/world.svg'); ?>
-
-            </div>
 
             
             <div id="about">

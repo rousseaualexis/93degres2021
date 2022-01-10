@@ -58,8 +58,6 @@ else if($relation){ ?>
                         if( $term->parent == 0 ){
                             $term_arr[$term->term_id] = $term->name;
                             $term_name = implode($term_arr);
-                            $flag = get_field('flag', $term);
-                            $flag_url = $flag['sizes']['thumbnail'];
                             $term_url = get_term_link($term);
                         }
                     }}

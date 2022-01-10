@@ -1,120 +1,12 @@
 {
     "key": "group_5ab69026e3c54",
-    "title": "Destinations",
+    "title": "Strate - Destinations",
     "fields": [
         {
-            "key": "field_5ab6903265e43",
-            "label": "Flag",
-            "name": "flag",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
-            "key": "field_5ab77d3ce2aac",
-            "label": "Destination Code",
-            "name": "destination_code",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5abf3adf3169b",
-            "label": "Why we like",
-            "name": "why_we_like",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": 4,
-            "new_lines": "br"
-        },
-        {
-            "key": "field_5abf3af73169c",
-            "label": "What we like",
-            "name": "what_we_like",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 0,
-            "max": 5,
-            "layout": "block",
-            "button_label": "",
-            "sub_fields": [
-                {
-                    "key": "field_5abf3bcd3169f",
-                    "label": "Link",
-                    "name": "link",
-                    "type": "relationship",
-                    "instructions": "Do not foreget tu include a # at the end of the link to go to the anchor",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "post_type": [],
-                    "taxonomy": [],
-                    "filters": [
-                        "search",
-                        "post_type",
-                        "taxonomy"
-                    ],
-                    "elements": "",
-                    "min": 1,
-                    "max": 1,
-                    "return_format": "object"
-                }
-            ]
-        },
-        {
             "key": "field_5d34c196706d6",
-            "label": "Paper Flag",
-            "name": "paper_flag",
-            "type": "image",
+            "label": "Destination",
+            "name": "destination",
+            "type": "taxonomy",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -123,24 +15,22 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
+            "taxonomy": "category",
+            "field_type": "multi_select",
+            "allow_null": 0,
+            "add_term": 1,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "multiple": 0
         }
     ],
     "location": [
         [
             {
-                "param": "taxonomy",
+                "param": "block",
                 "operator": "==",
-                "value": "category"
+                "value": "acf\/destinations"
             }
         ]
     ],
@@ -150,7 +40,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1589817144
+    "show_in_rest": 0,
+    "modified": 1641850841
 }

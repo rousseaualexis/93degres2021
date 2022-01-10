@@ -225,18 +225,11 @@ function my_wp_nav_menu_objects( $items, $args ) {
   			}
 
   			else{
-  				$taxonomy = $item->object;
-  				$term_id = $item->object_id;
-  				$image_url= get_field('flag', $taxonomy.'_'.$term_id);
   				
-  				if(!empty($image_url)){
-  				echo '<li><a href="' . $item->url . '" class="h2"> ' . $item->title . '<img class="flag" src="'.$image_url['sizes']['thumbnail'].'" /></a></li>';
-  				}
-  				else{
 
             
   					echo '<li><a href="' . $item->url . '" class="h2"> ' . $item->title . '</a></li>';
-  				}
+  		
                   
   				//echo '<img src="'.$image_size.'" />'; //replace large with size you wish
 
@@ -413,49 +406,6 @@ add_action( 'enqueue_block_assets', 'wds_gutenberg_assets' );
 
 
 
-
-function remove_default_blocks($allowed_blocks){
-    // Get widget blocks and registered by plugins blocks
-    $registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
-
-    // Disable Widgets Blocks
-    unset($registered_blocks['core/calendar']);
-    unset($registered_blocks['core/legacy-widget']);
-    unset($registered_blocks['core/rss']);
-    unset($registered_blocks['core/search']);
-    unset($registered_blocks['core/tag-cloud']);
-    unset($registered_blocks['core/latest-comments']);
-    unset($registered_blocks['core/archives']);
-    unset($registered_blocks['core/categories']);
-    unset($registered_blocks['core/latest-posts']);
-    unset($registered_blocks['core/shortcode']);
-
-    // Disable WooCommerce Blocks
-    unset($registered_blocks['woocommerce/handpicked-products']);
-    unset($registered_blocks['woocommerce/product-best-sellers']);
-    unset($registered_blocks['woocommerce/product-category']);
-    unset($registered_blocks['woocommerce/product-new']);
-    unset($registered_blocks['woocommerce/product-on-sale']);
-    unset($registered_blocks['woocommerce/product-top-rated']);
-    unset($registered_blocks['woocommerce/products-by-attribute']);
-    unset($registered_blocks['woocommerce/featured-product']);
-
-    // Now $registered_blocks contains only blocks registered by plugins, but we need keys only
-    $registered_blocks = array_keys($registered_blocks);
-
-    // Merge allowed core blocks with plugins blocks
-    return array_merge(/*array(
-        'core/image',
-        'core/paragraph',
-        'core/heading',
-        'core/list'
-    ), */$registered_blocks);
-}
-
-add_filter('allowed_block_types', 'remove_default_blocks');
-
-
-
 add_action('acf/init', 'my_acf_init');
 function my_acf_init() {
   //Register Google Map Api
@@ -554,6 +504,16 @@ function my_acf_init() {
       'category'      => 'formatting',
       'icon'        => 'format-image',
       'keywords'      => array( 'shop','destination'),
+    ));
+    // register Separator block
+    acf_register_block(array(
+      'name'        => 'destinations',
+      'title'       => __('Destinations'),
+      'description'   => __('A custom Separator Destination+Shop.'),
+      'render_callback' => 'my_acf_block_render_callback',
+      'category'      => 'formatting',
+      'icon'        => 'format-image',
+      'keywords'      => array('destinations'),
     ));
   }
 }

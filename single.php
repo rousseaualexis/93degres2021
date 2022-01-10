@@ -24,8 +24,6 @@
         if( $term->parent == 0 ){
             $term_arr[$term->term_id] = $term->name;
             $term_name = implode($term_arr);
-            $flag = get_field('flag', $term);
-            $flag_url = $flag['sizes']['thumbnail'];
             $term_url = get_term_link($term);
         }
     }
@@ -43,7 +41,7 @@
           $title = strip_tags( $title, '<strong>' );
           echo $title; ?></p>
             <div class="small-description">
-              <a href="<?php echo $term_url; ?>" class="categories" style="color: <?php echo $txtColor ?>"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo$flag['alt'];?>"/ >!--><span data-splitting="words">
+              <a href="<?php echo $term_url; ?>" class="categories" style="color: <?php echo $txtColor ?>"><span data-splitting="words">
                     <?php echo $term_name . " · " . $yearBegin;
                         if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></a>
                       <h1 class="h3" style="color: <?php echo $txtColor ?>" data-splitting="lines">A two week roadtrip in the American West</h1>

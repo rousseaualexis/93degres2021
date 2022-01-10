@@ -9,8 +9,6 @@
                     if( $term->parent == 0 ){
                             $term_arr[$term->term_id] = $term->name;
                             $term_name = implode($term_arr);
-                            $flag = get_field('flag', $term);
-                            $flag_url = $flag['sizes']['thumbnail'];
                             $term_url = get_term_link($term);
                         }
                 }}
@@ -22,7 +20,7 @@
                         
 
             
-            <div class="small--categories"><!--<img src="<?php echo $flag_url;?>" alt="<?php echo $flag['alt'];?>"/>!--><span><?php echo $term_name; ?> — <?php the_time('d.m.Y'); ?></span></div>
+            <div class="small--categories"><span><?php echo $term_name; ?> — <?php the_time('d.m.Y'); ?></span></div>
     
             <span class="h3"><?php 
 
