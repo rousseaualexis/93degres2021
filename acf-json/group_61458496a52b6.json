@@ -1,6 +1,6 @@
 {
     "key": "group_61458496a52b6",
-    "title": "Block: Image Full Split",
+    "title": "Horizontal: Image Full Split",
     "fields": [
         {
             "key": "field_61458496a7b4d",
@@ -106,5 +106,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1631945969
+    "modified": 1641842845
 }

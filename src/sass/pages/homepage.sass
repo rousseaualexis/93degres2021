@@ -113,51 +113,48 @@
 			text-align: center
 			margin-left: 0
 
-#section--pin
-	width: 100vw
-	overflow: hidden
-	display: flex
-	left: 0
-	.pin--wrap, #homepage--other-articles
-		display: flex
-		justify-content: flex-start
-		align-items: flex-start
 
-		#homepage--other-articles
-		 	padding-left: $col-margin*2
-		 	padding-top: $col-margin*1
-		 	padding-bottom: $col-margin*2
-		 	
-		
+#homepage--other-articles
+
+	.fifty-left-col, .fifty-right-col
+		width: $col-margin*9.5
+		float: left
+
+	.fifty-right-col
+		margin-left: $col-margin*1
+	.fifty-left-col
+		margin-left: $col-margin*2
+
+	.push-article
+		position: relative
+		align-items: top
+		margin-right: $col-margin*1
+		width: 100%
+
+	.h2
+		margin-bottom: $col-margin*1
+
+	.a--link
+		margin-bottom: $col-margin*2
+		display: block
 
 
 
-		.push-article
-			position: relative
-			align-items: top
-			margin-right: $col-margin*1
-			width: $col-margin*13
-		
+	.item__img-wrap
 
-			.item__img-wrap
+		margin-bottom: $col-margin/2
+		+media-sm-and-less
+			margin-bottom: $col-margin*1.5
 
-				margin-bottom: $col-margin/2
-				+media-sm-and-less
-					margin-bottom: $col-margin*1.5
+	h3
+		strong	
+			transition: $transition-quick
 
-			a
+	.categories
+		margin-bottom: $col-margin/4
 
-				display: block
-
-			h3
-				strong	
-					transition: $transition-quick
-
-			.categories
-				margin-bottom: $col-margin/4
-
-				+media-sm-and-less
-					margin-bottom: $col-margin / 2
+		+media-sm-and-less
+			margin-bottom: $col-margin / 2
 
 
 	#homepage--more-articles

@@ -1,6 +1,6 @@
 {
     "key": "group_5d7e134fba199",
-    "title": "Block: Image Two",
+    "title": "Horizontal: Image Two",
     "fields": [
         {
             "key": "field_5d7e134fc0612",
@@ -123,7 +123,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1591033533
+    "modified": 1641842869
 }

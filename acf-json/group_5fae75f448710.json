@@ -1,6 +1,6 @@
 {
     "key": "group_5fae75f448710",
-    "title": "Block: Bottom Page",
+    "title": "Horizontal: Bottom Page",
     "fields": [
         {
             "key": "field_5fae7a0383d1b",
@@ -46,7 +46,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/bottom-page"
+                "value": "all"
             }
         ]
     ],
@@ -58,5 +58,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1605270175
+    "modified": 1641842786
 }

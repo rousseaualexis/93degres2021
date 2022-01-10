@@ -21,6 +21,7 @@ Template Name: Homepage
 
 <main class="body--page" >
 
+
     <?php
     $args = array(
         'post_type' => array('post'),
@@ -76,17 +77,38 @@ Template Name: Homepage
                 <h1 class="t--caption">93 Degrés, blog de voyage, aventure et photographie</h1>
             </div> 
 
+
+<div class="strates">
+
+
+<?php
+    while ( have_posts() ) : the_post();
+            the_content();
+        endwhile; // End of the loop.
+        wp_reset_postdata();
+         ?>
+
+</div>
              
 
 
-    <section id="section--pin">
-        <div class="pin--wrap">
 
-            <div id="homepage--other-articles" class="content row">
+            <div id="homepage--other-articles" class="strate">
+                <div class="fifty-left-col">
                 <?php
+                        elseif($count == 2) :
+                ?>
+                    
+                        <p class="h2"> Latest projects </p>
+                        <a class="a--link t--small"> view more </a>
+                        <?php get_template_part( 'src/views/homepage--content-grid' ); ?>
+                    </div>
+                    <div class="fifty-right-col">
 
-                        else :
+                <?php      else : ?>
+                    
 
+                <?php
                             get_template_part( 'src/views/homepage--content-grid' );
                         endif;
                     endwhile;
@@ -95,16 +117,15 @@ Template Name: Homepage
                 wp_reset_query();
                 ?>      
   
-                
+                </div>
             </div>
-        </div>
-    </section>
+
 
 
     
 
 
-            <div id="homepage--destinations">
+            <div id="homepage--destinations" class="strate">
                     <span class="h4 col-xs-22 col-xs-offset-1">Nos destinations préférées</span>
                     
 

@@ -20,8 +20,8 @@
                     }}
             ?>  
             
-                <div class="item__img-wrap image--3-2">
-                <div class="item__img" style="background-image: url('<?php echo $thumbnail_url;?>');" alt="<?php echo $thumbnail['alt']; ?>"></div>
+                <div class="item__img-wrap">
+                    <div class="item__img" style="background-image: url('<?php echo $thumbnail_url;?>');" alt="<?php echo $thumbnail['alt']; ?>"></div>
                 </div>                            
 
             

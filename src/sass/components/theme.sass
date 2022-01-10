@@ -181,15 +181,14 @@ body
 .h1 
 	font-family: $title
 	font-size: 100px
-
 	font-size: 32.230769230769vh
-	//line-height: 23.346153846154vmin
-	font-size: calc(16.1153846154vh + 8.729vw)
-	font-size: 20vw
+	//12.917vw
+	//23.846153846154 vh.
+	// calc vw/3 + vh/3*2
+	font-size: calc(15.897vh + 4.306vw)
 	line-height: 0.724
 	text-transform: uppercase
 	font-weight: 800
-	letter-spacing: 0.001em
 
 	@media (min-aspect-ratio: 4/3)
 		font-size: 17.458vw
@@ -202,68 +201,52 @@ body
 		//font-size: 10vw
 		//line-height: 10vw
 
-.h1-small
-	font-family: $title
-	font-size: 100px
-
-	font-size: 32.230769230769vh
-	//line-height: 23.346153846154vmin
-	font-size: calc(16.1153846154vh + 8.729vw)
-	font-size: 10vw
-	line-height: 0.88
-	text-transform: uppercase
-	font-weight: 800
-	letter-spacing: 0.001em
-
-	@media (min-aspect-ratio: 4/3)
-		font-size: 16.115vh
-
-	+media-sm-and-less
-		//font-size: 10vw
-		//line-height: 10vw
-
-
 .h2
-	font-family: $paragraph
-	font-size: 56px
-	font-size: 6.4102564102564vmin
-
-	font-size: calc(3.2vh + 1.736vw)
-	font-size: calc(4.26vh + 1.154vw)
+	font-family: $title
+	text-transform: uppercase
+	font-size: 93px
+	font-size: 6.458vmin
+	//6.458vw
+	//12.307692307692 vh
+	// calc vw/3 + vh/3*2
+	font-size: calc(8.205vh + 2.153vw)
 	line-height: 80px
-	line-height: 7.8205128205128vmin
-	line-height: 1.22
-	letter-spacing: -0.02em
+	line-height: 1.03
 	
 	+media-sm-and-less
 		font-size: 6vw
 		line-height: 8vw
 
-
+/*
 	a
 		font-size: inherit
 		font-weight: inherit
 		color: inherit
 		font-family: inherit
+// */
 
 .h3
 
 	font-family: $paragraph
-	font-size: calc(1.603vh + 0.868vw)
-	line-height: 1.28
-	letter-spacing: 0.001em
+	font-size: 26px
+	//1.806vw
+	//3.3333333333333 vh
+	// calc vw/3 + vh/3*2
+	line-height:
+	font-size: calc(2.222vh + 0.602vw)
+	line-height: 1.30
+	letter-spacing: -0.03em
 
 	+media-sm-and-less
 		font-size: 32px
 		line-height: 38px
-	strong
-		font-family: $paragraph
-		-webkit-font-smoothing: antialiased
-		font-weight: 400
-		letter-spacing: -0.02em
+
 
 
 .h4, .categories
+	color: red !important
+
+/*
 	font-family: $title
 	-webkit-font-smoothing: antialiased
 	font-size: 1.9230769230769vh
@@ -274,9 +257,10 @@ body
 	+media-lg-and-less
 		font-size: 20px
 		line-height: 28px
-
+// */
 .t--small
 	font-family: $paragraph
+	color: red !important
 	font-size: 0.972vw
 	line-height: 1.667vw
 	font-weight: 400
@@ -292,14 +276,21 @@ body
 
 	a
 		font-size: inherit
-.t--text, a, input, .cta--rounded-square
+
+.t--text, a, input, .a--link, .cta--rounded-square
 	font-family: $paragraph
 	-webkit-font-smoothing: antialiased
 	font-weight: 400
 	font-size: calc(0.96vh + 0.52vw)
-	line-height: 1.66
+	font-size: 10px
+	line-height: 1.6
+	letter-spacing: 0.05em
 	text-decoration: none
 	color: inherit
+	text-transform: uppercase
+
+
+
 
 
 p 
@@ -358,30 +349,6 @@ button
 	transition: none
 	-webkit-appearance: none
 	-moz-appearance: none
-
-
-	
-.small--categories
-	color: $color-white
-	text-transform: uppercase
-	font-size: 16px
-	font-family: $paragraph
-	font-weight: 400
-	letter-spacing:
-
-	+media-sm-and-less
-		font-size: 16px
-
-	img 
-		float: left
-		width: 20px
-		position: relative
-		margin-right: 10px
-		margin-top: 1px
-
-		+media-sm-and-less
-
-
 	
 
 blockquote 
@@ -399,23 +366,8 @@ ul
 li
 	display: inline-block
 
-.container
-
-
-	.row
-		margin-bottom: $col-margin*2.5
-
-		+media-sm-and-less
-			margin-bottom: $col-margin*6
-
-
-.table 
-	display: table
-	width: 100%
-	height: 100%
-
 .cta--rounded-square
-		//font-size: 0.833vw
+	//font-size: 0.833vw
 		padding: 20px 40px 20px 30px
 		z-index: 2
 		display: inline-block
@@ -564,13 +516,6 @@ li
 			position: absolute
 			width: 100%
 			height: 100%
-
-
-.item:first-child .item__img-wrap
-	--aspect-ratio: 8/10
-
-
-
 
 .image--1-1 
 	padding-bottom: 100%

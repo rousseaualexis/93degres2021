@@ -1,6 +1,6 @@
 {
     "key": "group_5d62a47e2bcca",
-    "title": "Block: Paragraph",
+    "title": "Horizontal: Paragraph",
     "fields": [
         {
             "key": "field_5d62a492f7755",
@@ -146,5 +146,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1605196232
+    "modified": 1641842884
 }

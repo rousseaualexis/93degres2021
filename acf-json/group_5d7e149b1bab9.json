@@ -1,6 +1,6 @@
 {
     "key": "group_5d7e149b1bab9",
-    "title": "Block: Separator",
+    "title": "Horizontal: Separator",
     "fields": [],
     "location": [
         [
@@ -17,7 +17,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1589817179
+    "modified": 1641842900
 }

@@ -1,6 +1,6 @@
 {
     "key": "group_5d62a4b79a7fc",
-    "title": "Block: Title",
+    "title": "Horizontal: Title",
     "fields": [
         {
             "key": "field_5d62a4b79e092",
@@ -37,7 +37,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1589817152
+    "modified": 1641842911
 }

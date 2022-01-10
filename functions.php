@@ -545,6 +545,16 @@ function my_acf_init() {
       'icon'        => 'format-image',
       'keywords'      => array( 'separator'),
     ));
+    // register Separator block
+    acf_register_block(array(
+      'name'        => 'destination-shop',
+      'title'       => __('Destination Shop'),
+      'description'   => __('A custom Separator Destination+Shop.'),
+      'render_callback' => 'my_acf_block_render_callback',
+      'category'      => 'formatting',
+      'icon'        => 'format-image',
+      'keywords'      => array( 'shop','destination'),
+    ));
   }
 }
 
@@ -586,8 +596,11 @@ function my_acf_block_render_callback( $block ) {
   $slug = str_replace('acf/', '', $block['name']);
   
   // include a template part from within the "views/block" folder
-  if( file_exists( get_theme_file_path("/src/views/block/content-{$slug}.php") ) ) {
-    include( get_theme_file_path("/src/views/block/content-{$slug}.php") );
+  if( file_exists( get_theme_file_path("/src/views/horizontal/strate-{$slug}.php") ) ) {
+    include( get_theme_file_path("/src/views/horizontal/strate-{$slug}.php") );
+  }
+  elseif( file_exists( get_theme_file_path("/src/views/strate-{$slug}.php") ) ) {
+    include( get_theme_file_path("/src/views/strate-{$slug}.php") );
   }
 }
 
