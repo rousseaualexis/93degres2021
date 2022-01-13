@@ -60,7 +60,7 @@ Template Name: Homepage
                 ?>
 
                 <a id="homepage--cover--image" class="item" href="<?php the_permalink(); ?>" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>"> 
-                                    <div id="homepage--cover--title" class="col-xs-offset-2 col-xs-20">
+                <div id="homepage--cover--title" class="col-xs-offset-2 col-xs-20">
                         <p class="h1" data-mouse="read" data-background="<?php echo get_field('background-color'); ?>" data-text="<?php echo get_field('text-color'); ?>" data-splitting="words">
                                 <?php the_title(); ?>
                         </p>
@@ -69,6 +69,8 @@ Template Name: Homepage
                         if(!empty($yearEnd)){ echo ' / ' . $yearEnd; }?></span></div>
                     !-->
                 </div>
+                <p class="h3" data-splitting="lines">A two week roadtrip in the American West</p>
+
                             <div class="bgd__image" style="background-image: url('<?php echo $thumbnail['sizes']['large'];?>');" alt="<?php echo $thumbnail['alt']; ?>">
                             </div>
                 </a>

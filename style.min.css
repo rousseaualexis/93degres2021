@@ -139,9 +139,9 @@ table{border-collapse:collapse;border-spacing:0}
 .flickity-page-dots .dot.is-selected{opacity:1}
 .noscroll{overflow:hidden}
 .mask,.mask2,.mask3{position:fixed;z-index:1001;top:0;bottom:0;left:0;right:0}
-.mask{background:#ffadb9}
+.mask{background:#121317;opacity:.5}
 .mask2{background:#fff;z-index:1002}
-.mask3{background:#ffadb9;opacity:1;z-index:1001}
+.mask3{background:#121317;opacity:1;z-index:1001}
 .mouse-cursor{display:block;z-index:103;width:0;height:0;position:fixed;pointer-events:none;opacity:1;left:50%;top:50%;visibility:hidden;-webkit-transition:.55s cubic-bezier(0,0,0,1);transition:.55s cubic-bezier(0,0,0,1)}
 .mouse-cursor .base--circle{position:absolute;z-index:-1;-webkit-transition:.55s cubic-bezier(0,0,0,1);transition:.55s cubic-bezier(0,0,0,1);width:12px;height:12px;position:absolute;z-index:-1;border-radius:50%;top:calc(50% - 6px);left:calc(50% - 6px);-webkit-transition:.45s cubic-bezier(0.4,0,0,1);transition:.45s cubic-bezier(0.4,0,0,1);border:solid 2px #000}
 .mouse-cursor .mousecontainer{position:absolute;z-index:-1;border-radius:50%;-webkit-transform:scale(1);transform:scale(1);top:0;right:0}
@@ -226,9 +226,16 @@ li{display:inline-block}
 #header #logo a{overflow:hidden;display:block;float:left;width:100%}
 #header #logo #logo__93degres{width:100%;min-width:90px}
 #header a,#header .burger{pointer-events:auto;cursor:pointer}
-#header #logo #logo__93degres,#header #link--instagram svg{fill:#121317;-webkit-transition:fill .25s;transition:fill .25s}
+#header #logo #logo__93degres,#header #link--instagram svg{-webkit-transition:fill .25s;transition:fill .25s}
 #header .menu-links a{-webkit-transition:color .25s;transition:color .25s}
-#header .burger span{background:#121317}
+.header--white ul a{color:#fff}
+.header--white .burger span,.header--white .cart-button{background:#fff}
+.header--white .cart-button{color:#121317}
+.header--white #logo #logo__93degres,.header--white #link--instagram svg{fill:#fff}
+.header--black ul a{color:#121317}
+.header--black .burger span,.header--black .cart-button{background:#121317}
+.header--black .cart-button{color:#fff}
+.header--black #logo #logo__93degres,.header--black #link--instagram svg{fill:#121317}
 .menu-burger{display:none;position:fixed;width:100%;height:100%;overflow:hidden;overflow-y:scroll;z-index:102}
 .menu-burger #svg__cross{fill:#fff;width:14px;position:fixed;left:49.9999999998vw;top:45px;cursor:pointer;z-index:103}
 .menu-burger--left{height:100%;background:#121317;display:table;width:54.1666666665vw;position:absolute;-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0);top:0;left:0}
@@ -265,7 +272,7 @@ li{display:inline-block}
 .menu-links--left{position:relative;width:33.3333333332vw;margin-top:-17.5px;display:inline-block;vertical-align:middle}
 .menu-links--right{text-align:right;position:relative;width:33.3333333332vw;margin-top:-15px;display:inline-block;vertical-align:middle}
 .menu-links--right li:last-child{margin-right:0;overflow:initial;min-width:4.1666666667vw}
-.menu-links--right .cart-button{text-align:center;border-radius:10000px;padding:8px 20px 10px 20px;background:#121317;min-width:calc(100% - 40px);color:#fff;margin-left:2.0833333333vw}
+.menu-links--right .cart-button{text-align:center;border-radius:10000px;padding:8px 20px 10px 20px;min-width:calc(100% - 40px);margin-left:2.0833333333vw}
 #link--instagram a svg{display:inline-block;vertical-align:middle;right:-40px;width:20px;padding-left:.4166666667vw;top:5px}
 #link--instagram .current{color:#ffadb9}
 .menu-secondary-container{text-align:right}

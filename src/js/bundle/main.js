@@ -180,15 +180,32 @@ var site = (function() {
             var $header = $('header');
             var tl = new TimelineLite();
             const vh = (coef) => window.innerHeight * (coef/100)
-            tl.to($header.find('#logo #logo__93degres'), 0.1, {fill:"#000000"}, 0);
+
+            if( $('body').hasClass('page--single') === true || $('body').hasClass('page--wc--single') === true ){
+                var $text = $('body').data('text');
+                tl.to($header.find('#logo #logo__93degres'), 0.1, {fill: $text}, 0);
+            }
+            else{
+                tl.to($header.find('#logo #logo__93degres'), 0.1, {fill:"#000000"}, 0);
+            }
+            
             tl.to($header, 0, {zIndex:2000}, 0);
             tl.fromTo($header.find('#logo #logo__93degres'), 1.5, {y:'400%'},{y:'0%', force3D: false, ease:Expo.easeOut}, 0.2);
             tl.fromTo($header.find('#logo #logo__93degres'), 1.5, {scaleY: '2'}, {scaleY: '1.00001', ease:Quint.easeOut}, 0.2);
-            tl.from($header, 1.5, {top:'-12.5%', ease:Quint.easeInOut}, '-=0.5');
-            tl.fromTo($header.find('#logo'), 1.5, {y:'50vh', scale:'1.5'},{y: 0, scale:'1.0001', force3D: false, ease:Quint.easeInOut}, '-=1.5');     
+
+            tl.fromTo($header.find('#logo'), 1.5, {y:'50vh', scale:'1.5'},{y: 0, scale:'1.0001', force3D: false, ease:Quint.easeInOut}, '-=0.5');     
             tl.to($(".mask"), 1.75, {y:"-100%", ease:Expo.easeInOut}, '-=1.5');
             tl.to($(".mask3"), 1.75, {y:"-100%", ease:Expo.easeInOut}, '-=1.75');
             tl.to($(".mask2"), 1.5, {y:"-100%", ease:Expo.easeInOut}, '-=1.7');
+                
+            if( $('body').hasClass('page--single') === true || $('body').hasClass('page--wc--single') === true ){
+                var $text = $('body').data('text');
+                tl.to($header.find('#logo #logo__93degres'), 1.5, {fill: $text}, '-=0.9');
+            }
+            else{
+                tl.to($header.find('#logo #logo__93degres'), 1.5, {fill:""}, '-=0.9');
+            }
+
             tl.to($header, 0, {zIndex:101}, 2.5);
             tl.from($header.find('ul'), 1, {alpha: 0}, 2);
             tl.from($header.find('.burger'), 1, {alpha: 0}, 2);
@@ -228,7 +245,7 @@ var site = (function() {
               
                 var tl = new TimelineLite();
                 tl.fromTo($mask, 1.1, {y: "100%"}, { y: 0, ease:Expo.easeOut}, 0.1);
-                tl.fromTo($mask3, 1.1, {y: "100%"}, {y: 0, ease:Expo.easeOut}, '-=1.1');
+                tl.fromTo($mask3, 1.1, {y: "100%"}, {y: 0, ease:Expo.easeOut}, '-=1');
                 tl.fromTo($mask2, 1, {y: "100%"}, {y: 0, ease:Expo.easeInOut, onComplete:function(){window.location = url;  window.scrollTo(0, 0);}}, '-=1.1');
             }
         });
@@ -552,13 +569,13 @@ var about = (function() {
                         $("#header").addClass('header--black');
                         $('#header').removeClass('header--white');
 
-                        $('#header #logo #logo__93degres').css("fill","#000000");
+                        //$('#header #logo #logo__93degres').css("fill","#000000");
                     }
                     else {
                         $('#header').addClass('header--white');
                         $('#header').removeClass('header--black');
 
-                        $('#header #logo #logo__93degres').css("fill","#ffffff");
+                        //$('#header #logo #logo__93degres').css("fill","#ffffff");
                     }
 
 
@@ -786,6 +803,17 @@ if (!isMobile()) { */
         homepage.init();
     };
 
+
+    if( $('body').hasClass('page--single') === true ){
+        single.init();
+    };
+
+    if( $('body').hasClass('page--wc--single') === true ){
+        WCsingle.init();
+    };
+
+
+
     //CHange color on page with ACF color fields
     if( $('body').hasClass('page--single') === true || $('body').hasClass('page--wc--single') === true ){
         var $background = $('body').data('background');
@@ -816,22 +844,12 @@ if (!isMobile()) { */
 
 
         $(".mouse-cursor .base--circle").css("border-color", $text);
-
         $("#header #link--instagram svg").css("fill",$text);
-        $("  #header #logo #logo__93degres").css("fill",$text);
+        $("#header #logo #logo__93degres").css("fill",$text);
 
 
 
     };
-
-    if( $('body').hasClass('page--single') === true ){
-        single.init();
-    };
-
-    if( $('body').hasClass('page--wc--single') === true ){
-        WCsingle.init();
-    };
-
 
     if( $('body').hasClass('page--about') === true ){
         about.init();

@@ -51,13 +51,38 @@
 		cursor: pointer
 
 	#logo #logo__93degres, #link--instagram svg
-		fill: $color-dark
 		transition: fill 0.25s
 	.menu-links
 		a
 			transition: color 0.25s
-	.burger span
+	
+
+.header--white
+	ul a
+		color: $color-white
+
+	.burger span, .cart-button
+		background: $color-white
+	.cart-button
+		color: $color-dark
+
+	#logo #logo__93degres, #link--instagram svg
+		fill: $color-white
+
+.header--black
+
+	ul a
+		color: $color-dark
+
+	.burger span, .cart-button
 		background: $color-dark
+	.cart-button
+		color: $color-white
+
+	#logo #logo__93degres, #link--instagram svg
+		fill: $color-dark
+
+
 
 
 .menu-burger
@@ -257,9 +282,7 @@
 			text-align: center
 			border-radius: 10000px
 			padding: 8px 20px 10px 20px
-			background: $color-dark
 			min-width: calc(100% - 40px)
-			color: $color-white
 			margin-left: $col-margin/2
 
 

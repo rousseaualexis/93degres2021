@@ -211,9 +211,17 @@ var site = function () {
         return window.innerHeight * (coef / 100);
       };
 
-      tl.to($header.find('#logo #logo__93degres'), 0.1, {
-        fill: "#000000"
-      }, 0);
+      if ($('body').hasClass('page--single') === true || $('body').hasClass('page--wc--single') === true) {
+        var $text = $('body').data('text');
+        tl.to($header.find('#logo #logo__93degres'), 0.1, {
+          fill: $text
+        }, 0);
+      } else {
+        tl.to($header.find('#logo #logo__93degres'), 0.1, {
+          fill: "#000000"
+        }, 0);
+      }
+
       tl.to($header, 0, {
         zIndex: 2000
       }, 0);
@@ -230,10 +238,6 @@ var site = function () {
         scaleY: '1.00001',
         ease: Quint.easeOut
       }, 0.2);
-      tl.from($header, 1.5, {
-        top: '-12.5%',
-        ease: Quint.easeInOut
-      }, '-=0.5');
       tl.fromTo($header.find('#logo'), 1.5, {
         y: '50vh',
         scale: '1.5'
@@ -242,7 +246,7 @@ var site = function () {
         scale: '1.0001',
         force3D: false,
         ease: Quint.easeInOut
-      }, '-=1.5');
+      }, '-=0.5');
       tl.to($(".mask"), 1.75, {
         y: "-100%",
         ease: Expo.easeInOut
@@ -255,6 +259,18 @@ var site = function () {
         y: "-100%",
         ease: Expo.easeInOut
       }, '-=1.7');
+
+      if ($('body').hasClass('page--single') === true || $('body').hasClass('page--wc--single') === true) {
+        var $text = $('body').data('text');
+        tl.to($header.find('#logo #logo__93degres'), 1.5, {
+          fill: $text
+        }, '-=0.9');
+      } else {
+        tl.to($header.find('#logo #logo__93degres'), 1.5, {
+          fill: ""
+        }, '-=0.9');
+      }
+
       tl.to($header, 0, {
         zIndex: 101
       }, 2.5);
@@ -297,7 +313,7 @@ var site = function () {
         }, {
           y: 0,
           ease: Expo.easeOut
-        }, '-=1.1');
+        }, '-=1');
         tl.fromTo($mask2, 1, {
           y: "100%"
         }, {
@@ -656,11 +672,9 @@ var about = function () {
         if (scroll_start > contentOffset.top - headerHeight / 2 && scroll_start < contentOffset.top + contentChange.outerHeight() - headerHeight / 2) {
           $("#header").addClass('header--black');
           $('#header').removeClass('header--white');
-          $('#header #logo #logo__93degres').css("fill", "#000000");
         } else {
           $('#header').addClass('header--white');
           $('#header').removeClass('header--black');
-          $('#header #logo #logo__93degres').css("fill", "#ffffff");
         }
       }
     });
@@ -801,6 +815,18 @@ window.onload = function () {
 
   ;
 
+  if ($('body').hasClass('page--single') === true) {
+    single.init();
+  }
+
+  ;
+
+  if ($('body').hasClass('page--wc--single') === true) {
+    WCsingle.init();
+  }
+
+  ;
+
   if ($('body').hasClass('page--single') === true || $('body').hasClass('page--wc--single') === true) {
     var $background = $('body').data('background');
     var $text = $('body').data('text');
@@ -820,19 +846,7 @@ window.onload = function () {
     $(".menu-links--right .cart-contents-count").css("color", $background);
     $(".mouse-cursor .base--circle").css("border-color", $text);
     $("#header #link--instagram svg").css("fill", $text);
-    $("  #header #logo #logo__93degres").css("fill", $text);
-  }
-
-  ;
-
-  if ($('body').hasClass('page--single') === true) {
-    single.init();
-  }
-
-  ;
-
-  if ($('body').hasClass('page--wc--single') === true) {
-    WCsingle.init();
+    $("#header #logo #logo__93degres").css("fill", $text);
   }
 
   ;
